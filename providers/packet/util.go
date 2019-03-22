@@ -32,8 +32,8 @@ func ParseFacility(facility *packngo.Facility) *data.Region {
 	}
 }
 
-func ParsePlan(plan *PlanExtended) (*data.InstanceType, error) {
-	ins := &data.InstanceType{
+func ParsePlan(plan *PlanExtended) (*data.MachineType, error) {
+	ins := &data.MachineType{
 		SKU:         plan.Slug,
 		Description: plan.Description,
 	}

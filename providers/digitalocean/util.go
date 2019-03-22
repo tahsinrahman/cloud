@@ -18,8 +18,8 @@ func ParseRegion(region *godo.Region) *data.Region {
 	}
 }
 
-func ParseSizes(size *godo.Size) (*data.InstanceType, error) {
-	m := &data.InstanceType{
+func ParseSizes(size *godo.Size) (*data.MachineType, error) {
+	m := &data.MachineType{
 		SKU:         size.Slug,
 		Description: size.Slug,
 		CPU:         size.Vcpus,

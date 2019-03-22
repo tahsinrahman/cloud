@@ -120,7 +120,7 @@ func (g *Client) GetZones() ([]string, error) {
 
 //https://ec2instances.info/instances.json
 //https://github.com/powdahound/ec2instances.info
-func (g *Client) GetInstanceTypes() ([]data.InstanceType, error) {
+func (g *Client) GetInstanceTypes() ([]data.MachineType, error) {
 
 	client := &http.Client{}
 	req, err := getInstanceRequest()
@@ -141,7 +141,7 @@ func (g *Client) GetInstanceTypes() ([]data.InstanceType, error) {
 	if err != nil {
 		return nil, err
 	}
-	instances := []data.InstanceType{}
+	instances := []data.MachineType{}
 	for _, ins := range instanceList {
 		i, err := ParseInstance(&ins)
 		if err != nil {

@@ -83,12 +83,12 @@ func (g *Client) GetZones() ([]string, error) {
 	return zones, nil
 }
 
-func (g *Client) GetInstanceTypes() ([]data.InstanceType, error) {
+func (g *Client) GetInstanceTypes() ([]data.MachineType, error) {
 	instanceList, err := g.Client.ListTypes(context.Background(), &linodego.ListOptions{})
 	if err != nil {
 		return nil, err
 	}
-	instances := []data.InstanceType{}
+	instances := []data.MachineType{}
 	for _, ins := range instanceList {
 		instance, err := ParseInstance(&ins)
 		if err != nil {

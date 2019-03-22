@@ -79,8 +79,8 @@ func (g *Client) GetZones() ([]string, error) {
 	return zones, nil
 }
 
-func (g *Client) GetInstanceTypes() ([]data.InstanceType, error) {
-	instances := []data.InstanceType{}
+func (g *Client) GetInstanceTypes() ([]data.MachineType, error) {
+	instances := []data.MachineType{}
 	planReq, err := g.getPlanRequest()
 	if err != nil {
 		return nil, err

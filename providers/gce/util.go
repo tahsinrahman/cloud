@@ -37,8 +37,8 @@ func ParseZoneFromUrl(url string) (string, error) {
 	return words[len(words)-1], nil
 }
 
-func ParseMachine(machine *compute.MachineType) (*data.InstanceType, error) {
-	m := &data.InstanceType{
+func ParseMachine(machine *compute.MachineType) (*data.MachineType, error) {
+	m := &data.MachineType{
 		SKU:         machine.Name,
 		Description: machine.Description,
 		CPU:         int(machine.GuestCpus),

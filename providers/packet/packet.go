@@ -93,7 +93,7 @@ func (g *Client) GetZones() ([]string, error) {
 	return zones, nil
 }
 
-func (g *Client) GetInstanceTypes() ([]data.InstanceType, error) {
+func (g *Client) GetInstanceTypes() ([]data.MachineType, error) {
 	//facilityCode maps facility.ID to facility.Code
 	facilityCode := map[string]string{}
 	facilityList, _, err := g.Client.Facilities.List(&packngo.ListOptions{})
@@ -120,7 +120,7 @@ func (g *Client) GetInstanceTypes() ([]data.InstanceType, error) {
 	if err != nil {
 		return nil, err
 	}
-	instances := []data.InstanceType{}
+	instances := []data.MachineType{}
 	for _, plan := range planList.Plans {
 		if plan.Line == "baremetal" {
 			ins, err := ParsePlan(&plan)

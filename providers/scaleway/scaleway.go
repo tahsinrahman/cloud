@@ -74,12 +74,12 @@ func (g *Client) GetZones() ([]string, error) {
 	return zones, nil
 }
 
-func (g *Client) GetInstanceTypes() ([]data.InstanceType, error) {
+func (g *Client) GetInstanceTypes() ([]data.MachineType, error) {
 	instanceList, err := g.ParClient.GetProductsServers()
 	if err != nil {
 		return nil, err
 	}
-	instances := []data.InstanceType{}
+	instances := []data.MachineType{}
 	instancePos := map[string]int{}
 	for pos, ins := range instanceList.Servers {
 		instance, err := ParseInstance(pos, &ins)

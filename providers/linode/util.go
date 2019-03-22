@@ -17,8 +17,8 @@ func ParseRegion(in *linodego.Region) *data.Region {
 	}
 }
 
-func ParseInstance(in *linodego.LinodeType) (*data.InstanceType, error) {
-	out := &data.InstanceType{
+func ParseInstance(in *linodego.LinodeType) (*data.MachineType, error) {
+	out := &data.MachineType{
 		SKU:         in.ID,
 		Description: in.Label,
 		CPU:         in.VCPUs,

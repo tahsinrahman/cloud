@@ -92,14 +92,14 @@ func (g *Client) GetZones() ([]string, error) {
 	return zones, nil
 }
 
-func (g *Client) GetInstanceTypes() ([]data.InstanceType, error) {
+func (g *Client) GetInstanceTypes() ([]data.MachineType, error) {
 	zoneList, err := g.GetZones()
 	if err != nil {
 		return nil, err
 	}
 	//machinesZone to keep zone to corresponding machine
 	machinesZone := map[string][]string{}
-	instanceTypes := []data.InstanceType{}
+	machineTypes := []data.MachineType{}
 	for _, zone := range zoneList {
 		req := g.ComputeService.MachineTypes.List(g.GceProjectID, zone)
 		err := req.Pages(g.Ctx, func(list *compute.MachineTypeList) error {
@@ -108,13 +108,13 @@ func (g *Client) GetInstanceTypes() ([]data.InstanceType, error) {
 				if err != nil {
 					return err
 				}
-				// to check whether we added this machine to instanceTypes
-				// if we found it then add this zone to machinesZone, else add the machine to instanceTypes and also add this zone to machinesZone
+				// to check whether we added this machine to machineTypes
+				// if we found it then add this zone to machinesZone, else add the machine to machineTypes and also add this zone to machinesZone
 				if zones, found := machinesZone[res.SKU]; found {
 					machinesZone[res.SKU] = append(zones, zone)
 				} else {
 					machinesZone[res.SKU] = []string{zone}
-					instanceTypes = append(instanceTypes, *res)
+					machineTypes = append(machineTypes, *res)
 				}
 			}
 			return nil
@@ -124,10 +124,10 @@ func (g *Client) GetInstanceTypes() ([]data.InstanceType, error) {
 		}
 	}
 	//update g.Data.InstanceTypes[].Zones
-	for index, instanceType := range instanceTypes {
-		instanceTypes[index].Zones = machinesZone[instanceType.SKU]
+	for index, instanceType := range machineTypes {
+		machineTypes[index].Zones = machinesZone[instanceType.SKU]
 	}
-	return instanceTypes, nil
+	return machineTypes, nil
 }
 
 func getComputeService(ctx context.Context, credentialFilePath string) (*compute.Service, error) {

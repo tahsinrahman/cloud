@@ -76,12 +76,12 @@ func (g *Client) GetZones() ([]string, error) {
 	return zones, nil
 }
 
-func (g *Client) GetInstanceTypes() ([]data.InstanceType, error) {
+func (g *Client) GetInstanceTypes() ([]data.MachineType, error) {
 	sizeList, _, err := g.Client.Sizes.List(g.Ctx, &godo.ListOptions{})
 	if err != nil {
 		return nil, err
 	}
-	instances := []data.InstanceType{}
+	instances := []data.MachineType{}
 	for _, s := range sizeList {
 		ins, err := ParseSizes(&s)
 		if err != nil {

@@ -19,8 +19,8 @@ func ParseRegion(in *vultr.Region) *data.Region {
 	}
 }
 
-func ParseInstance(in *PlanExtended) (*data.InstanceType, error) {
-	out := &data.InstanceType{
+func ParseInstance(in *PlanExtended) (*data.MachineType, error) {
+	out := &data.MachineType{
 		SKU:         strconv.Itoa(in.ID),
 		Description: in.Name,
 		CPU:         in.VCpus,

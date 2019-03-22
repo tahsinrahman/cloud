@@ -7,8 +7,8 @@ import (
 	"github.com/pkg/errors"
 )
 
-func ParseInstance(in *Ec2Instance) (*data.InstanceType, error) {
-	out := &data.InstanceType{
+func ParseInstance(in *Ec2Instance) (*data.MachineType, error) {
+	out := &data.MachineType{
 		SKU:         in.Instance_type,
 		Description: in.Instance_type,
 		Category:    in.Family,

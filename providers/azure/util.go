@@ -17,8 +17,8 @@ func ParseRegion(in *subscriptions.Location) *data.Region {
 	}
 }
 
-func ParseInstance(in *compute.VirtualMachineSize) (*data.InstanceType, error) {
-	out := &data.InstanceType{
+func ParseInstance(in *compute.VirtualMachineSize) (*data.MachineType, error) {
+	out := &data.MachineType{
 		SKU:         *in.Name,
 		Description: *in.Name,
 		CPU:         int(*in.NumberOfCores),

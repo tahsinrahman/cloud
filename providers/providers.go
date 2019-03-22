@@ -50,7 +50,7 @@ type CloudInterface interface {
 	GetKubernets() []data.Kubernetes
 	GetRegions() ([]data.Region, error)
 	GetZones() ([]string, error)
-	GetInstanceTypes() ([]data.InstanceType, error)
+	GetInstanceTypes() ([]data.MachineType, error)
 }
 
 func NewCloudProvider(opts *options.GenData) (CloudInterface, error) {

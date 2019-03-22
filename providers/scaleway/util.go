@@ -6,8 +6,8 @@ import (
 	scaleway "github.com/scaleway/scaleway-cli/pkg/api"
 )
 
-func ParseInstance(name string, in *scaleway.ProductServer) (*data.InstanceType, error) {
-	out := &data.InstanceType{
+func ParseInstance(name string, in *scaleway.ProductServer) (*data.MachineType, error) {
+	out := &data.MachineType{
 		SKU:         name,
 		Description: in.Arch,
 		CPU:         int(in.Ncpus),
