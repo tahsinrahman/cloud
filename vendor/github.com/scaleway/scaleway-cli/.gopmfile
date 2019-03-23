@@ -1,0 +1,7 @@
+[deps]
+github.com/sirupsen/logrus =
+github.com/docker/docker =
+github.com/scaleway/scaleway-cli =
+
+[res]
+include =
