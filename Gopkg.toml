@@ -91,6 +91,10 @@ required = [
   name = "sigs.k8s.io/yaml"
   version = "=v1.1.0"
 
+[[override]]
+  name = "kmodules.xyz/client-go"
+  branch = "release-10.0"
+
 # STANZAS BELOW ARE GENERATED AND MAY BE WRITTEN - DO NOT MODIFY BELOW THIS LINE.
 
 [[constraint]]
