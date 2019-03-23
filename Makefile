@@ -5,7 +5,7 @@ IMG ?= controller:latest
 all: test manager
 
 # Run tests
-test: generate fmt vet manifests
+test: verify generate fmt vet manifests
 	go test ./pkg/... ./cmd/... -coverprofile cover.out
 
 # Build manager binary
@@ -38,11 +38,19 @@ vet:
 	go vet ./pkg/... ./cmd/...
 
 # Generate code
-generate:
+generate: clientset
 ifndef GOPATH
 	$(error GOPATH not defined, please define GOPATH. Run "go help gopath" to learn more about GOPATH)
 endif
 	go generate ./pkg/... ./cmd/...
+
+.PHONY: clientset
+clientset: ## Generate a typed clientset
+	rm -rf pkg/client
+	cd ./vendor/k8s.io/code-generator/cmd && go install ./client-gen ./lister-gen ./informer-gen
+	$$GOPATH/bin/client-gen --clientset-name clientset --input-base github.com/pharmer/cloud/pkg/apis \
+		--input cloud/v1 --output-package github.com/pharmer/cloud/pkg/client/clientset_generated \
+		--go-header-file=./hack/boilerplate.go.txt
 
 # Build the docker image
 docker-build: test
@@ -53,3 +61,7 @@ docker-build: test
 # Push the docker image
 docker-push:
 	docker push ${IMG}
+
+.PHONY: verify
+verify:
+	./hack/verify_clientset.sh
