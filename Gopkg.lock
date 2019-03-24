@@ -1262,7 +1262,7 @@
 
 [[projects]]
   branch = "release-10.0"
-  digest = "1:ae12deecb1cd271044d5431b4e4b555a5842c52bd612e2155745499b4725ef95"
+  digest = "1:9a02647e56543487a1846420b22854a4143dc0e64f6b2fb79fdf42a655398386"
   name = "kmodules.xyz/client-go"
   packages = [
     ".",
@@ -1272,7 +1272,7 @@
     "tools/cli",
   ]
   pruneopts = "T"
-  revision = "fd7cc05edf46bb8d630fa6a84b875162f321e778"
+  revision = "45c57f3f168df1fa926ebd155516cee7ff8d0731"
 
 [[projects]]
   digest = "1:0366859202a26d3ad16ff9d7545c20f2a95ced5183f2f3cdb762522dbaffe6ea"

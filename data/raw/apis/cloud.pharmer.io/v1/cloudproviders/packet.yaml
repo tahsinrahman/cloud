@@ -73,6 +73,7 @@ spec:
       zones:
       - atl1
       - dfw1
+      - ewr1
       - fra1
       - fra2
       - hkg1
@@ -161,7 +162,6 @@ spec:
       ram: 64G
       sku: c2.medium.x86
       zones:
-      - ams1
       - dfw2
       - ewr1
       - nrt1

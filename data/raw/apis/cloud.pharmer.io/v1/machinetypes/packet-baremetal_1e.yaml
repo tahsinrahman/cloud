@@ -14,6 +14,7 @@ spec:
   zones:
   - atl1
   - dfw1
+  - ewr1
   - fra1
   - fra2
   - hkg1

@@ -21,8 +21,6 @@ func ParseRegion(in *linodego.Region) *v1.Region {
 }
 
 func ParseInstance(in *linodego.LinodeType) (*v1.MachineType, error) {
-	fmt.Println(in.ID, "|", in.Label, "|", in.Memory, "|", in.Disk)
-
 	return &v1.MachineType{
 		ObjectMeta: metav1.ObjectMeta{
 			Name: apis.Linode + "-" + in.ID,

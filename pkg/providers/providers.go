@@ -98,17 +98,26 @@ func WriteObject(obj runtime.Object) error {
 		return err
 	}
 
-	filename := filepath.Join(apis.DataDir, "apis", v1.SchemeGroupVersion.Group, v1.SchemeGroupVersion.Version, resource, name+".yaml")
-	err = os.MkdirAll(filepath.Dir(filename), 0755)
+	dir := filepath.Join(apis.DataDir, "apis", v1.SchemeGroupVersion.Group, v1.SchemeGroupVersion.Version, resource)
+	err = os.MkdirAll(dir, 0755)
 	if err != nil {
 		return err
 	}
 
-	dataBytes, err := mu.MarshalToYAML(obj, v1.SchemeGroupVersion)
+	yamlBytes, err := mu.MarshalToYAML(obj, v1.SchemeGroupVersion)
 	if err != nil {
 		return err
 	}
-	return ioutil.WriteFile(filename, dataBytes, 0755)
+	err = ioutil.WriteFile(filepath.Join(dir, name+".yaml"), yamlBytes, 0755)
+	if err != nil {
+		return err
+	}
+
+	jsonBytes, err := mu.MarshalToPrettyJson(obj, v1.SchemeGroupVersion)
+	if err != nil {
+		return err
+	}
+	return ioutil.WriteFile(filepath.Join(dir, name+".json"), jsonBytes, 0755)
 }
 
 func WriteCloudProvider(data *v1.CloudProvider) error {
