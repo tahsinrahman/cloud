@@ -1,31 +1,41 @@
 package linode
 
 import (
+	"fmt"
 	"github.com/linode/linodego"
-	"github.com/pharmer/cloud/pkg/apis/cloud/v1"
+	"github.com/pharmer/cloud/pkg/apis"
+	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
+	"github.com/pharmer/cloud/pkg/util"
 	"k8s.io/apimachinery/pkg/api/resource"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 func ParseRegion(in *linodego.Region) *v1.Region {
 	return &v1.Region{
-		Spec: v1.RegionSpec{
-			Location: in.Country,
-			Region:   in.ID,
-			Zones: []string{
-				in.ID,
-			},
+		Location: in.Country,
+		Region:   in.ID,
+		Zones: []string{
+			in.ID,
 		},
 	}
 }
 
 func ParseInstance(in *linodego.LinodeType) (*v1.MachineType, error) {
+	fmt.Println(in.ID, "|", in.Label, "|", in.Memory, "|", in.Disk)
+
 	return &v1.MachineType{
+		ObjectMeta: metav1.ObjectMeta{
+			Name: apis.Linode + "-" + in.ID,
+			Labels: map[string]string{
+				"cloud.pharmer.io/provider": apis.Linode,
+			},
+		},
 		Spec: v1.MachineTypeSpec{
 			SKU:         in.ID,
 			Description: in.Label,
 			CPU:         resource.NewQuantity(int64(in.VCPUs), resource.DecimalExponent),
-			RAM:         resource.NewQuantity(int64(in.Memory), resource.BinarySI),
-			Disk:        resource.NewQuantity(int64(in.Disk), resource.DecimalExponent),
+			RAM:         util.QuantityP(resource.MustParse(fmt.Sprintf("%dMi", in.Memory))),
+			Disk:        util.QuantityP(resource.MustParse(fmt.Sprintf("%dMi", in.Disk))),
 		},
 	}, nil
 }

@@ -30,10 +30,14 @@ spec:
           properties:
             envs:
               type: object
-            version:
-              type: object
+            gitVersion:
+              type: string
+            major:
+              type: string
+            minor:
+              type: string
           required:
-          - version
+          - gitVersion
           type: object
   version: v1
 status:

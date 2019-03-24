@@ -14,7 +14,7 @@ func TestRegion(t *testing.T) {
 		t.Error(err)
 		return
 	}
-	g.Session, err = session.NewSession(&aws.Config{
+	g.session, err = session.NewSession(&aws.Config{
 		Region:      string_ptr("us-east-1"),
 		Credentials: credentials.NewStaticCredentials("", "", ""),
 	})

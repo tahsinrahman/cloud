@@ -4,21 +4,20 @@ import (
 	"context"
 	"net/http"
 
+	"github.com/pharmer/cloud/pkg/apis"
+
 	"github.com/linode/linodego"
-	"github.com/pharmer/cloud/pkg/apis/cloud/v1"
-	"github.com/pharmer/cloud/pkg/util"
+	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
 	"golang.org/x/oauth2"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 type Client struct {
-	Data   *LinodeData
 	Client *linodego.Client
 }
 
-type LinodeData v1.CloudProvider
-
-func NewClient(linodeApiToken string) (*Client, error) {
-	tokenSource := oauth2.StaticTokenSource(&oauth2.Token{AccessToken: linodeApiToken})
+func NewClient(token string) (*Client, error) {
+	tokenSource := oauth2.StaticTokenSource(&oauth2.Token{AccessToken: token})
 
 	oauth2Client := &http.Client{
 		Transport: &oauth2.Transport{
@@ -30,26 +29,38 @@ func NewClient(linodeApiToken string) (*Client, error) {
 	g := &Client{
 		Client: &client,
 	}
-	var err error
-	data, err := util.GetDataFormFile("linode")
-	if err != nil {
-		return nil, err
-	}
-	d := LinodeData(*data)
-	g.Data = &d
 	return g, nil
 }
 
 func (g *Client) GetName() string {
-	return g.Data.Name
+	return apis.Linode
 }
 
 func (g *Client) GetCredentials() []v1.CredentialFormat {
-	return g.Data.Spec.Credentials
-}
-
-func (g *Client) GetKubernetes() []v1.KubernetesVersion {
-	return g.Data.Spec.Kubernetes
+	return []v1.CredentialFormat{
+		{
+			ObjectMeta: metav1.ObjectMeta{
+				Name: apis.Linode,
+				Annotations: map[string]string{
+					"cloud.pharmer.io/cluster-credential": "",
+					"cloud.pharmer.io/dns-credential":     "",
+				},
+			},
+			Spec: v1.CredentialFormatSpec{
+				Provider:      apis.Linode,
+				DisplayFormat: "field",
+				Fields: []v1.CredentialField{
+					{
+						Envconfig: "LINODE_TOKEN",
+						Form:      "linode_token",
+						JSON:      "token",
+						Label:     "Token",
+						Input:     "password",
+					},
+				},
+			},
+		},
+	}
 }
 
 //DataCenter as region
@@ -74,7 +85,7 @@ func (g *Client) GetZones() ([]string, error) {
 	}
 	var zones []string
 	for _, r := range regionList {
-		zones = append(zones, r.Spec.Region)
+		zones = append(zones, r.Region)
 	}
 	return zones, nil
 }

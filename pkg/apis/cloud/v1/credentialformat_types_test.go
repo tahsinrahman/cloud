@@ -32,7 +32,22 @@ func TestStorageCredentialFormat(t *testing.T) {
 	created := &CredentialFormat{
 		ObjectMeta: metav1.ObjectMeta{
 			Name: "foo",
-		}}
+		},
+		Spec: CredentialFormatSpec{
+			Provider:      "Foo",
+			DisplayFormat: "field",
+			Fields: []CredentialField{
+				{
+
+					Envconfig: "TOKEN",
+					Form:      "token",
+					JSON:      "token",
+					Label:     "Personal Access Token",
+					Input:     "password",
+				},
+			},
+		},
+	}
 	g := gomega.NewGomegaWithT(t)
 
 	// Test Create

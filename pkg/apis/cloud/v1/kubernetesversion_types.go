@@ -18,13 +18,14 @@ package v1
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"k8s.io/apimachinery/pkg/version"
 )
 
 // KubernetesVersionSpec defines the desired state of KubernetesVersion
 type KubernetesVersionSpec struct {
-	Version *version.Info   `json:"version"`
-	Envs    map[string]bool `json:"envs,omitempty"`
+	Major      string          `json:"major,omitempty"`
+	Minor      string          `json:"minor,omitempty"`
+	GitVersion string          `json:"gitVersion"`
+	Envs       map[string]bool `json:"envs,omitempty"`
 }
 
 // +genclient

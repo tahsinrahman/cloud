@@ -17,7 +17,7 @@ limitations under the License.
 package apis
 
 import (
-	"github.com/pharmer/cloud/pkg/apis/cloud/v1"
+	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
 )
 
 func init() {

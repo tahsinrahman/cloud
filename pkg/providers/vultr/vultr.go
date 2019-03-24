@@ -5,17 +5,16 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/pharmer/cloud/pkg/apis"
+
 	vultr "github.com/JamesClonk/vultr/lib"
-	"github.com/pharmer/cloud/pkg/apis/cloud/v1"
-	"github.com/pharmer/cloud/pkg/util"
+	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 type Client struct {
-	Data   *VultrData
 	Client *vultr.Client
 }
-
-type VultrData v1.CloudProvider
 
 type PlanExtended struct {
 	vultr.Plan
@@ -27,26 +26,41 @@ func NewClient(token string) (*Client, error) {
 	g := &Client{
 		Client: vultr.NewClient(token, nil),
 	}
-	var err error
-	data, err := util.GetDataFormFile("vultr")
-	if err != nil {
-		return nil, err
-	}
-	d := VultrData(*data)
-	g.Data = &d
 	return g, nil
 }
 
 func (g *Client) GetName() string {
-	return g.Data.Name
+	return apis.Vultr
 }
 
 func (g *Client) GetCredentials() []v1.CredentialFormat {
-	return g.Data.Spec.Credentials
-}
-
-func (g *Client) GetKubernetes() []v1.KubernetesVersion {
-	return g.Data.Spec.Kubernetes
+	return []v1.CredentialFormat{
+		{
+			ObjectMeta: metav1.ObjectMeta{
+				Name: apis.Vultr,
+				Labels: map[string]string{
+					"cloud.pharmer.io/provider": apis.Vultr,
+				},
+				Annotations: map[string]string{
+					"cloud.pharmer.io/cluster-credential": "",
+					"cloud.pharmer.io/dns-credential":     "",
+				},
+			},
+			Spec: v1.CredentialFormatSpec{
+				Provider:      apis.Vultr,
+				DisplayFormat: "field",
+				Fields: []v1.CredentialField{
+					{
+						Envconfig: "VULTR_TOKEN",
+						Form:      "vultr_token",
+						JSON:      "token",
+						Label:     "Personal Access Token",
+						Input:     "password",
+					},
+				},
+			},
+		},
+	}
 }
 
 func (g *Client) GetRegions() ([]v1.Region, error) {
@@ -54,7 +68,7 @@ func (g *Client) GetRegions() ([]v1.Region, error) {
 	if err != nil {
 		return nil, err
 	}
-	regions := []v1.Region{}
+	var regions []v1.Region
 	for _, r := range regionlist {
 		region := ParseRegion(&r)
 		regions = append(regions, *region)
@@ -67,16 +81,16 @@ func (g *Client) GetZones() ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
-	zones := []string{}
+	var zones []string
 	//since we use data.Region.Region as Zone name
 	for _, r := range regions {
-		zones = append(zones, r.Spec.Region)
+		zones = append(zones, r.Region)
 	}
 	return zones, nil
 }
 
 func (g *Client) GetMachineTypes() ([]v1.MachineType, error) {
-	instances := []v1.MachineType{}
+	var instances []v1.MachineType
 	planReq, err := g.getPlanRequest()
 	if err != nil {
 		return nil, err

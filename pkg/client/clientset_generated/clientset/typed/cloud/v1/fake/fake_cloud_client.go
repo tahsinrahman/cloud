@@ -43,10 +43,6 @@ func (c *FakeCloudV1) MachineTypes() v1.MachineTypeInterface {
 	return &FakeMachineTypes{c}
 }
 
-func (c *FakeCloudV1) Regions() v1.RegionInterface {
-	return &FakeRegions{c}
-}
-
 // RESTClient returns a RESTClient that is used to communicate
 // with API server by this client implementation.
 func (c *FakeCloudV1) RESTClient() rest.Interface {

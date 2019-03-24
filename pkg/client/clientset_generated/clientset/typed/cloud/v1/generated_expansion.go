@@ -24,5 +24,3 @@ type CredentialFormatExpansion interface{}
 type KubernetesVersionExpansion interface{}
 
 type MachineTypeExpansion interface{}
-
-type RegionExpansion interface{}

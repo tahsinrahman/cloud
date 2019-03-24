@@ -42,6 +42,5 @@ func tgetToken() string {
 		Token string `json:"token"`
 	}{}
 	fmt.Println(json.Unmarshal(b, &v))
-	//fmt.Println(v)
 	return v.Token
 }

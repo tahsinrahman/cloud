@@ -22,11 +22,10 @@ import (
 
 // CloudProviderSpec defines the desired state of CloudProvider
 type CloudProviderSpec struct {
-	Name         string              `json:"name"`
-	Regions      []Region            `json:"regions"`
-	MachineTypes []MachineType       `json:"machineTypes"`
-	Credentials  []CredentialFormat  `json:"credentials"`
-	Kubernetes   []KubernetesVersion `json:"kubernetes"`
+	Regions            []Region            `json:"regions,omitempty"`
+	MachineTypes       []MachineType       `json:"machineTypes,omitempty"`
+	CredentialFormats  []CredentialFormat  `json:"credentialFormats,omitempty"`
+	KubernetesVersions []KubernetesVersion `json:"kubernetesVersions,omitempty"`
 }
 
 // +genclient
@@ -55,4 +54,11 @@ type CloudProviderList struct {
 
 func init() {
 	SchemeBuilder.Register(&CloudProvider{}, &CloudProviderList{})
+}
+
+// Region defines the desired state of Region
+type Region struct {
+	Region   string   `json:"region"`
+	Zones    []string `json:"zones,omitempty"`
+	Location string   `json:"location,omitempty"`
 }

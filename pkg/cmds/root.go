@@ -5,8 +5,9 @@ import (
 
 	"github.com/appscode/go/flags"
 	v "github.com/appscode/go/version"
-	"github.com/pharmer/pharmer/config"
+	"github.com/pharmer/cloud/pkg/apis"
 	"github.com/spf13/cobra"
+	"k8s.io/client-go/kubernetes/scheme"
 	"kmodules.xyz/client-go/logs"
 	"kmodules.xyz/client-go/tools/cli"
 )
@@ -14,14 +15,14 @@ import (
 func NewRootCmd() *cobra.Command {
 	rootCmd := &cobra.Command{
 		Use:               "pharmer-tools",
-		Short:             `Pharmer by Appscode - Manages farms`,
+		Short:             `Pharmer tools by Appscode`,
 		DisableAutoGenTag: true,
-		PersistentPreRun: func(c *cobra.Command, args []string) {
+		PersistentPreRunE: func(c *cobra.Command, args []string) error {
 			flags.DumpAll(c.Flags())
 			cli.SendAnalytics(c, v.Version.Version)
+			return apis.AddToScheme(scheme.Scheme)
 		},
 	}
-	config.AddFlags(rootCmd.PersistentFlags())
 	rootCmd.PersistentFlags().AddGoFlagSet(flag.CommandLine)
 	// ref: https://github.com/kubernetes/kubernetes/issues/17162#issuecomment-225596212
 	logs.ParseFlags()
@@ -29,7 +30,6 @@ func NewRootCmd() *cobra.Command {
 
 	rootCmd.AddCommand(NewCmdGenData())
 	rootCmd.AddCommand(NewCmdKubeSupport())
-	rootCmd.AddCommand(NewCmdGenNPM())
 	rootCmd.AddCommand(v.NewCmdVersion())
 
 	return rootCmd

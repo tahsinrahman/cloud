@@ -1,0 +1,26 @@
+apiVersion: cloud.pharmer.io/v1
+kind: MachineType
+metadata:
+  creationTimestamp: null
+  labels:
+    cloud.pharmer.io/provider: packet
+  name: packet-baremetal_1e
+spec:
+  cpu: "4"
+  description: Our Type 1e ...
+  disk: 240G
+  ram: 32G
+  sku: baremetal_1e
+  zones:
+  - atl1
+  - dfw1
+  - fra1
+  - fra2
+  - hkg1
+  - iad1
+  - mrs1
+  - nrt1
+  - sin1
+  - sjc1
+  - syd1
+  - yyz1

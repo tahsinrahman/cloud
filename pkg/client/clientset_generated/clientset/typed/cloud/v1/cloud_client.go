@@ -30,7 +30,6 @@ type CloudV1Interface interface {
 	CredentialFormatsGetter
 	KubernetesVersionsGetter
 	MachineTypesGetter
-	RegionsGetter
 }
 
 // CloudV1Client is used to interact with features provided by the cloud.pharmer.io group.
@@ -52,10 +51,6 @@ func (c *CloudV1Client) KubernetesVersions() KubernetesVersionInterface {
 
 func (c *CloudV1Client) MachineTypes() MachineTypeInterface {
 	return newMachineTypes(c)
-}
-
-func (c *CloudV1Client) Regions() RegionInterface {
-	return newRegions(c)
 }
 
 // NewForConfig creates a new CloudV1Client for the given config.

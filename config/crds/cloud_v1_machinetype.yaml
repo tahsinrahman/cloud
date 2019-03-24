@@ -31,15 +31,15 @@ spec:
             category:
               type: string
             cpu:
-              type: object
+              type: string
             deprecated:
               type: boolean
             description:
               type: string
             disk:
-              type: object
+              type: string
             ram:
-              type: object
+              type: string
             regions:
               items:
                 type: string
@@ -52,7 +52,6 @@ spec:
               type: array
           required:
           - sku
-          - description
           - cpu
           - ram
           type: object

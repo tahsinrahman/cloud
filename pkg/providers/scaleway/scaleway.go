@@ -1,18 +1,16 @@
 package scaleway
 
 import (
-	"github.com/pharmer/cloud/pkg/apis/cloud/v1"
-	"github.com/pharmer/cloud/pkg/util"
+	"github.com/pharmer/cloud/pkg/apis"
+	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
 	scaleway "github.com/scaleway/scaleway-cli/pkg/api"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 type Client struct {
-	Data      *ScalewayData
 	ParClient *scaleway.ScalewayAPI
 	AmsClient *scaleway.ScalewayAPI
 }
-
-type ScalewayData v1.CloudProvider
 
 func NewClient(scalewayToken, organization string) (*Client, error) {
 	g := &Client{}
@@ -25,42 +23,60 @@ func NewClient(scalewayToken, organization string) (*Client, error) {
 	if err != nil {
 		return nil, err
 	}
-	data, err := util.GetDataFormFile("scaleway")
-	if err != nil {
-		return nil, err
-	}
-	d := ScalewayData(*data)
-	g.Data = &d
 	return g, nil
 }
 
 func (g *Client) GetName() string {
-	return g.Data.Name
+	return apis.Scaleway
 }
 
 func (g *Client) GetCredentials() []v1.CredentialFormat {
-	return g.Data.Spec.Credentials
-}
-
-func (g *Client) GetKubernetes() []v1.KubernetesVersion {
-	return g.Data.Spec.Kubernetes
+	return []v1.CredentialFormat{
+		{
+			ObjectMeta: metav1.ObjectMeta{
+				Name: apis.Scaleway,
+				Labels: map[string]string{
+					"cloud.pharmer.io/provider": apis.Scaleway,
+				},
+				Annotations: map[string]string{
+					"cloud.pharmer.io/cluster-credential": "",
+				},
+			},
+			Spec: v1.CredentialFormatSpec{
+				Provider:      apis.Scaleway,
+				DisplayFormat: "field",
+				Fields: []v1.CredentialField{
+					{
+						Envconfig: "SCALEWAY_ORGANIZATION",
+						Form:      "scaleway_organization",
+						JSON:      "organization",
+						Label:     "Organization",
+						Input:     "text",
+					},
+					{
+						Envconfig: "SCALEWAY_TOKEN",
+						Form:      "scaleway_token",
+						JSON:      "token",
+						Label:     "Token",
+						Input:     "password",
+					},
+				},
+			},
+		},
+	}
 }
 
 func (g *Client) GetRegions() ([]v1.Region, error) {
 	regions := []v1.Region{
 		{
-			Spec: v1.RegionSpec{
-				Location: "Paris, France",
-				Region:   "par1",
-				Zones:    []string{"par1"},
-			},
+			Location: "Paris, France",
+			Region:   "par1",
+			Zones:    []string{"par1"},
 		},
 		{
-			Spec: v1.RegionSpec{
-				Location: "Amsterdam, Netherlands",
-				Region:   "ams1",
-				Zones:    []string{"ams1"},
-			},
+			Location: "Amsterdam, Netherlands",
+			Region:   "ams1",
+			Zones:    []string{"ams1"},
 		},
 	}
 	return regions, nil

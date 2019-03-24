@@ -24,7 +24,7 @@ import (
 // MachineTypeSpec defines the desired state of MachineType
 type MachineTypeSpec struct {
 	SKU         string             `json:"sku"`
-	Description string             `json:"description"`
+	Description string             `json:"description,omitempty"`
 	Category    string             `json:"category,omitempty"`
 	CPU         *resource.Quantity `json:"cpu"`
 	RAM         *resource.Quantity `json:"ram"`

@@ -31,7 +31,8 @@ manifests:
 
 # Run go fmt against code
 fmt:
-	go fmt ./pkg/... ./cmd/...
+	gofmt -s -w ./pkg ./cmd
+	goimports -w ./pkg ./cmd
 
 # Run go vet against code
 vet:

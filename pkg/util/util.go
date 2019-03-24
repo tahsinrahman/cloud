@@ -1,22 +1,27 @@
 package util
 
 import (
-	"encoding/json"
 	"io/ioutil"
-	"k8s.io/apimachinery/pkg/version"
 	"os"
 	"path/filepath"
 	"sort"
 	"strconv"
-	"strings"
 
-	"github.com/appscode/go/runtime"
-	"github.com/pharmer/cloud/pkg/apis/cloud/v1"
+	"github.com/pharmer/cloud/pkg/apis"
+
+	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
 	"github.com/pkg/errors"
+	"k8s.io/apimachinery/pkg/api/resource"
+	"k8s.io/apimachinery/pkg/version"
+	"sigs.k8s.io/yaml"
 )
 
+func QuantityP(q resource.Quantity) *resource.Quantity {
+	return &q
+}
+
 func CreateDir(dir string) error {
-	err := os.MkdirAll(dir, 0777)
+	err := os.MkdirAll(dir, 0755)
 	if err != nil {
 		return errors.Errorf("failed to create dir `%s`. Reason: %v", dir, err)
 	}
@@ -26,7 +31,7 @@ func CreateDir(dir string) error {
 func ReadFile(name string) ([]byte, error) {
 	dataBytes, err := ioutil.ReadFile(name)
 	if err != nil {
-		return nil, errors.Errorf("failed to read `%s`.Reason: %v", name, err)
+		return nil, err
 	}
 	return dataBytes, nil
 }
@@ -39,43 +44,24 @@ func WriteFile(filename string, bytes []byte) error {
 	return nil
 }
 
-// versions string formate is `1.1.0,1.9.0`
-//they are comma separated, no space allowed
-func ParseVersions(versions string) []string {
-	v := strings.Split(versions, ",")
-	return v
-}
-
 func MBToGB(in int64) (float64, error) {
 	gb, err := strconv.ParseFloat(strconv.FormatFloat(float64(in)/1024, 'f', 2, 64), 64)
 	return gb, err
 }
 
-func BToGB(in int64) (float64, error) {
-	gb, err := strconv.ParseFloat(strconv.FormatFloat(float64(in)/(1024*1024*1024), 'f', 2, 64), 64)
-	return gb, err
-}
-
-// write directory is [path]/pharmer/data/files
-func GetWriteDir() (string, error) {
-	dir := filepath.Join(runtime.GOPath(), "src/github.com/pharmer/pharmer/data/files")
-	return dir, nil
-}
-
-//getting provider data from cloud.json file
-//data contained in [path to pharmer]/data/files/[provider]/cloud.json
+//getting provider data from cloud.yaml file
+//data contained in [path to pharmer]/data/files/[provider]/cloud.yaml
 func GetDataFormFile(provider string) (*v1.CloudProvider, error) {
 	data := v1.CloudProvider{}
-	dir, err := GetWriteDir()
-	if err != nil {
-		return nil, err
-	}
-	dir = filepath.Join(dir, provider, "cloud.json")
+	dir := filepath.Join(apis.DataDir, provider, "cloud.yaml")
 	dataBytes, err := ReadFile(dir)
 	if err != nil {
+		if os.IsNotExist(err) {
+			return &v1.CloudProvider{}, nil
+		}
 		return nil, err
 	}
-	err = json.Unmarshal(dataBytes, &data)
+	err = yaml.UnmarshalStrict(dataBytes, &data)
 	if err != nil {
 		return nil, err
 	}
@@ -84,11 +70,11 @@ func GetDataFormFile(provider string) (*v1.CloudProvider, error) {
 
 func SortCloudProvider(data *v1.CloudProvider) *v1.CloudProvider {
 	sort.Slice(data.Spec.Regions, func(i, j int) bool {
-		return data.Spec.Regions[i].Spec.Region < data.Spec.Regions[j].Spec.Region
+		return data.Spec.Regions[i].Region < data.Spec.Regions[j].Region
 	})
 	for index := range data.Spec.Regions {
-		sort.Slice(data.Spec.Regions[index].Spec.Zones, func(i, j int) bool {
-			return data.Spec.Regions[index].Spec.Zones[i] < data.Spec.Regions[index].Spec.Zones[j]
+		sort.Slice(data.Spec.Regions[index].Zones, func(i, j int) bool {
+			return data.Spec.Regions[index].Zones[i] < data.Spec.Regions[index].Zones[j]
 		})
 	}
 	sort.Slice(data.Spec.MachineTypes, func(i, j int) bool {
@@ -99,9 +85,9 @@ func SortCloudProvider(data *v1.CloudProvider) *v1.CloudProvider {
 			return data.Spec.MachineTypes[index].Spec.Zones[i] < data.Spec.MachineTypes[index].Spec.Zones[j]
 		})
 	}
-	sort.Slice(data.Spec.Kubernetes, func(i, j int) bool {
+	sort.Slice(data.Spec.KubernetesVersions, func(i, j int) bool {
 		return version.CompareKubeAwareVersionStrings(
-			data.Spec.Kubernetes[i].Spec.Version.String(), data.Spec.Kubernetes[j].Spec.Version.String()) < 0
+			data.Spec.KubernetesVersions[i].Spec.GitVersion, data.Spec.KubernetesVersions[j].Spec.GitVersion) < 0
 	})
 	return data
 }

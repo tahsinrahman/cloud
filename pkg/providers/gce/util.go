@@ -1,33 +1,30 @@
 package gce
 
 import (
-	"k8s.io/apimachinery/pkg/api/resource"
+	"fmt"
+	"github.com/pharmer/cloud/pkg/util"
 	"strings"
 
-	"github.com/pharmer/cloud/pkg/apis/cloud/v1"
+	"github.com/pharmer/cloud/pkg/apis"
+	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
 	"github.com/pkg/errors"
 	"google.golang.org/api/compute/v1"
-)
-
-const (
-	CategoryUnknown string = "unknown"
+	"k8s.io/apimachinery/pkg/api/resource"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 func ParseRegion(region *compute.Region) (*v1.Region, error) {
 	r := &v1.Region{
-		Spec: v1.RegionSpec{
-			Region: region.Name,
-		},
+		Region: region.Name,
 	}
-	r.Spec.Zones = []string{}
+	r.Zones = []string{}
 	for _, url := range region.Zones {
 		zone, err := ParseZoneFromUrl(url)
 		if err != nil {
 			return nil, err
 		}
-		r.Spec.Zones = append(r.Spec.Zones, zone)
+		r.Zones = append(r.Zones, zone)
 	}
-
 	return r, nil
 }
 
@@ -41,13 +38,19 @@ func ParseZoneFromUrl(url string) (string, error) {
 
 func ParseMachine(machine *compute.MachineType) (*v1.MachineType, error) {
 	return &v1.MachineType{
+		ObjectMeta: metav1.ObjectMeta{
+			Name: apis.GCE + "-" + machine.Name,
+			Labels: map[string]string{
+				"cloud.pharmer.io/provider": apis.GCE,
+			},
+		},
 		Spec: v1.MachineTypeSpec{
 			SKU:         machine.Name,
 			Description: machine.Description,
 			CPU:         resource.NewQuantity(machine.GuestCpus, resource.DecimalExponent),
-			RAM:         resource.NewQuantity(machine.MemoryMb, resource.BinarySI),
-			Disk:        resource.NewQuantity(machine.MaximumPersistentDisksSizeGb, resource.BinarySI),
-			//Category:    ParseCategoryFromSKU(machine.Name),
+			RAM:         util.QuantityP(resource.MustParse(fmt.Sprintf("%dM", machine.MemoryMb))),
+			Disk:        util.QuantityP(resource.MustParse(fmt.Sprintf("%dG", machine.MaximumPersistentDisksSizeGb))),
+			Category:    ParseCategoryFromSKU(machine.Name),
 		},
 	}, nil
 }
@@ -56,7 +59,7 @@ func ParseMachine(machine *compute.MachineType) (*v1.MachineType, error) {
 func ParseCategoryFromSKU(sku string) string {
 	words := strings.Split(sku, "-")
 	if len(words) < 2 {
-		return CategoryUnknown
+		return ""
 	} else {
 		return words[1]
 	}

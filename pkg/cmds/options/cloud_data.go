@@ -22,8 +22,8 @@ type GenData struct {
 	AzureSubscriptionId  string
 	AzureClientId        string
 	AzureClientSecret    string
-	VultrApiToken        string
-	LinodeApiToken       string
+	VultrToken           string
+	LinodeToken          string
 	ScalewayToken        string
 	ScalewayOrganization string
 }
@@ -47,8 +47,8 @@ func (c *GenData) AddFlags(fs *pflag.FlagSet) {
 	fs.StringVar(&c.AzureSubscriptionId, "azure.subscription_id", c.AzureSubscriptionId, "provide this flag when provider is azure")
 	fs.StringVar(&c.AzureClientId, "azure.client_id", c.AzureClientId, "provide this flag when provider is azure")
 	fs.StringVar(&c.AzureClientSecret, "azure.client_secret", c.AzureClientSecret, "provide this flag when provider is azure")
-	fs.StringVar(&c.VultrApiToken, "vultr.api_token", c.VultrApiToken, "provide this flag when provider is vultr")
-	fs.StringVar(&c.LinodeApiToken, "linode.api_token", c.LinodeApiToken, "provide this flag when provider is linode")
+	fs.StringVar(&c.VultrToken, "vultr.token", c.VultrToken, "provide this flag when provider is vultr")
+	fs.StringVar(&c.LinodeToken, "linode.token", c.LinodeToken, "provide this flag when provider is linode")
 	fs.StringVar(&c.ScalewayToken, "scaleway.token", c.ScalewayToken, "provide this flag when provider is scaleway")
 	fs.StringVar(&c.ScalewayOrganization, "scaleway.organization", c.ScalewayOrganization, "provide this flag when provider is scaleway")
 }

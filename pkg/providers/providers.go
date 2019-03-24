@@ -1,11 +1,14 @@
 package providers
 
 import (
-	"encoding/json"
+	"io/ioutil"
+	"k8s.io/apimachinery/pkg/api/meta"
+	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/appscode/go/log"
+	"github.com/pharmer/cloud/pkg/apis"
 	"github.com/pharmer/cloud/pkg/apis/cloud/v1"
 	"github.com/pharmer/cloud/pkg/cmds/options"
 	"github.com/pharmer/cloud/pkg/providers/aws"
@@ -18,18 +21,10 @@ import (
 	"github.com/pharmer/cloud/pkg/providers/vultr"
 	"github.com/pharmer/cloud/pkg/util"
 	"github.com/pkg/errors"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/version"
-)
-
-const (
-	Gce          string = "gce"
-	DigitalOcean string = "digitalocean"
-	Packet       string = "packet"
-	Aws          string = "aws"
-	Azure        string = "azure"
-	Vultr        string = "vultr"
-	Linode       string = "linode"
-	Scaleway     string = "scaleway"
+	mu "kmodules.xyz/client-go/meta"
 )
 
 var supportedProvider = []string{
@@ -43,71 +38,108 @@ var supportedProvider = []string{
 	"scaleway",
 }
 
-type CloudInterface interface {
+type Interface interface {
 	GetName() string
 	GetCredentials() []v1.CredentialFormat
-	GetKubernetes() []v1.KubernetesVersion
 	GetRegions() ([]v1.Region, error)
 	GetZones() ([]string, error)
 	GetMachineTypes() ([]v1.MachineType, error)
 }
 
-func NewCloudProvider(opts *options.GenData) (CloudInterface, error) {
+func NewCloudProvider(opts *options.GenData) (Interface, error) {
 	switch opts.Provider {
-	case Gce:
+	case apis.GCE:
 		return gce.NewClient(opts.GCEProjectID, opts.CredentialFile)
-	case DigitalOcean:
+	case apis.DigitalOcean:
 		return digitalocean.NewClient(opts.DoToken)
-	case Packet:
+	case apis.Packet:
 		return packet.NewClient(opts.PacketApiKey)
-	case Aws:
+	case apis.AWS:
 		return aws.NewClient(opts.AWSRegion, opts.AWSAccessKeyID, opts.AWSSecretAccessKey)
-	case Azure:
+	case apis.Azure:
 		return azure.NewClient(opts.AzureTenantId, opts.AzureSubscriptionId, opts.AzureClientId, opts.AzureClientSecret)
-	case Vultr:
-		return vultr.NewClient(opts.VultrApiToken)
-	case Linode:
-		return linode.NewClient(opts.LinodeApiToken)
-	case Scaleway:
+	case apis.Vultr:
+		return vultr.NewClient(opts.VultrToken)
+	case apis.Linode:
+		return linode.NewClient(opts.LinodeToken)
+	case apis.Scaleway:
 		return scaleway.NewClient(opts.ScalewayToken, opts.ScalewayOrganization)
 	}
 	return nil, errors.Errorf("Unknown cloud provider: %s", opts.Provider)
 }
 
 //get data from api
-func GetCloudProvider(cloudInterface CloudInterface) (*v1.CloudProvider, error) {
+func GetCloudProvider(i Interface) (*v1.CloudProvider, error) {
 	var err error
-	cloudData := v1.CloudProvider{
+	data := v1.CloudProvider{
+		ObjectMeta: metav1.ObjectMeta{
+			Name: i.GetName(),
+		},
 		Spec: v1.CloudProviderSpec{
-			Name:        cloudInterface.GetName(),
-			Credentials: cloudInterface.GetCredentials(),
-			Kubernetes:  cloudInterface.GetKubernetes(),
+			CredentialFormats: i.GetCredentials(),
 		},
 	}
-	cloudData.Spec.Regions, err = cloudInterface.GetRegions()
+	data.Spec.Regions, err = i.GetRegions()
 	if err != nil {
 		return nil, err
 	}
-	cloudData.Spec.MachineTypes, err = cloudInterface.GetMachineTypes()
+	data.Spec.MachineTypes, err = i.GetMachineTypes()
 	if err != nil {
 		return nil, err
 	}
-	return &cloudData, nil
+	return &data, nil
 }
 
-//write data in [path to pharmer]/data/files/[provider]/
-func WriteCloudProvider(cloudData *v1.CloudProvider, fileName string) error {
-	cloudData = util.SortCloudProvider(cloudData)
-	dataBytes, err := json.MarshalIndent(cloudData, "", "  ")
+func WriteObject(obj runtime.Object) error {
+	kind := mu.GetKind(obj)
+	resource := strings.ToLower(kind) + "s"
+	name, err := meta.NewAccessor().Name(obj)
 	if err != nil {
 		return err
 	}
-	dir, err := util.GetWriteDir()
+
+	filename := filepath.Join(apis.DataDir, "apis", v1.SchemeGroupVersion.Group, v1.SchemeGroupVersion.Version, resource, name+".yaml")
+	err = os.MkdirAll(filepath.Dir(filename), 0755)
 	if err != nil {
 		return err
 	}
-	err = util.WriteFile(filepath.Join(dir, cloudData.Name, fileName), dataBytes)
-	return err
+
+	dataBytes, err := mu.MarshalToYAML(obj, v1.SchemeGroupVersion)
+	if err != nil {
+		return err
+	}
+	return ioutil.WriteFile(filename, dataBytes, 0755)
+}
+
+func WriteCloudProvider(data *v1.CloudProvider) error {
+	data = util.SortCloudProvider(data)
+	err := WriteObject(data)
+	if err != nil {
+		return err
+	}
+
+	for _, mt := range data.Spec.MachineTypes {
+		err := WriteObject(&mt)
+		if err != nil {
+			return err
+		}
+	}
+
+	for _, mt := range data.Spec.CredentialFormats {
+		err := WriteObject(&mt)
+		if err != nil {
+			return err
+		}
+	}
+
+	for _, mt := range data.Spec.KubernetesVersions {
+		err := WriteObject(&mt)
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
 
 //region merge rule:
@@ -125,18 +157,18 @@ func MergeCloudProvider(oldData, curData *v1.CloudProvider) (*v1.CloudProvider, 
 	//region merge
 	regionIndex := map[string]int{} //keep regionName,corresponding region index in oldData.Regions[] as (key,value) pair
 	for index, r := range oldData.Spec.Regions {
-		regionIndex[r.Spec.Region] = index
+		regionIndex[r.Region] = index
 	}
 	for index := range curData.Spec.Regions {
-		pos, found := regionIndex[curData.Spec.Regions[index].Spec.Region]
+		pos, found := regionIndex[curData.Spec.Regions[index].Region]
 		if found {
 			//location
-			if curData.Spec.Regions[index].Spec.Location == "" && oldData.Spec.Regions[pos].Spec.Location != "" {
-				curData.Spec.Regions[index].Spec.Location = oldData.Spec.Regions[pos].Spec.Location
+			if curData.Spec.Regions[index].Location == "" && oldData.Spec.Regions[pos].Location != "" {
+				curData.Spec.Regions[index].Location = oldData.Spec.Regions[pos].Location
 			}
 			//zones
-			if len(curData.Spec.Regions[index].Spec.Zones) == 0 && len(oldData.Spec.Regions[pos].Spec.Zones) != 0 {
-				curData.Spec.Regions[index].Spec.Location = oldData.Spec.Regions[pos].Spec.Location
+			if len(curData.Spec.Regions[index].Zones) == 0 && len(oldData.Spec.Regions[pos].Zones) != 0 {
+				curData.Spec.Regions[index].Location = oldData.Spec.Regions[pos].Location
 			}
 		}
 	}
@@ -199,14 +231,14 @@ func MergeCloudProvider(oldData, curData *v1.CloudProvider) (*v1.CloudProvider, 
 
 //get data from api , merge it with previous data and write the data
 //previous data written in cloud_old.json
-func MergeAndWriteCloudProvider(cloudInterface CloudInterface) error {
-	log.Infof("Getting cloud data for `%v` provider", cloudInterface.GetName())
-	curData, err := GetCloudProvider(cloudInterface)
+func MergeAndWriteCloudProvider(i Interface) error {
+	log.Infof("Getting cloud data for `%v` provider", i.GetName())
+	curData, err := GetCloudProvider(i)
 	if err != nil {
 		return err
 	}
 
-	oldData, err := util.GetDataFormFile(cloudInterface.GetName())
+	oldData, err := util.GetDataFormFile(i.GetName())
 	if err != nil {
 		return err
 	}
@@ -221,7 +253,7 @@ func MergeAndWriteCloudProvider(cloudInterface CloudInterface) error {
 	//	return err
 	//}
 	log.Info("Writing cloud data...")
-	err = WriteCloudProvider(res, "cloud.json")
+	err = WriteCloudProvider(res)
 	if err != nil {
 		return err
 	}
@@ -234,27 +266,24 @@ func MergeAndWriteCloudProvider(cloudInterface CloudInterface) error {
 //If kubeData.version doesn't exists in old data, then append it
 func MergeKubernetesSupport(data *v1.CloudProvider, kubeData *v1.KubernetesVersion) (*v1.CloudProvider, error) {
 	foundIndex := -1
-	for index, k := range data.Spec.Kubernetes {
-		if version.CompareKubeAwareVersionStrings(k.Spec.Version.String(), kubeData.Spec.Version.String()) == 0 {
+	for index, k := range data.Spec.KubernetesVersions {
+		if version.CompareKubeAwareVersionStrings(k.Spec.GitVersion, kubeData.Spec.GitVersion) == 0 {
 			foundIndex = index
 		}
 	}
 	if foundIndex == -1 { //append
-		data.Spec.Kubernetes = append(data.Spec.Kubernetes, *kubeData)
+		data.Spec.KubernetesVersions = append(data.Spec.KubernetesVersions, *kubeData)
 	} else { //replace
-		data.Spec.Kubernetes[foundIndex] = *kubeData
+		data.Spec.KubernetesVersions[foundIndex] = *kubeData
 	}
 	return data, nil
 }
 
 func AddKubernetesSupport(opts *options.KubernetesData) error {
 	kubeData := &v1.KubernetesVersion{}
-
-	kubeData.Spec.Version = &version.Info{GitVersion: opts.Version}
-
+	kubeData.Spec.GitVersion = opts.Version
 	kubeData.Spec.Envs = map[string]bool{}
-	envs := strings.Split(opts.Envs, ",")
-	for _, env := range envs {
+	for _, env := range opts.Envs {
 		if len(env) > 0 {
 			kubeData.Spec.Envs[env] = opts.Deprecated
 		}
@@ -268,13 +297,13 @@ func AddKubernetesSupport(opts *options.KubernetesData) error {
 		if err != nil {
 			return err
 		}
-		log.Infof("Adding kubenetes support for `%v` provider", name)
+		log.Infof("Adding Kubernetes support for `%v` provider", name)
 		data, err = MergeKubernetesSupport(data, kubeData)
 		if err != nil {
 			return err
 		}
 		log.Infof("Writing cloud data for `%v` provider", name)
-		err = WriteCloudProvider(data, "cloud.json")
+		err = WriteCloudProvider(data)
 		if err != nil {
 			return err
 		}

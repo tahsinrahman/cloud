@@ -20,11 +20,6 @@ required = [
   go-tests = true
 
 [[override]]
-  name = "github.com/pharmer/pharmer"
-  revision = "006bbae3741e75a6b446eaa7ff08b0bf0a1d8de6"
-  source = "git@github.com:appscode-cloud/pharmer.git"
-
-[[override]]
   name = "github.com/linode/linodego"
   version = "=v0.7.1"
 
@@ -43,11 +38,6 @@ required = [
 [[override]]
   name = "github.com/Azure/go-autorest"
   version = "=v11.1.0"
-
-[[override]]
-  name = "github.com/graymeta/stow"
-  source = "https://github.com/appscode/stow.git"
-  branch =  "master"
 
 [[override]]
   name = "k8s.io/api"
@@ -103,7 +93,8 @@ required = [
 
 [[constraint]]
   name="sigs.k8s.io/controller-tools"
-  version="v0.1.1"
+  source="git@github.com:kmodules/controller-tools.git"
+  branch="quant"
 
 # For dependency below: Refer to issue https://github.com/golang/dep/issues/1799
 [[override]]

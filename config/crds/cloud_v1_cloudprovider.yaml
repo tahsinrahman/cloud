@@ -28,7 +28,7 @@ spec:
           type: object
         spec:
           properties:
-            credentials:
+            credentialFormats:
               items:
                 properties:
                   apiVersion:
@@ -47,8 +47,6 @@ spec:
                     type: object
                   spec:
                     properties:
-                      annotations:
-                        type: object
                       displayFormat:
                         type: string
                       fields:
@@ -64,12 +62,6 @@ spec:
                               type: string
                             label:
                               type: string
-                          required:
-                          - envconfig
-                          - form
-                          - json
-                          - label
-                          - input
                           type: object
                         type: array
                       provider:
@@ -77,12 +69,11 @@ spec:
                     required:
                     - provider
                     - displayFormat
-                    - annotations
                     - fields
                     type: object
                 type: object
               type: array
-            kubernetes:
+            kubernetesVersions:
               items:
                 properties:
                   apiVersion:
@@ -103,10 +94,14 @@ spec:
                     properties:
                       envs:
                         type: object
-                      version:
-                        type: object
+                      gitVersion:
+                        type: string
+                      major:
+                        type: string
+                      minor:
+                        type: string
                     required:
-                    - version
+                    - gitVersion
                     type: object
                 type: object
               type: array
@@ -132,15 +127,15 @@ spec:
                       category:
                         type: string
                       cpu:
-                        type: object
+                        type: string
                       deprecated:
                         type: boolean
                       description:
                         type: string
                       disk:
-                        type: object
+                        type: string
                       ram:
-                        type: object
+                        type: string
                       regions:
                         items:
                           type: string
@@ -153,53 +148,26 @@ spec:
                         type: array
                     required:
                     - sku
-                    - description
                     - cpu
                     - ram
                     type: object
                 type: object
               type: array
-            name:
-              type: string
             regions:
               items:
                 properties:
-                  apiVersion:
-                    description: 'APIVersion defines the versioned schema of this
-                      representation of an object. Servers should convert recognized
-                      schemas to the latest internal value, and may reject unrecognized
-                      values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources'
+                  location:
                     type: string
-                  kind:
-                    description: 'Kind is a string value representing the REST resource
-                      this object represents. Servers may infer this from the endpoint
-                      the client submits requests to. Cannot be updated. In CamelCase.
-                      More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds'
+                  region:
                     type: string
-                  metadata:
-                    type: object
-                  spec:
-                    properties:
-                      location:
-                        type: string
-                      region:
-                        type: string
-                      zones:
-                        items:
-                          type: string
-                        type: array
-                    required:
-                    - location
-                    - region
-                    type: object
+                  zones:
+                    items:
+                      type: string
+                    type: array
+                required:
+                - region
                 type: object
               type: array
-          required:
-          - name
-          - regions
-          - machineTypes
-          - credentials
-          - kubernetes
           type: object
   version: v1
 status:

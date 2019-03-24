@@ -5,39 +5,29 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/pharmer/cloud/pkg/apis"
+
 	"github.com/packethost/packngo"
-	"github.com/pharmer/cloud/pkg/apis/cloud/v1"
-	"github.com/pharmer/cloud/pkg/util"
+	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 type Client struct {
-	Data   *PacketData
 	Client *packngo.Client
 	//required because current packngo.Plan does not contain Zones
 	PlanRequest *http.Request
 }
 
-type PacketData v1.CloudProvider
-
 type PlanList struct {
 	Plans []packngo.Plan `json:"plans"`
 }
 
-func NewClient(packetApiKey string) (*Client, error) {
-	g := &Client{
-		Data: &PacketData{},
-	}
+func NewClient(apiKey string) (*Client, error) {
+	g := &Client{}
 	var err error
-	g.Client = getClient(packetApiKey)
+	g.Client = getClient(apiKey)
 
-	data, err := util.GetDataFormFile("packet")
-	if err != nil {
-		return nil, err
-	}
-	d := PacketData(*data)
-	g.Data = &d
-
-	g.PlanRequest, err = getPlanRequest(packetApiKey)
+	g.PlanRequest, err = getPlanRequest(apiKey)
 	if err != nil {
 		return nil, err
 	}
@@ -45,15 +35,40 @@ func NewClient(packetApiKey string) (*Client, error) {
 }
 
 func (g *Client) GetName() string {
-	return g.Data.Name
+	return apis.Packet
 }
 
 func (g *Client) GetCredentials() []v1.CredentialFormat {
-	return g.Data.Spec.Credentials
-}
-
-func (g *Client) GetKubernetes() []v1.KubernetesVersion {
-	return g.Data.Spec.Kubernetes
+	return []v1.CredentialFormat{
+		{
+			ObjectMeta: metav1.ObjectMeta{
+				Name: apis.Packet,
+				Annotations: map[string]string{
+					"cloud.pharmer.io/cluster-credential": "",
+				},
+			},
+			Spec: v1.CredentialFormatSpec{
+				Provider:      apis.Packet,
+				DisplayFormat: "field",
+				Fields: []v1.CredentialField{
+					{
+						Envconfig: "PACKET_PROJECT_ID",
+						Form:      "packet_project_id",
+						JSON:      "projectID",
+						Label:     "Project Id",
+						Input:     "text",
+					},
+					{
+						Envconfig: "PACKET_API_KEY",
+						Form:      "packet_api_key",
+						JSON:      "apiKey",
+						Label:     "API Key",
+						Input:     "password",
+					},
+				},
+			},
+		},
+	}
 }
 
 func (g *Client) GetRegions() ([]v1.Region, error) {

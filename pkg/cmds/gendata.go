@@ -1,8 +1,6 @@
 package cmds
 
 import (
-	"flag"
-
 	"github.com/appscode/go/term"
 	"github.com/pharmer/cloud/pkg/cmds/options"
 	"github.com/pharmer/cloud/pkg/providers"
@@ -32,7 +30,6 @@ func NewCmdGenData() *cobra.Command {
 			}
 		},
 	}
-	cmd.PersistentFlags().AddGoFlagSet(flag.CommandLine)
 	opts.AddFlags(cmd.Flags())
 	return cmd
 }

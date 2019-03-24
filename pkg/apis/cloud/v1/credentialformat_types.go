@@ -24,16 +24,15 @@ import (
 type CredentialFormatSpec struct {
 	Provider      string            `json:"provider"`
 	DisplayFormat string            `json:"displayFormat"`
-	Annotations   map[string]string `json:"annotations"`
 	Fields        []CredentialField `json:"fields"`
 }
 
 type CredentialField struct {
-	Envconfig string `json:"envconfig"`
-	Form      string `json:"form"`
-	JSON      string `json:"json"`
-	Label     string `json:"label"`
-	Input     string `json:"input"`
+	Envconfig string `json:"envconfig,omitempty"`
+	Form      string `json:"form,omitempty"`
+	JSON      string `json:"json,omitempty"`
+	Label     string `json:"label,omitempty"`
+	Input     string `json:"input,omitempty"`
 }
 
 // +genclient

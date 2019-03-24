@@ -1,0 +1,16 @@
+apiVersion: cloud.pharmer.io/v1
+kind: MachineType
+metadata:
+  creationTimestamp: null
+  labels:
+    cloud.pharmer.io/provider: packet
+  name: packet-START1-S
+spec:
+  cpu: "2"
+  description: x86_64
+  disk: 50G
+  ram: 2Gi
+  sku: START1-S
+  zones:
+  - ams1
+  - par1

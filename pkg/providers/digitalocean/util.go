@@ -1,35 +1,44 @@
 package digitalocean
 
 import (
-	"k8s.io/apimachinery/pkg/api/resource"
+	"fmt"
 	"strings"
 
 	"github.com/digitalocean/godo"
-	"github.com/pharmer/cloud/pkg/apis/cloud/v1"
+	"github.com/pharmer/cloud/pkg/apis"
+	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
+	"github.com/pharmer/cloud/pkg/util"
+	"k8s.io/apimachinery/pkg/api/resource"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 func ParseRegion(region *godo.Region) *v1.Region {
 	return &v1.Region{
-		Spec: v1.RegionSpec{
-			Location: region.Name,
-			Region:   region.Slug,
-			Zones: []string{
-				region.Slug,
-			},
+		Region: region.Slug,
+		Zones: []string{
+			region.Slug,
 		},
+		Location: region.Name,
 	}
 }
 
-func ParseSizes(size *godo.Size) (*v1.MachineType, error) {
+func ParseMachineType(sz *godo.Size) (*v1.MachineType, error) {
 	return &v1.MachineType{
+		ObjectMeta: metav1.ObjectMeta{
+			Name: apis.DigitalOcean + "-" + sz.Slug,
+			Labels: map[string]string{
+				"cloud.pharmer.io/provider": apis.DigitalOcean,
+			},
+		},
 		Spec: v1.MachineTypeSpec{
-			SKU:         size.Slug,
-			Description: size.Slug,
-			CPU:         resource.NewQuantity(int64(size.Vcpus), resource.DecimalExponent),
-			RAM:         resource.NewQuantity(int64(size.Memory), resource.BinarySI),
-			Disk:        resource.NewScaledQuantity(int64(size.Disk), 3),
-			//Category:    ParseCategoryFromSlug(size.Slug),
-			Zones: size.Regions,
+			SKU:         sz.Slug,
+			Description: sz.Slug,
+			CPU:         resource.NewQuantity(int64(sz.Vcpus), resource.DecimalExponent),
+			RAM:         util.QuantityP(resource.MustParse(fmt.Sprintf("%dM", sz.Memory))),
+			Disk:        resource.NewScaledQuantity(int64(sz.Disk), 9),
+			Category:    ParseCategoryFromSlug(sz.Slug),
+			Zones:       sz.Regions,
+			Deprecated:  !sz.Available,
 		},
 	}, nil
 }
@@ -40,6 +49,6 @@ func ParseCategoryFromSlug(slug string) string {
 	} else if strings.HasPrefix(slug, "c-") {
 		return "High Cpu"
 	} else {
-		return "General Purpose"
+		return "Standard Droplets"
 	}
 }

@@ -3,55 +3,66 @@ package digitalocean
 import (
 	"context"
 
+	"github.com/pharmer/cloud/pkg/apis"
+
 	"github.com/digitalocean/godo"
-	"github.com/pharmer/cloud/pkg/apis/cloud/v1"
-	"github.com/pharmer/cloud/pkg/util"
+	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
 	"golang.org/x/oauth2"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 type Client struct {
-	Data   *DigitalOceanData
 	Client *godo.Client
-	Ctx    context.Context
+	ctx    context.Context
 }
 
-type DigitalOceanData v1.CloudProvider
-
-func NewClient(doToken string) (*Client, error) {
-	g := &Client{
-		Ctx:  context.Background(),
-		Data: &DigitalOceanData{},
-	}
-	var err error
-	g.Client = getClient(g.Ctx, doToken)
-
-	data, err := util.GetDataFormFile("digitalocean")
-	if err != nil {
-		return nil, err
-	}
-	d := DigitalOceanData(*data)
-	g.Data = &d
+func NewClient(token string) (*Client, error) {
+	g := &Client{ctx: context.Background()}
+	g.Client = getClient(g.ctx, token)
 	return g, nil
 }
 
 func (g *Client) GetName() string {
-	return g.Data.Name
+	return apis.DigitalOcean
 }
 
 func (g *Client) GetCredentials() []v1.CredentialFormat {
-	return g.Data.Spec.Credentials
-}
+	return []v1.CredentialFormat{
+		{
+			ObjectMeta: metav1.ObjectMeta{
+				Name: apis.DigitalOcean,
+				Labels: map[string]string{
+					"cloud.pharmer.io/provider": apis.DigitalOcean,
+				},
+				Annotations: map[string]string{
+					"cloud.pharmer.io/cluster-credential": "",
+					"cloud.pharmer.io/dns-credential":     "",
+				},
+			},
+			Spec: v1.CredentialFormatSpec{
+				Provider:      apis.DigitalOcean,
+				DisplayFormat: "field",
+				Fields: []v1.CredentialField{
+					{
 
-func (g *Client) GetKubernetes() []v1.KubernetesVersion {
-	return g.Data.Spec.Kubernetes
+						Envconfig: "DIGITALOCEAN_TOKEN",
+						Form:      "digitalocean_token",
+						JSON:      "token",
+						Label:     "Personal Access Token",
+						Input:     "password",
+					},
+				},
+			},
+		},
+	}
 }
 
 func (g *Client) GetRegions() ([]v1.Region, error) {
-	regionList, _, err := g.Client.Regions.List(g.Ctx, &godo.ListOptions{})
+	regionList, _, err := g.Client.Regions.List(g.ctx, &godo.ListOptions{})
 	if err != nil {
 		return nil, err
 	}
-	regions := []v1.Region{}
+	var regions []v1.Region
 	for _, region := range regionList {
 		r := ParseRegion(&region)
 		regions = append(regions, *r)
@@ -61,11 +72,11 @@ func (g *Client) GetRegions() ([]v1.Region, error) {
 
 //Rgion.Slug is used as zone name
 func (g *Client) GetZones() ([]string, error) {
-	regionList, _, err := g.Client.Regions.List(g.Ctx, &godo.ListOptions{})
+	regionList, _, err := g.Client.Regions.List(g.ctx, &godo.ListOptions{})
 	if err != nil {
 		return nil, err
 	}
-	zones := []string{}
+	var zones []string
 	for _, region := range regionList {
 		zones = append(zones, region.Slug)
 	}
@@ -73,13 +84,13 @@ func (g *Client) GetZones() ([]string, error) {
 }
 
 func (g *Client) GetMachineTypes() ([]v1.MachineType, error) {
-	sizeList, _, err := g.Client.Sizes.List(g.Ctx, &godo.ListOptions{})
+	sizeList, _, err := g.Client.Sizes.List(g.ctx, &godo.ListOptions{})
 	if err != nil {
 		return nil, err
 	}
-	instances := []v1.MachineType{}
+	var instances []v1.MachineType
 	for _, s := range sizeList {
-		ins, err := ParseSizes(&s)
+		ins, err := ParseMachineType(&s)
 		if err != nil {
 			return nil, err
 		}

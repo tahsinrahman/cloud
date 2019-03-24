@@ -13,7 +13,7 @@ const (
 type KubernetesData struct {
 	Provider   string
 	Version    string
-	Envs       string
+	Envs       []string
 	Deprecated bool
 }
 
@@ -26,7 +26,7 @@ func NewKubernetesData() *KubernetesData {
 func (c *KubernetesData) AddFlags(fs *pflag.FlagSet) {
 	fs.StringVarP(&c.Provider, "provider", "p", c.Provider, "Name of the Cloud provider (If this flag is not provided, then changes will apply to all supported cloud providers)")
 	fs.StringVar(&c.Version, "version", c.Version, "kubernetes version (required)")
-	fs.StringVar(&c.Envs, "env", c.Envs, "environment variable (required, Example: --env=dev,qa,prod)")
+	fs.StringSliceVar(&c.Envs, "env", c.Envs, "environment variable (required, Example: --env=dev,qa,prod)")
 	fs.BoolVar(&c.Deprecated, "deprecated", c.Deprecated, "To indicate whether provided environment variables are deprecated or not")
 }
 

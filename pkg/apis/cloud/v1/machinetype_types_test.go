@@ -19,6 +19,8 @@ package v1
 import (
 	"testing"
 
+	"k8s.io/apimachinery/pkg/api/resource"
+
 	"github.com/onsi/gomega"
 	"golang.org/x/net/context"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -32,7 +34,13 @@ func TestStorageMachineType(t *testing.T) {
 	created := &MachineType{
 		ObjectMeta: metav1.ObjectMeta{
 			Name: "foo",
-		}}
+		},
+		Spec: MachineTypeSpec{
+			SKU: "m1.large",
+			CPU: resource.NewQuantity(1, resource.DecimalExponent),
+			RAM: resource.NewScaledQuantity(1, 9),
+		},
+	}
 	g := gomega.NewGomegaWithT(t)
 
 	// Test Create

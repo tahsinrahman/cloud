@@ -18,7 +18,7 @@ func TestRegion(t *testing.T) {
 		t.Error(err)
 	}
 	for _, r := range rList {
-		fmt.Println(r.Spec.Location)
+		fmt.Println(r.Location)
 	}
 }
 

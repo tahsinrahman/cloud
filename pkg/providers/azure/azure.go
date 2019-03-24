@@ -3,35 +3,28 @@ package azure
 import (
 	"context"
 
+	"github.com/pharmer/cloud/pkg/apis"
+
 	"github.com/Azure/azure-sdk-for-go/profiles/2017-03-09/resources/mgmt/subscriptions"
 	"github.com/Azure/azure-sdk-for-go/services/compute/mgmt/2017-12-01/compute"
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/adal"
 	"github.com/Azure/go-autorest/autorest/azure"
-	"github.com/pharmer/cloud/pkg/apis/cloud/v1"
-	"github.com/pharmer/cloud/pkg/util"
+	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 type Client struct {
-	Data           *AzureData
 	SubscriptionId string
 	GroupsClient   subscriptions.Client
 	VmSizesClient  compute.VirtualMachineSizesClient
 }
-
-type AzureData v1.CloudProvider
 
 func NewClient(tenantId, subscriptionId, clientId, clientSecret string) (*Client, error) {
 	g := &Client{
 		SubscriptionId: subscriptionId,
 	}
 	var err error
-	data, err := util.GetDataFormFile("azure")
-	if err != nil {
-		return nil, err
-	}
-	d := AzureData(*data)
-	g.Data = &d
 
 	baseURI := azure.PublicCloud.ResourceManagerEndpoint
 	config, err := adal.NewOAuthConfig(azure.PublicCloud.ActiveDirectoryEndpoint, tenantId)
@@ -52,15 +45,89 @@ func NewClient(tenantId, subscriptionId, clientId, clientSecret string) (*Client
 }
 
 func (g *Client) GetName() string {
-	return g.Data.Name
+	return apis.Azure
 }
 
 func (g *Client) GetCredentials() []v1.CredentialFormat {
-	return g.Data.Spec.Credentials
-}
-
-func (g *Client) GetKubernetes() []v1.KubernetesVersion {
-	return g.Data.Spec.Kubernetes
+	return []v1.CredentialFormat{
+		{
+			ObjectMeta: metav1.ObjectMeta{
+				Name: apis.Azure + "-cred",
+				Labels: map[string]string{
+					"cloud.pharmer.io/provider": apis.Azure,
+				},
+				Annotations: map[string]string{
+					"cloud.pharmer.io/cluster-credential": "",
+					"cloud.pharmer.io/dns-credential":     "",
+				},
+			},
+			Spec: v1.CredentialFormatSpec{
+				Provider:      apis.Azure,
+				DisplayFormat: "field",
+				Fields: []v1.CredentialField{
+					{
+						Envconfig: "AZURE_TENANT_ID",
+						Form:      "azure_tenant_id",
+						JSON:      "tenantID",
+						Label:     "Tenant Id",
+						Input:     "text",
+					},
+					{
+						Envconfig: "AZURE_SUBSCRIPTION_ID",
+						Form:      "azure_subscription_id",
+						JSON:      "subscriptionID",
+						Label:     "Subscription Id",
+						Input:     "text",
+					},
+					{
+						Envconfig: "AZURE_CLIENT_ID",
+						Form:      "azure_client_id",
+						JSON:      "clientID",
+						Label:     "Client Id",
+						Input:     "text",
+					},
+					{
+						Envconfig: "AZURE_CLIENT_SECRET",
+						Form:      "azure_client_secret",
+						JSON:      "clientSecret",
+						Label:     "Client Secret",
+						Input:     "password",
+					},
+				},
+			},
+		},
+		{
+			ObjectMeta: metav1.ObjectMeta{
+				Name: apis.Azure + "-storage-cred",
+				Labels: map[string]string{
+					"cloud.pharmer.io/provider": apis.Azure,
+				},
+				Annotations: map[string]string{
+					"cloud.pharmer.io/storage-credential": "",
+				},
+			},
+			Spec: v1.CredentialFormatSpec{
+				Provider:      apis.Azure,
+				DisplayFormat: "field",
+				Fields: []v1.CredentialField{
+					{
+						Envconfig: "AZURE_STORAGE_ACCOUNT",
+						Form:      "azure_storage_account",
+						JSON:      "account",
+						Label:     "Azure Storage Account",
+						Input:     "text",
+					},
+					{
+						Envconfig: "AZURE_STORAGE_KEY",
+						Form:      "azure_storage_key",
+						JSON:      "key",
+						Label:     "Azure Storage Account Key",
+						Input:     "password",
+					},
+				},
+			},
+		},
+	}
 }
 
 func (g *Client) GetRegions() ([]v1.Region, error) {
@@ -81,7 +148,7 @@ func (g *Client) GetZones() ([]string, error) {
 	visZone := map[string]bool{}
 	var zones []string
 	for _, r := range regions {
-		for _, z := range r.Spec.Zones {
+		for _, z := range r.Zones {
 			if _, found := visZone[z]; !found {
 				zones = append(zones, z)
 				visZone[z] = true
