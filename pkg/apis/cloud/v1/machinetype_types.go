@@ -41,6 +41,9 @@ type MachineTypeSpec struct {
 
 // MachineType is the Schema for the machinetypes API
 // +k8s:openapi-gen=true
+// +kubebuilder:printcolumn:name="SKU",type="string",JSONPath=".spec.sku"
+// +kubebuilder:printcolumn:name="CPU",type="string",JSONPath=".spec.cpu"
+// +kubebuilder:printcolumn:name="RAM",type="string",JSONPath=".spec.ram"
 type MachineType struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

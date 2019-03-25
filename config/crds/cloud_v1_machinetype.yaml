@@ -6,6 +6,16 @@ metadata:
     controller-tools.k8s.io: "1.0"
   name: machinetypes.cloud.pharmer.io
 spec:
+  additionalPrinterColumns:
+  - JSONPath: .spec.sku
+    name: SKU
+    type: string
+  - JSONPath: .spec.cpu
+    name: CPU
+    type: string
+  - JSONPath: .spec.ram
+    name: RAM
+    type: string
   group: cloud.pharmer.io
   names:
     kind: MachineType
