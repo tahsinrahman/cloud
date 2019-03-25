@@ -25,7 +25,7 @@ func ParseRegion(region *godo.Region) *v1.Region {
 func ParseMachineType(sz *godo.Size) (*v1.MachineType, error) {
 	return &v1.MachineType{
 		ObjectMeta: metav1.ObjectMeta{
-			Name: apis.DigitalOcean + "-" + sz.Slug,
+			Name: util.Sanitize(apis.DigitalOcean + "-" + sz.Slug),
 			Labels: map[string]string{
 				"cloud.pharmer.io/provider": apis.DigitalOcean,
 			},

@@ -22,5 +22,5 @@ var (
 )
 
 func init() {
-	DataDir = filepath.Join(runtime.GOPath(), "src/github.com/pharmer/cloud/data/raw")
+	DataDir = filepath.Join(runtime.GOPath(), "src/github.com/pharmer/cloud/data")
 }

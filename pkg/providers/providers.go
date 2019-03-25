@@ -2,14 +2,15 @@ package providers
 
 import (
 	"io/ioutil"
-	"k8s.io/apimachinery/pkg/api/meta"
 	"os"
 	"path/filepath"
 	"strings"
 
+	"k8s.io/apimachinery/pkg/api/meta"
+
 	"github.com/appscode/go/log"
 	"github.com/pharmer/cloud/pkg/apis"
-	"github.com/pharmer/cloud/pkg/apis/cloud/v1"
+	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
 	"github.com/pharmer/cloud/pkg/cmds/options"
 	"github.com/pharmer/cloud/pkg/providers/aws"
 	"github.com/pharmer/cloud/pkg/providers/azure"
@@ -98,8 +99,13 @@ func WriteObject(obj runtime.Object) error {
 		return err
 	}
 
-	dir := filepath.Join(apis.DataDir, "apis", v1.SchemeGroupVersion.Group, v1.SchemeGroupVersion.Version, resource)
-	err = os.MkdirAll(dir, 0755)
+	yamlDir := filepath.Join(apis.DataDir, "yaml", "apis", v1.SchemeGroupVersion.Group, v1.SchemeGroupVersion.Version, resource)
+	err = os.MkdirAll(yamlDir, 0755)
+	if err != nil {
+		return err
+	}
+	jsonDir := filepath.Join(apis.DataDir, "json", "apis", v1.SchemeGroupVersion.Group, v1.SchemeGroupVersion.Version, resource)
+	err = os.MkdirAll(jsonDir, 0755)
 	if err != nil {
 		return err
 	}
@@ -108,7 +114,7 @@ func WriteObject(obj runtime.Object) error {
 	if err != nil {
 		return err
 	}
-	err = ioutil.WriteFile(filepath.Join(dir, name+".yaml"), yamlBytes, 0755)
+	err = ioutil.WriteFile(filepath.Join(yamlDir, name+".yaml"), yamlBytes, 0755)
 	if err != nil {
 		return err
 	}
@@ -117,7 +123,7 @@ func WriteObject(obj runtime.Object) error {
 	if err != nil {
 		return err
 	}
-	return ioutil.WriteFile(filepath.Join(dir, name+".json"), jsonBytes, 0755)
+	return ioutil.WriteFile(filepath.Join(jsonDir, name+".json"), jsonBytes, 0755)
 }
 
 func WriteCloudProvider(data *v1.CloudProvider) error {

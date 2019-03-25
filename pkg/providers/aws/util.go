@@ -13,7 +13,7 @@ import (
 func ParseInstance(in *Ec2Instance) (*v1.MachineType, error) {
 	out := &v1.MachineType{
 		ObjectMeta: metav1.ObjectMeta{
-			Name: apis.AWS + "-" + in.InstanceType,
+			Name: util.Sanitize(apis.AWS + "-" + in.InstanceType),
 			Labels: map[string]string{
 				"cloud.pharmer.io/provider": apis.AWS,
 			},

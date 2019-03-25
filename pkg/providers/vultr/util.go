@@ -1,14 +1,14 @@
 package vultr
 
 import (
-	"strconv"
-
 	vultr "github.com/JamesClonk/vultr/lib"
 	"github.com/pharmer/cloud/pkg/apis"
 	"github.com/pharmer/cloud/pkg/apis/cloud/v1"
+	"github.com/pharmer/cloud/pkg/util"
 	"github.com/pkg/errors"
 	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"strconv"
 )
 
 func ParseRegion(in *vultr.Region) *v1.Region {
@@ -24,7 +24,7 @@ func ParseRegion(in *vultr.Region) *v1.Region {
 func ParseInstance(in *PlanExtended) (*v1.MachineType, error) {
 	out := &v1.MachineType{
 		ObjectMeta: metav1.ObjectMeta{
-			Name: apis.Vultr + "-" + strconv.Itoa(in.ID),
+			Name: util.Sanitize(apis.Vultr + "-" + strconv.Itoa(in.ID)),
 			Labels: map[string]string{
 				"cloud.pharmer.io/provider": apis.Vultr,
 			},

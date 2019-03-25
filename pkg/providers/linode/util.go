@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/linode/linodego"
 	"github.com/pharmer/cloud/pkg/apis"
-	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
+	"github.com/pharmer/cloud/pkg/apis/cloud/v1"
 	"github.com/pharmer/cloud/pkg/util"
 	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -23,7 +23,7 @@ func ParseRegion(in *linodego.Region) *v1.Region {
 func ParseInstance(in *linodego.LinodeType) (*v1.MachineType, error) {
 	return &v1.MachineType{
 		ObjectMeta: metav1.ObjectMeta{
-			Name: apis.Linode + "-" + in.ID,
+			Name: util.Sanitize(apis.Linode + "-" + in.ID),
 			Labels: map[string]string{
 				"cloud.pharmer.io/provider": apis.Linode,
 			},

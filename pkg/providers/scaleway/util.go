@@ -2,7 +2,8 @@ package scaleway
 
 import (
 	"github.com/pharmer/cloud/pkg/apis"
-	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
+	"github.com/pharmer/cloud/pkg/apis/cloud/v1"
+	"github.com/pharmer/cloud/pkg/util"
 	scaleway "github.com/scaleway/scaleway-cli/pkg/api"
 	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -11,7 +12,7 @@ import (
 func ParseInstance(name string, in *scaleway.ProductServer) (*v1.MachineType, error) {
 	out := &v1.MachineType{
 		ObjectMeta: metav1.ObjectMeta{
-			Name: apis.Packet + "-" + name,
+			Name: util.Sanitize(apis.Packet + "-" + name),
 			Labels: map[string]string{
 				"cloud.pharmer.io/provider": apis.Packet,
 			},

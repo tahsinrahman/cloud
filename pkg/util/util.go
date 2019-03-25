@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"sort"
 	"strconv"
+	"strings"
 
 	"github.com/pharmer/cloud/pkg/apis"
 
@@ -20,12 +21,8 @@ func QuantityP(q resource.Quantity) *resource.Quantity {
 	return &q
 }
 
-func CreateDir(dir string) error {
-	err := os.MkdirAll(dir, 0755)
-	if err != nil {
-		return errors.Errorf("failed to create dir `%s`. Reason: %v", dir, err)
-	}
-	return nil
+func Sanitize(s string) string {
+	return strings.Replace(strings.ToLower(strings.TrimSpace(s)), "_", "-", -1)
 }
 
 func ReadFile(name string) ([]byte, error) {

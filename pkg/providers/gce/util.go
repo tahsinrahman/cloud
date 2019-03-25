@@ -2,8 +2,9 @@ package gce
 
 import (
 	"fmt"
-	"github.com/pharmer/cloud/pkg/util"
 	"strings"
+
+	"github.com/pharmer/cloud/pkg/util"
 
 	"github.com/pharmer/cloud/pkg/apis"
 	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
@@ -39,7 +40,7 @@ func ParseZoneFromUrl(url string) (string, error) {
 func ParseMachine(machine *compute.MachineType) (*v1.MachineType, error) {
 	return &v1.MachineType{
 		ObjectMeta: metav1.ObjectMeta{
-			Name: apis.GCE + "-" + machine.Name,
+			Name: util.Sanitize(apis.GCE + "-" + machine.Name),
 			Labels: map[string]string{
 				"cloud.pharmer.io/provider": apis.GCE,
 			},
