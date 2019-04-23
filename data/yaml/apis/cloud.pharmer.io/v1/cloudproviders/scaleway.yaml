@@ -184,6 +184,58 @@ spec:
       creationTimestamp: null
       labels:
         cloud.pharmer.io/provider: packet
+      name: packet-dev1-l
+    spec:
+      cpu: "4"
+      description: x86_64
+      disk: 80G
+      ram: 8Gi
+      sku: DEV1-L
+      zones:
+      - par1
+  - metadata:
+      creationTimestamp: null
+      labels:
+        cloud.pharmer.io/provider: packet
+      name: packet-dev1-m
+    spec:
+      cpu: "3"
+      description: x86_64
+      disk: 40G
+      ram: 4Gi
+      sku: DEV1-M
+      zones:
+      - par1
+  - metadata:
+      creationTimestamp: null
+      labels:
+        cloud.pharmer.io/provider: packet
+      name: packet-dev1-s
+    spec:
+      cpu: "2"
+      description: x86_64
+      disk: 20G
+      ram: 2Gi
+      sku: DEV1-S
+      zones:
+      - par1
+  - metadata:
+      creationTimestamp: null
+      labels:
+        cloud.pharmer.io/provider: packet
+      name: packet-dev1-xl
+    spec:
+      cpu: "4"
+      description: x86_64
+      disk: 120G
+      ram: 12Gi
+      sku: DEV1-XL
+      zones:
+      - par1
+  - metadata:
+      creationTimestamp: null
+      labels:
+        cloud.pharmer.io/provider: packet
       name: packet-gp1-l
     spec:
       cpu: "32"
@@ -245,71 +297,6 @@ spec:
       sku: GP1-XS
       zones:
       - par1
-  - metadata:
-      creationTimestamp: null
-      labels:
-        cloud.pharmer.io/provider: packet
-      name: packet-pro1-l
-    spec:
-      cpu: "32"
-      description: x86_64
-      disk: 1600G
-      ram: 128Gi
-      sku: PRO1-L
-      zones:
-      - ams1
-  - metadata:
-      creationTimestamp: null
-      labels:
-        cloud.pharmer.io/provider: packet
-      name: packet-pro1-m
-    spec:
-      cpu: "16"
-      description: x86_64
-      disk: 800G
-      ram: 64Gi
-      sku: PRO1-M
-      zones:
-      - ams1
-  - metadata:
-      creationTimestamp: null
-      labels:
-        cloud.pharmer.io/provider: packet
-      name: packet-pro1-s
-    spec:
-      cpu: "8"
-      description: x86_64
-      disk: 400G
-      ram: 32Gi
-      sku: PRO1-S
-      zones:
-      - ams1
-  - metadata:
-      creationTimestamp: null
-      labels:
-        cloud.pharmer.io/provider: packet
-      name: packet-pro1-xl
-    spec:
-      cpu: "48"
-      description: x86_64
-      disk: 3200G
-      ram: 256Gi
-      sku: PRO1-XL
-      zones:
-      - ams1
-  - metadata:
-      creationTimestamp: null
-      labels:
-        cloud.pharmer.io/provider: packet
-      name: packet-pro1-xs
-    spec:
-      cpu: "4"
-      description: x86_64
-      disk: 200G
-      ram: 16Gi
-      sku: PRO1-XS
-      zones:
-      - ams1
   - metadata:
       creationTimestamp: null
       labels:

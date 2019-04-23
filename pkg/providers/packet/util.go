@@ -25,6 +25,7 @@ var (
 		"AMD EPYC 7401P 24-Core Processor @ 2.0GHz":           24,
 		"Intel Xeon Gold 6126":                                2 * 12,
 		"Intel Scalable Gold 5120 28-Core Processor @ 2.2GHz": 28,
+		"32-core @ 3.0Ghz":                                    32,
 	}
 )
 

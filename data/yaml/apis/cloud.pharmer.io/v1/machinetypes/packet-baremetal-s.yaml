@@ -13,6 +13,7 @@ spec:
   ram: 64G
   sku: baremetal_s
   zones:
+  - ams1
   - dfw2
   - ewr1
   - nrt1

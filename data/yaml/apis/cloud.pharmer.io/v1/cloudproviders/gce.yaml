@@ -51,6 +51,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -122,6 +125,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -193,6 +199,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -264,6 +273,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -335,6 +347,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -406,6 +421,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -477,6 +495,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -548,6 +569,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -619,6 +643,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -687,6 +714,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -758,6 +788,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -829,6 +862,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -900,6 +936,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -971,6 +1010,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -1042,6 +1084,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -1113,6 +1158,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -1209,6 +1257,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -1280,6 +1331,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -1351,6 +1405,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -1422,6 +1479,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -1493,6 +1553,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -1564,6 +1627,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -1635,6 +1701,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -1706,6 +1775,9 @@ spec:
       - asia-northeast1-a
       - asia-northeast1-b
       - asia-northeast1-c
+      - asia-northeast2-a
+      - asia-northeast2-b
+      - asia-northeast2-c
       - asia-south1-a
       - asia-south1-b
       - asia-south1-c
@@ -1774,6 +1846,8 @@ spec:
       - europe-west1-d
       - europe-west3-a
       - europe-west3-b
+      - europe-west4-b
+      - europe-west4-c
       - northamerica-northeast1-b
       - northamerica-northeast1-c
       - southamerica-east1-b
@@ -1811,6 +1885,8 @@ spec:
       - europe-west1-d
       - europe-west3-a
       - europe-west3-b
+      - europe-west4-b
+      - europe-west4-c
       - northamerica-northeast1-b
       - northamerica-northeast1-c
       - southamerica-east1-b
@@ -1848,6 +1924,8 @@ spec:
       - europe-west1-d
       - europe-west3-a
       - europe-west3-b
+      - europe-west4-b
+      - europe-west4-c
       - northamerica-northeast1-b
       - northamerica-northeast1-c
       - southamerica-east1-b
@@ -1879,6 +1957,11 @@ spec:
     - asia-northeast1-a
     - asia-northeast1-b
     - asia-northeast1-c
+  - region: asia-northeast2
+    zones:
+    - asia-northeast2-a
+    - asia-northeast2-b
+    - asia-northeast2-c
   - region: asia-south1
     zones:
     - asia-south1-a

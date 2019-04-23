@@ -55,7 +55,6 @@ spec:
       ram: 32G
       sku: baremetal_1
       zones:
-      - ams1
       - ewr1
       - nrt1
       - sjc1
@@ -71,15 +70,10 @@ spec:
       ram: 32G
       sku: baremetal_1e
       zones:
-      - atl1
-      - dfw1
-      - ewr1
-      - fra1
+      - dfw2
       - fra2
-      - hkg1
-      - iad1
-      - mrs1
       - nrt1
+      - sea1
       - sin1
       - sjc1
       - syd1
@@ -115,9 +109,9 @@ spec:
       ram: 128G
       sku: baremetal_2a
       zones:
+      - ams1
       - ewr1
       - nrt1
-      - sjc1
   - metadata:
       creationTimestamp: null
       labels:
@@ -131,7 +125,6 @@ spec:
       ram: 128G
       sku: baremetal_3
       zones:
-      - ams1
       - ewr1
       - sjc1
   - metadata:
@@ -147,10 +140,25 @@ spec:
       ram: 64G
       sku: baremetal_s
       zones:
+      - ams1
       - dfw2
       - ewr1
       - nrt1
       - sjc1
+  - metadata:
+      creationTimestamp: null
+      labels:
+        cloud.pharmer.io/provider: packet
+      name: packet-c2.large.arm
+    spec:
+      cpu: "32"
+      description: Ampere system with a 32 core Ampere eMAG Processor at 3.0GHz, 128GB
+        of RAM and one 480GB SSD
+      disk: 480G
+      ram: 128G
+      sku: c2.large.arm
+      zones:
+      - dfw2
   - metadata:
       creationTimestamp: null
       labels:
@@ -163,6 +171,7 @@ spec:
       ram: 64G
       sku: c2.medium.x86
       zones:
+      - ams1
       - dfw2
       - ewr1
       - nrt1
@@ -243,10 +252,6 @@ spec:
     region: Frankfurt 2, DE
     zones:
     - fra2
-  - location: Frankfurt, DE
-    region: Frankfurt, DE
-    zones:
-    - fra1
   - location: Hong Kong 1, HK
     region: Hong Kong 1, HK
     zones:

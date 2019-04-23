@@ -13,7 +13,6 @@ spec:
   ram: 32G
   sku: baremetal_1
   zones:
-  - ams1
   - ewr1
   - nrt1
   - sjc1

@@ -12,15 +12,10 @@ spec:
   ram: 32G
   sku: baremetal_1e
   zones:
-  - atl1
-  - dfw1
-  - ewr1
-  - fra1
+  - dfw2
   - fra2
-  - hkg1
-  - iad1
-  - mrs1
   - nrt1
+  - sea1
   - sin1
   - sjc1
   - syd1

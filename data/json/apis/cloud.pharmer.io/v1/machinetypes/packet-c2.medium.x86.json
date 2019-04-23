@@ -15,6 +15,7 @@
     "ram": "64G",
     "disk": "120G",
     "zones": [
+      "ams1",
       "dfw2",
       "ewr1",
       "nrt1",

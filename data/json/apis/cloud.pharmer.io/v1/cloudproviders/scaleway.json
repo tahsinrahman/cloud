@@ -244,6 +244,82 @@
       },
       {
         "metadata": {
+          "name": "packet-dev1-l",
+          "creationTimestamp": null,
+          "labels": {
+            "cloud.pharmer.io/provider": "packet"
+          }
+        },
+        "spec": {
+          "sku": "DEV1-L",
+          "description": "x86_64",
+          "cpu": "4",
+          "ram": "8Gi",
+          "disk": "80G",
+          "zones": [
+            "par1"
+          ]
+        }
+      },
+      {
+        "metadata": {
+          "name": "packet-dev1-m",
+          "creationTimestamp": null,
+          "labels": {
+            "cloud.pharmer.io/provider": "packet"
+          }
+        },
+        "spec": {
+          "sku": "DEV1-M",
+          "description": "x86_64",
+          "cpu": "3",
+          "ram": "4Gi",
+          "disk": "40G",
+          "zones": [
+            "par1"
+          ]
+        }
+      },
+      {
+        "metadata": {
+          "name": "packet-dev1-s",
+          "creationTimestamp": null,
+          "labels": {
+            "cloud.pharmer.io/provider": "packet"
+          }
+        },
+        "spec": {
+          "sku": "DEV1-S",
+          "description": "x86_64",
+          "cpu": "2",
+          "ram": "2Gi",
+          "disk": "20G",
+          "zones": [
+            "par1"
+          ]
+        }
+      },
+      {
+        "metadata": {
+          "name": "packet-dev1-xl",
+          "creationTimestamp": null,
+          "labels": {
+            "cloud.pharmer.io/provider": "packet"
+          }
+        },
+        "spec": {
+          "sku": "DEV1-XL",
+          "description": "x86_64",
+          "cpu": "4",
+          "ram": "12Gi",
+          "disk": "120G",
+          "zones": [
+            "par1"
+          ]
+        }
+      },
+      {
+        "metadata": {
           "name": "packet-gp1-l",
           "creationTimestamp": null,
           "labels": {
@@ -334,101 +410,6 @@
           "disk": "150G",
           "zones": [
             "par1"
-          ]
-        }
-      },
-      {
-        "metadata": {
-          "name": "packet-pro1-l",
-          "creationTimestamp": null,
-          "labels": {
-            "cloud.pharmer.io/provider": "packet"
-          }
-        },
-        "spec": {
-          "sku": "PRO1-L",
-          "description": "x86_64",
-          "cpu": "32",
-          "ram": "128Gi",
-          "disk": "1600G",
-          "zones": [
-            "ams1"
-          ]
-        }
-      },
-      {
-        "metadata": {
-          "name": "packet-pro1-m",
-          "creationTimestamp": null,
-          "labels": {
-            "cloud.pharmer.io/provider": "packet"
-          }
-        },
-        "spec": {
-          "sku": "PRO1-M",
-          "description": "x86_64",
-          "cpu": "16",
-          "ram": "64Gi",
-          "disk": "800G",
-          "zones": [
-            "ams1"
-          ]
-        }
-      },
-      {
-        "metadata": {
-          "name": "packet-pro1-s",
-          "creationTimestamp": null,
-          "labels": {
-            "cloud.pharmer.io/provider": "packet"
-          }
-        },
-        "spec": {
-          "sku": "PRO1-S",
-          "description": "x86_64",
-          "cpu": "8",
-          "ram": "32Gi",
-          "disk": "400G",
-          "zones": [
-            "ams1"
-          ]
-        }
-      },
-      {
-        "metadata": {
-          "name": "packet-pro1-xl",
-          "creationTimestamp": null,
-          "labels": {
-            "cloud.pharmer.io/provider": "packet"
-          }
-        },
-        "spec": {
-          "sku": "PRO1-XL",
-          "description": "x86_64",
-          "cpu": "48",
-          "ram": "256Gi",
-          "disk": "3200G",
-          "zones": [
-            "ams1"
-          ]
-        }
-      },
-      {
-        "metadata": {
-          "name": "packet-pro1-xs",
-          "creationTimestamp": null,
-          "labels": {
-            "cloud.pharmer.io/provider": "packet"
-          }
-        },
-        "spec": {
-          "sku": "PRO1-XS",
-          "description": "x86_64",
-          "cpu": "4",
-          "ram": "16Gi",
-          "disk": "200G",
-          "zones": [
-            "ams1"
           ]
         }
       },

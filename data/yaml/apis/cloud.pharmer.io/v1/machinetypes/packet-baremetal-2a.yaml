@@ -13,6 +13,6 @@ spec:
   ram: 128G
   sku: baremetal_2a
   zones:
+  - ams1
   - ewr1
   - nrt1
-  - sjc1

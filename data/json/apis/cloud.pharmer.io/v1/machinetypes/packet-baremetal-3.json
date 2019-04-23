@@ -15,7 +15,6 @@
     "ram": "128G",
     "disk": "120G",
     "zones": [
-      "ams1",
       "ewr1",
       "sjc1"
     ]

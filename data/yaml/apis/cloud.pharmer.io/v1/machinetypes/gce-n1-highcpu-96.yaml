@@ -22,6 +22,9 @@ spec:
   - asia-northeast1-a
   - asia-northeast1-b
   - asia-northeast1-c
+  - asia-northeast2-a
+  - asia-northeast2-b
+  - asia-northeast2-c
   - asia-south1-a
   - asia-south1-b
   - asia-south1-c

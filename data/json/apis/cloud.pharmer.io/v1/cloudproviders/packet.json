@@ -57,13 +57,6 @@
         "location": "Frankfurt 2, DE"
       },
       {
-        "region": "Frankfurt, DE",
-        "zones": [
-          "fra1"
-        ],
-        "location": "Frankfurt, DE"
-      },
-      {
         "region": "Hong Kong 1, HK",
         "zones": [
           "hkg1"
@@ -172,7 +165,6 @@
           "ram": "32G",
           "disk": "120G",
           "zones": [
-            "ams1",
             "ewr1",
             "nrt1",
             "sjc1"
@@ -194,15 +186,10 @@
           "ram": "32G",
           "disk": "240G",
           "zones": [
-            "atl1",
-            "dfw1",
-            "ewr1",
-            "fra1",
+            "dfw2",
             "fra2",
-            "hkg1",
-            "iad1",
-            "mrs1",
             "nrt1",
+            "sea1",
             "sin1",
             "sjc1",
             "syd1",
@@ -247,9 +234,9 @@
           "ram": "128G",
           "disk": "340G",
           "zones": [
+            "ams1",
             "ewr1",
-            "nrt1",
-            "sjc1"
+            "nrt1"
           ]
         }
       },
@@ -268,7 +255,6 @@
           "ram": "128G",
           "disk": "120G",
           "zones": [
-            "ams1",
             "ewr1",
             "sjc1"
           ]
@@ -289,10 +275,30 @@
           "ram": "64G",
           "disk": "480G",
           "zones": [
+            "ams1",
             "dfw2",
             "ewr1",
             "nrt1",
             "sjc1"
+          ]
+        }
+      },
+      {
+        "metadata": {
+          "name": "packet-c2.large.arm",
+          "creationTimestamp": null,
+          "labels": {
+            "cloud.pharmer.io/provider": "packet"
+          }
+        },
+        "spec": {
+          "sku": "c2.large.arm",
+          "description": "Ampere system with a 32 core Ampere eMAG Processor at 3.0GHz, 128GB of RAM and one 480GB SSD",
+          "cpu": "32",
+          "ram": "128G",
+          "disk": "480G",
+          "zones": [
+            "dfw2"
           ]
         }
       },
@@ -311,6 +317,7 @@
           "ram": "64G",
           "disk": "120G",
           "zones": [
+            "ams1",
             "dfw2",
             "ewr1",
             "nrt1",
