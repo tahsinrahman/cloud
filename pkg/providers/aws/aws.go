@@ -52,7 +52,7 @@ func (g *Client) GetName() string {
 	return apis.AWS
 }
 
-func (g *Client) GetCredentials() []v1.CredentialFormat {
+func (g *Client) ListCredentialFormats() []v1.CredentialFormat {
 	return []v1.CredentialFormat{
 		{
 			ObjectMeta: metav1.ObjectMeta{
@@ -90,7 +90,7 @@ func (g *Client) GetCredentials() []v1.CredentialFormat {
 	}
 }
 
-func (g *Client) GetRegions() ([]v1.Region, error) {
+func (g *Client) ListRegions() ([]v1.Region, error) {
 	svc := ec2.New(g.session)
 	regionList, err := svc.DescribeRegions(nil)
 	if err != nil {
@@ -125,9 +125,9 @@ func (g *Client) GetRegions() ([]v1.Region, error) {
 	return regions, nil
 }
 
-func (g *Client) GetZones() ([]string, error) {
+func (g *Client) ListZones() ([]string, error) {
 	visZone := map[string]bool{}
-	regionList, err := g.GetRegions()
+	regionList, err := g.ListRegions()
 	if err != nil {
 		return nil, err
 	}
@@ -145,7 +145,7 @@ func (g *Client) GetZones() ([]string, error) {
 
 //https://ec2instances.info/instances.json
 //https://github.com/powdahound/ec2instances.info
-func (g *Client) GetMachineTypes() ([]v1.MachineType, error) {
+func (g *Client) ListMachineTypes() ([]v1.MachineType, error) {
 
 	client := &http.Client{}
 	req, err := getInstanceRequest()

@@ -22,7 +22,7 @@ func TestRegion(t *testing.T) {
 		t.Error(err)
 		return
 	}
-	_, err = g.GetRegions()
+	_, err = g.ListRegions()
 	if err != nil {
 		t.Error(err)
 		return
@@ -35,7 +35,7 @@ func TestInstance(t *testing.T) {
 		t.Error(err)
 		return
 	}
-	_, err = g.GetMachineTypes()
+	_, err = g.ListMachineTypes()
 	if err != nil {
 		t.Error(err)
 		return

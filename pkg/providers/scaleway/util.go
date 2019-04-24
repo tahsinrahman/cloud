@@ -2,7 +2,7 @@ package scaleway
 
 import (
 	"github.com/pharmer/cloud/pkg/apis"
-	"github.com/pharmer/cloud/pkg/apis/cloud/v1"
+	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
 	"github.com/pharmer/cloud/pkg/util"
 	scaleway "github.com/scaleway/scaleway-cli/pkg/api"
 	"k8s.io/apimachinery/pkg/api/resource"

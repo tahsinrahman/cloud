@@ -30,7 +30,7 @@ func (g *Client) GetName() string {
 	return apis.Scaleway
 }
 
-func (g *Client) GetCredentials() []v1.CredentialFormat {
+func (g *Client) ListCredentialFormats() []v1.CredentialFormat {
 	return []v1.CredentialFormat{
 		{
 			ObjectMeta: metav1.ObjectMeta{
@@ -66,7 +66,7 @@ func (g *Client) GetCredentials() []v1.CredentialFormat {
 	}
 }
 
-func (g *Client) GetRegions() ([]v1.Region, error) {
+func (g *Client) ListRegions() ([]v1.Region, error) {
 	regions := []v1.Region{
 		{
 			Location: "Paris, France",
@@ -82,7 +82,7 @@ func (g *Client) GetRegions() ([]v1.Region, error) {
 	return regions, nil
 }
 
-func (g *Client) GetZones() ([]string, error) {
+func (g *Client) ListZones() ([]string, error) {
 	zones := []string{
 		"ams1",
 		"par1",
@@ -90,7 +90,7 @@ func (g *Client) GetZones() ([]string, error) {
 	return zones, nil
 }
 
-func (g *Client) GetMachineTypes() ([]v1.MachineType, error) {
+func (g *Client) ListMachineTypes() ([]v1.MachineType, error) {
 	instanceList, err := g.ParClient.GetProductsServers()
 	if err != nil {
 		return nil, err

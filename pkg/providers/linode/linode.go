@@ -36,7 +36,7 @@ func (g *Client) GetName() string {
 	return apis.Linode
 }
 
-func (g *Client) GetCredentials() []v1.CredentialFormat {
+func (g *Client) ListCredentialFormats() []v1.CredentialFormat {
 	return []v1.CredentialFormat{
 		{
 			ObjectMeta: metav1.ObjectMeta{
@@ -64,7 +64,7 @@ func (g *Client) GetCredentials() []v1.CredentialFormat {
 }
 
 //DataCenter as region
-func (g *Client) GetRegions() ([]v1.Region, error) {
+func (g *Client) ListRegions() ([]v1.Region, error) {
 	regionList, err := g.Client.ListRegions(context.Background(), &linodego.ListOptions{})
 	if err != nil {
 		return nil, err
@@ -78,8 +78,8 @@ func (g *Client) GetRegions() ([]v1.Region, error) {
 }
 
 //data.Region.Region as Zone
-func (g *Client) GetZones() ([]string, error) {
-	regionList, err := g.GetRegions()
+func (g *Client) ListZones() ([]string, error) {
+	regionList, err := g.ListRegions()
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +90,7 @@ func (g *Client) GetZones() ([]string, error) {
 	return zones, nil
 }
 
-func (g *Client) GetMachineTypes() ([]v1.MachineType, error) {
+func (g *Client) ListMachineTypes() ([]v1.MachineType, error) {
 	instanceList, err := g.Client.ListTypes(context.Background(), &linodego.ListOptions{})
 	if err != nil {
 		return nil, err

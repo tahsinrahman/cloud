@@ -41,10 +41,10 @@ var supportedProvider = []string{
 
 type Interface interface {
 	GetName() string
-	GetCredentials() []v1.CredentialFormat
-	GetRegions() ([]v1.Region, error)
-	GetZones() ([]string, error)
-	GetMachineTypes() ([]v1.MachineType, error)
+	ListCredentialFormats() []v1.CredentialFormat
+	ListRegions() ([]v1.Region, error)
+	ListZones() ([]string, error)
+	ListMachineTypes() ([]v1.MachineType, error)
 }
 
 func NewCloudProvider(opts *options.GenData) (Interface, error) {
@@ -77,14 +77,14 @@ func GetCloudProvider(i Interface) (*v1.CloudProvider, error) {
 			Name: i.GetName(),
 		},
 		Spec: v1.CloudProviderSpec{
-			CredentialFormats: i.GetCredentials(),
+			CredentialFormats: i.ListCredentialFormats(),
 		},
 	}
-	data.Spec.Regions, err = i.GetRegions()
+	data.Spec.Regions, err = i.ListRegions()
 	if err != nil {
 		return nil, err
 	}
-	data.Spec.MachineTypes, err = i.GetMachineTypes()
+	data.Spec.MachineTypes, err = i.ListMachineTypes()
 	if err != nil {
 		return nil, err
 	}

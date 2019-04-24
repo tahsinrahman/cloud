@@ -13,7 +13,7 @@ func TestRegion(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	rList, err := client.GetRegions()
+	rList, err := client.ListRegions()
 	if err != nil {
 		t.Error(err)
 	}
@@ -27,7 +27,7 @@ func TestInstance(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	iList, err := client.GetMachineTypes()
+	iList, err := client.ListMachineTypes()
 	if err != nil {
 		t.Error(err)
 	}

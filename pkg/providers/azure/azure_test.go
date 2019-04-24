@@ -44,7 +44,7 @@ func TestRegion(t *testing.T) {
 		GroupsClient:   groupsClient,
 		SubscriptionId: cred.SubscriptionId,
 	}
-	r, err := g.GetRegions()
+	r, err := g.ListRegions()
 	if err != nil {
 		t.Error(err)
 	}
@@ -75,7 +75,7 @@ func TestInstances(t *testing.T) {
 		GroupsClient:   groupsClient,
 		SubscriptionId: cred.SubscriptionId,
 	}
-	r, err := g.GetMachineTypes()
+	r, err := g.ListMachineTypes()
 	if err != nil {
 		t.Error(err)
 	}

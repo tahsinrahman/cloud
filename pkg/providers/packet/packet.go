@@ -38,7 +38,7 @@ func (g *Client) GetName() string {
 	return apis.Packet
 }
 
-func (g *Client) GetCredentials() []v1.CredentialFormat {
+func (g *Client) ListCredentialFormats() []v1.CredentialFormat {
 	return []v1.CredentialFormat{
 		{
 			ObjectMeta: metav1.ObjectMeta{
@@ -71,7 +71,7 @@ func (g *Client) GetCredentials() []v1.CredentialFormat {
 	}
 }
 
-func (g *Client) GetRegions() ([]v1.Region, error) {
+func (g *Client) ListRegions() ([]v1.Region, error) {
 	facilityList, _, err := g.Client.Facilities.List(&packngo.ListOptions{})
 	if err != nil {
 		return nil, err
@@ -85,7 +85,7 @@ func (g *Client) GetRegions() ([]v1.Region, error) {
 }
 
 //Facility.Code as zone
-func (g *Client) GetZones() ([]string, error) {
+func (g *Client) ListZones() ([]string, error) {
 	var zones []string
 	facilityList, _, err := g.Client.Facilities.List(&packngo.ListOptions{})
 	if err != nil {
@@ -97,7 +97,7 @@ func (g *Client) GetZones() ([]string, error) {
 	return zones, nil
 }
 
-func (g *Client) GetMachineTypes() ([]v1.MachineType, error) {
+func (g *Client) ListMachineTypes() ([]v1.MachineType, error) {
 	//facilityCode maps facility.ID to facility.Code
 	facilityCode := map[string]string{}
 	facilityList, _, err := g.Client.Facilities.List(&packngo.ListOptions{})

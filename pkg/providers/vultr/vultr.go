@@ -33,7 +33,7 @@ func (g *Client) GetName() string {
 	return apis.Vultr
 }
 
-func (g *Client) GetCredentials() []v1.CredentialFormat {
+func (g *Client) ListCredentialFormats() []v1.CredentialFormat {
 	return []v1.CredentialFormat{
 		{
 			ObjectMeta: metav1.ObjectMeta{
@@ -63,7 +63,7 @@ func (g *Client) GetCredentials() []v1.CredentialFormat {
 	}
 }
 
-func (g *Client) GetRegions() ([]v1.Region, error) {
+func (g *Client) ListRegions() ([]v1.Region, error) {
 	regionlist, err := g.Client.GetRegions()
 	if err != nil {
 		return nil, err
@@ -76,8 +76,8 @@ func (g *Client) GetRegions() ([]v1.Region, error) {
 	return regions, nil
 }
 
-func (g *Client) GetZones() ([]string, error) {
-	regions, err := g.GetRegions()
+func (g *Client) ListZones() ([]string, error) {
+	regions, err := g.ListRegions()
 	if err != nil {
 		return nil, err
 	}
@@ -89,7 +89,7 @@ func (g *Client) GetZones() ([]string, error) {
 	return zones, nil
 }
 
-func (g *Client) GetMachineTypes() ([]v1.MachineType, error) {
+func (g *Client) ListMachineTypes() ([]v1.MachineType, error) {
 	var instances []v1.MachineType
 	planReq, err := g.getPlanRequest()
 	if err != nil {

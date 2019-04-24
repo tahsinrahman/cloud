@@ -35,7 +35,7 @@ func (g *Client) GetName() string {
 	return apis.GCE
 }
 
-func (g *Client) GetCredentials() []v1.CredentialFormat {
+func (g *Client) ListCredentialFormats() []v1.CredentialFormat {
 	return []v1.CredentialFormat{
 		{
 			ObjectMeta: metav1.ObjectMeta{
@@ -73,7 +73,7 @@ func (g *Client) GetCredentials() []v1.CredentialFormat {
 	}
 }
 
-func (g *Client) GetRegions() ([]v1.Region, error) {
+func (g *Client) ListRegions() ([]v1.Region, error) {
 	req := g.ComputeService.Regions.List(g.GceProjectID)
 
 	var regions []v1.Region
@@ -94,7 +94,7 @@ func (g *Client) GetRegions() ([]v1.Region, error) {
 	return regions, err
 }
 
-func (g *Client) GetZones() ([]string, error) {
+func (g *Client) ListZones() ([]string, error) {
 	req := g.ComputeService.Zones.List(g.GceProjectID)
 	var zones []string
 	err := req.Pages(g.Ctx, func(list *compute.ZoneList) error {
@@ -110,8 +110,8 @@ func (g *Client) GetZones() ([]string, error) {
 	return zones, nil
 }
 
-func (g *Client) GetMachineTypes() ([]v1.MachineType, error) {
-	zoneList, err := g.GetZones()
+func (g *Client) ListMachineTypes() ([]v1.MachineType, error) {
+	zoneList, err := g.ListZones()
 	if err != nil {
 		return nil, err
 	}

@@ -26,7 +26,7 @@ func (g *Client) GetName() string {
 	return apis.DigitalOcean
 }
 
-func (g *Client) GetCredentials() []v1.CredentialFormat {
+func (g *Client) ListCredentialFormats() []v1.CredentialFormat {
 	return []v1.CredentialFormat{
 		{
 			ObjectMeta: metav1.ObjectMeta{
@@ -57,7 +57,7 @@ func (g *Client) GetCredentials() []v1.CredentialFormat {
 	}
 }
 
-func (g *Client) GetRegions() ([]v1.Region, error) {
+func (g *Client) ListRegions() ([]v1.Region, error) {
 	regionList, _, err := g.Client.Regions.List(g.ctx, &godo.ListOptions{})
 	if err != nil {
 		return nil, err
@@ -71,7 +71,7 @@ func (g *Client) GetRegions() ([]v1.Region, error) {
 }
 
 //Rgion.Slug is used as zone name
-func (g *Client) GetZones() ([]string, error) {
+func (g *Client) ListZones() ([]string, error) {
 	regionList, _, err := g.Client.Regions.List(g.ctx, &godo.ListOptions{})
 	if err != nil {
 		return nil, err
@@ -83,7 +83,7 @@ func (g *Client) GetZones() ([]string, error) {
 	return zones, nil
 }
 
-func (g *Client) GetMachineTypes() ([]v1.MachineType, error) {
+func (g *Client) ListMachineTypes() ([]v1.MachineType, error) {
 	sizeList, _, err := g.Client.Sizes.List(g.ctx, &godo.ListOptions{})
 	if err != nil {
 		return nil, err

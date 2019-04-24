@@ -13,7 +13,7 @@ func TestInstance(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	insList, err := client.GetMachineTypes()
+	insList, err := client.ListMachineTypes()
 	if err != nil {
 		t.Error(err)
 	}
