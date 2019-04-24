@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/pflag"
 )
 
-type GenData struct {
+type Options struct {
 	Provider string
 	//credential file for gce
 	CredentialFile string
@@ -28,13 +28,13 @@ type GenData struct {
 	ScalewayOrganization string
 }
 
-func NewGenData() *GenData {
-	return &GenData{
+func NewOptions() *Options {
+	return &Options{
 		Provider: "",
 	}
 }
 
-func (c *GenData) AddFlags(fs *pflag.FlagSet) {
+func (c *Options) AddFlags(fs *pflag.FlagSet) {
 	fs.StringVarP(&c.Provider, "provider", "p", c.Provider, "Name of the Cloud provider")
 	fs.StringVarP(&c.CredentialFile, "gce.credential_file", "c", c.CredentialFile, "Location of cloud credential file (required when --provider=gce)")
 	fs.StringVar(&c.GCEProjectID, "gce.project_id", c.GCEProjectID, "provide this flag when provider is gce")
@@ -53,7 +53,7 @@ func (c *GenData) AddFlags(fs *pflag.FlagSet) {
 	fs.StringVar(&c.ScalewayOrganization, "scaleway.organization", c.ScalewayOrganization, "provide this flag when provider is scaleway")
 }
 
-func (c *GenData) ValidateFlags(cmd *cobra.Command, args []string) error {
+func (c *Options) ValidateFlags(cmd *cobra.Command, args []string) error {
 	var ensureFlags []string
 	switch c.Provider {
 	case "gce":

@@ -47,7 +47,7 @@ type Interface interface {
 	ListMachineTypes() ([]v1.MachineType, error)
 }
 
-func NewCloudProvider(opts *options.GenData) (Interface, error) {
+func NewCloudProvider(opts *options.Options) (Interface, error) {
 	switch opts.Provider {
 	case apis.GCE:
 		return gce.NewClient(opts.GCEProjectID, opts.CredentialFile)

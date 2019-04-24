@@ -8,7 +8,7 @@ import (
 )
 
 func NewCmdGenData() *cobra.Command {
-	opts := options.NewGenData()
+	opts := options.NewOptions()
 	cmd := &cobra.Command{
 		Use:               "gendata",
 		Short:             "Load Kubernetes cluster data for a given cloud provider",
