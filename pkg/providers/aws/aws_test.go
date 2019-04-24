@@ -8,8 +8,12 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 )
 
+var opts = Options{
+	Region: "us-east-1",
+}
+
 func TestRegion(t *testing.T) {
-	g, err := NewClient("us-east-1", "", "")
+	g, err := NewClient(opts)
 	if err != nil {
 		t.Error(err)
 		return
@@ -30,7 +34,7 @@ func TestRegion(t *testing.T) {
 }
 
 func TestInstance(t *testing.T) {
-	g, err := NewClient("us-east-1", "", "")
+	g, err := NewClient(opts)
 	if err != nil {
 		t.Error(err)
 		return

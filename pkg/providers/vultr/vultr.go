@@ -22,9 +22,9 @@ type PlanExtended struct {
 	Deprecated bool   `json:"deprecated"`
 }
 
-func NewClient(token string) (*Client, error) {
+func NewClient(opts Options) (*Client, error) {
 	g := &Client{
-		Client: vultr.NewClient(token, nil),
+		Client: vultr.NewClient(opts.Token, nil),
 	}
 	return g, nil
 }

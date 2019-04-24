@@ -16,9 +16,9 @@ type Client struct {
 	ctx    context.Context
 }
 
-func NewClient(token string) (*Client, error) {
+func NewClient(opts Options) (*Client, error) {
 	g := &Client{ctx: context.Background()}
-	g.Client = getClient(g.ctx, token)
+	g.Client = getClient(g.ctx, opts.Token)
 	return g, nil
 }
 

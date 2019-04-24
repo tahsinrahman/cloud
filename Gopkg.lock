@@ -937,6 +937,7 @@
     "go/internal/gcimporter",
     "go/internal/packagesdriver",
     "go/packages",
+    "go/ssa/interp/testdata/src/fmt",
     "go/types/typeutil",
     "imports",
     "internal/fastwalk",
@@ -1314,7 +1315,6 @@
   version = "v0.1.9"
 
 [[projects]]
-  branch = "quant"
   digest = "1:2aec1bbf1553a2d433b3a85f9359930655de83e2dceed4aca44577a720396da8"
   name = "sigs.k8s.io/controller-tools"
   packages = [
@@ -1329,8 +1329,8 @@
     "pkg/webhook",
   ]
   pruneopts = "T"
-  revision = "45a832133205872f81bbe5edf97a630d30adafbc"
-  source = "git@github.com:kmodules/controller-tools.git"
+  revision = "b8adde9bc6d7f3fba449d306613a9daed23676c8"
+  version = "v0.1.10"
 
 [[projects]]
   digest = "1:290b4da306982122bcdff12dbababbb95c6e4a94a2995db88baf235ef2f6e93e"
@@ -1384,6 +1384,7 @@
     "golang.org/x/net/context",
     "golang.org/x/oauth2",
     "golang.org/x/oauth2/google",
+    "golang.org/x/tools/go/ssa/interp/testdata/src/fmt",
     "google.golang.org/api/compute/v1",
     "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1beta1",
     "k8s.io/apimachinery/pkg/api/meta",

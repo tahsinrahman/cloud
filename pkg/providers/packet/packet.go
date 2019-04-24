@@ -22,12 +22,12 @@ type PlanList struct {
 	Plans []packngo.Plan `json:"plans"`
 }
 
-func NewClient(apiKey string) (*Client, error) {
+func NewClient(opts Options) (*Client, error) {
 	g := &Client{}
 	var err error
-	g.Client = getClient(apiKey)
+	g.Client = getClient(opts.Token)
 
-	g.PlanRequest, err = getPlanRequest(apiKey)
+	g.PlanRequest, err = getPlanRequest(opts.Token)
 	if err != nil {
 		return nil, err
 	}

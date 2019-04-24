@@ -47,24 +47,24 @@ type Interface interface {
 	ListMachineTypes() ([]v1.MachineType, error)
 }
 
-func NewCloudProvider(opts *options.Options) (Interface, error) {
+func NewCloudProvider(opts Options) (Interface, error) {
 	switch opts.Provider {
 	case apis.GCE:
-		return gce.NewClient(opts.GCEProjectID, opts.CredentialFile)
+		return gce.NewClient(opts.GCE)
 	case apis.DigitalOcean:
-		return digitalocean.NewClient(opts.DoToken)
+		return digitalocean.NewClient(opts.Do)
 	case apis.Packet:
-		return packet.NewClient(opts.PacketApiKey)
+		return packet.NewClient(opts.Packet)
 	case apis.AWS:
-		return aws.NewClient(opts.AWSRegion, opts.AWSAccessKeyID, opts.AWSSecretAccessKey)
+		return aws.NewClient(opts.AWS)
 	case apis.Azure:
-		return azure.NewClient(opts.AzureTenantId, opts.AzureSubscriptionId, opts.AzureClientId, opts.AzureClientSecret)
+		return azure.NewClient(opts.Azure)
 	case apis.Vultr:
-		return vultr.NewClient(opts.VultrToken)
+		return vultr.NewClient(opts.Vultr)
 	case apis.Linode:
-		return linode.NewClient(opts.LinodeToken)
+		return linode.NewClient(opts.Linode)
 	case apis.Scaleway:
-		return scaleway.NewClient(opts.ScalewayToken, opts.ScalewayOrganization)
+		return scaleway.NewClient(opts.Scaleway)
 	}
 	return nil, errors.Errorf("Unknown cloud provider: %s", opts.Provider)
 }

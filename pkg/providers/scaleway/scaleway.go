@@ -12,14 +12,14 @@ type Client struct {
 	AmsClient *scaleway.ScalewayAPI
 }
 
-func NewClient(scalewayToken, organization string) (*Client, error) {
+func NewClient(opts Options) (*Client, error) {
 	g := &Client{}
 	var err error
-	g.ParClient, err = scaleway.NewScalewayAPI(organization, scalewayToken, "gen-data", "par1")
+	g.ParClient, err = scaleway.NewScalewayAPI(opts.Organization, opts.Token, "gen-data", "par1")
 	if err != nil {
 		return nil, err
 	}
-	g.AmsClient, err = scaleway.NewScalewayAPI(organization, scalewayToken, "gen-data", "ams1")
+	g.AmsClient, err = scaleway.NewScalewayAPI(opts.Organization, opts.Token, "gen-data", "ams1")
 	if err != nil {
 		return nil, err
 	}

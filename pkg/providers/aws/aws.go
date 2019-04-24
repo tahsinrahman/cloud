@@ -38,12 +38,12 @@ type Ec2Storage struct {
 	TrimSupport                bool `json:"trim_support"`
 }
 
-func NewClient(awsRegionName, awsAccessKeyId, awsSecretAccessKey string) (*Client, error) {
+func NewClient(opts Options) (*Client, error) {
 	c := &Client{}
 	var err error
 	c.session, err = session.NewSession(&aws.Config{
-		Region:      &awsRegionName,
-		Credentials: credentials.NewStaticCredentials(awsAccessKeyId, awsSecretAccessKey, ""),
+		Region:      &opts.Region,
+		Credentials: credentials.NewStaticCredentials(opts.AccessKeyID, opts.SecretAccessKey, ""),
 	})
 	return c, err
 }

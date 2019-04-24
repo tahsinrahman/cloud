@@ -16,8 +16,8 @@ type Client struct {
 	Client *linodego.Client
 }
 
-func NewClient(token string) (*Client, error) {
-	tokenSource := oauth2.StaticTokenSource(&oauth2.Token{AccessToken: token})
+func NewClient(opts Options) (*Client, error) {
+	tokenSource := oauth2.StaticTokenSource(&oauth2.Token{AccessToken: opts.Token})
 
 	oauth2Client := &http.Client{
 		Transport: &oauth2.Transport{

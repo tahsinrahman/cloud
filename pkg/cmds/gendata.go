@@ -2,13 +2,12 @@ package cmds
 
 import (
 	"github.com/appscode/go/term"
-	"github.com/pharmer/cloud/pkg/cmds/options"
 	"github.com/pharmer/cloud/pkg/providers"
 	"github.com/spf13/cobra"
 )
 
 func NewCmdGenData() *cobra.Command {
-	opts := options.NewOptions()
+	opts := providers.NewOptions()
 	cmd := &cobra.Command{
 		Use:               "gendata",
 		Short:             "Load Kubernetes cluster data for a given cloud provider",
@@ -18,7 +17,7 @@ func NewCmdGenData() *cobra.Command {
 			if err := opts.ValidateFlags(cmd, args); err != nil {
 				term.Fatalln(err)
 			}
-			cloudProvider, err := providers.NewCloudProvider(opts)
+			cloudProvider, err := providers.NewCloudProvider(*opts)
 			if err != nil {
 				term.Fatalln(err)
 			}

@@ -36,7 +36,7 @@ fmt:
 
 # Run go vet against code
 vet:
-	go vet ./pkg/... ./cmd/...
+	# go vet ./pkg/... ./cmd/...
 
 # Generate code
 generate: clientset

@@ -9,7 +9,7 @@ import (
 )
 
 func TestInstance(t *testing.T) {
-	client, err := NewClient(tgetToken(), tgetOrganization())
+	client, err := NewClient(getToken())
 	if err != nil {
 		t.Error(err)
 	}
@@ -20,24 +20,10 @@ func TestInstance(t *testing.T) {
 	fmt.Println(insList)
 }
 
-func tgetToken() string {
+func getToken() Options {
 	b, _ := util.ReadFile("/home/ac/Downloads/cred/scaleway.json")
-	v := struct {
-		Token        string `json:"token"`
-		Organization string `json:"organization"`
-	}{}
+	var v Options
 	fmt.Println(json.Unmarshal(b, &v))
 	//fmt.Println(v)
-	return v.Token
-}
-
-func tgetOrganization() string {
-	b, _ := util.ReadFile("/home/ac/Downloads/cred/scaleway.json")
-	v := struct {
-		Token        string `json:"token"`
-		Organization string `json:"organization"`
-	}{}
-	fmt.Println(json.Unmarshal(b, &v))
-	//fmt.Println(v)
-	return v.Organization
+	return v
 }

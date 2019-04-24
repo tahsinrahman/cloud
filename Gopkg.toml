@@ -93,8 +93,7 @@ required = [
 
 [[constraint]]
   name="sigs.k8s.io/controller-tools"
-  source="git@github.com:kmodules/controller-tools.git"
-  branch="quant"
+  version="=v0.1.10"
 
 # For dependency below: Refer to issue https://github.com/golang/dep/issues/1799
 [[override]]

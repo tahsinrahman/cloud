@@ -20,26 +20,26 @@ type Client struct {
 	VmSizesClient  compute.VirtualMachineSizesClient
 }
 
-func NewClient(tenantId, subscriptionId, clientId, clientSecret string) (*Client, error) {
+func NewClient(opts Options) (*Client, error) {
 	g := &Client{
-		SubscriptionId: subscriptionId,
+		SubscriptionId: opts.SubscriptionID,
 	}
 	var err error
 
 	baseURI := azure.PublicCloud.ResourceManagerEndpoint
-	config, err := adal.NewOAuthConfig(azure.PublicCloud.ActiveDirectoryEndpoint, tenantId)
+	config, err := adal.NewOAuthConfig(azure.PublicCloud.ActiveDirectoryEndpoint, opts.TenantID)
 	if err != nil {
 		return nil, err
 	}
 
-	spt, err := adal.NewServicePrincipalToken(*config, clientId, clientSecret, baseURI)
+	spt, err := adal.NewServicePrincipalToken(*config, opts.ClientID, opts.ClientSecret, baseURI)
 	if err != nil {
 		return nil, err
 	}
 	g.GroupsClient = subscriptions.NewClient()
 	g.GroupsClient.Authorizer = autorest.NewBearerAuthorizer(spt)
 
-	g.VmSizesClient = compute.NewVirtualMachineSizesClient(subscriptionId)
+	g.VmSizesClient = compute.NewVirtualMachineSizesClient(opts.SubscriptionID)
 	g.VmSizesClient.Authorizer = autorest.NewBearerAuthorizer(spt)
 	return g, nil
 }

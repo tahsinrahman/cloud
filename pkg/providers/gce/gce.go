@@ -18,13 +18,13 @@ type Client struct {
 	Ctx            context.Context
 }
 
-func NewClient(gecProjectId, credentialFilePath string) (*Client, error) {
+func NewClient(opts Options) (*Client, error) {
 	g := &Client{
-		GceProjectID: gecProjectId,
+		GceProjectID: opts.ProjectID,
 		Ctx:          context.Background(),
 	}
 	var err error
-	g.ComputeService, err = getComputeService(g.Ctx, credentialFilePath)
+	g.ComputeService, err = getComputeService(g.Ctx, opts.CredentialFile)
 	if err != nil {
 		return nil, err
 	}

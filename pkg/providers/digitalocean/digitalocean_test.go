@@ -9,7 +9,7 @@ import (
 )
 
 func TestRegion(t *testing.T) {
-	client, err := NewClient(tgetToken())
+	client, err := NewClient(getToken())
 	if err != nil {
 		t.Error(err)
 	}
@@ -23,7 +23,7 @@ func TestRegion(t *testing.T) {
 }
 
 func TestInstance(t *testing.T) {
-	client, err := NewClient(tgetToken())
+	client, err := NewClient(getToken())
 	if err != nil {
 		t.Error(err)
 	}
@@ -36,11 +36,9 @@ func TestInstance(t *testing.T) {
 	}
 }
 
-func tgetToken() string {
+func getToken() Options {
 	b, _ := util.ReadFile("/home/ac/Downloads/cred/digitalocean.json")
-	v := struct {
-		Token string `json:"token"`
-	}{}
+	var v Options
 	fmt.Println(json.Unmarshal(b, &v))
-	return v.Token
+	return v
 }
