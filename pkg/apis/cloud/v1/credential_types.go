@@ -20,6 +20,15 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+const (
+	ResourceCodeCredential = "cred"
+	ResourceKindCredential = "Credential"
+	ResourceNameCredential = "credential"
+	ResourceTypeCredential = "credentials"
+
+	ResourceProviderCredential = "provider"
+)
+
 // CredentialSpec defines the desired state of Credential
 type CredentialSpec struct {
 	Provider string            `json:"provider"`
