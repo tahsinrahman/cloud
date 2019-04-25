@@ -14,7 +14,13 @@
   name = "github.com/Azure/azure-sdk-for-go"
   packages = [
     "profiles/2017-03-09/resources/mgmt/subscriptions",
+    "profiles/latest/authorization/mgmt/authorization",
+    "profiles/latest/graphrbac/graphrbac",
+    "profiles/preview/preview/apimanagement/mgmt/apimanagement",
+    "services/authorization/mgmt/2015-07-01/authorization",
     "services/compute/mgmt/2017-12-01/compute",
+    "services/graphrbac/1.6/graphrbac",
+    "services/preview/apimanagement/mgmt/2018-06-01-preview/apimanagement",
     "services/resources/mgmt/2016-06-01/subscriptions",
     "version",
   ]
@@ -710,6 +716,14 @@
   version = "v1.2.2"
 
 [[projects]]
+  digest = "1:274f67cb6fed9588ea2521ecdac05a6d62a8c51c074c1fccc6a49a40ba80e925"
+  name = "github.com/satori/go.uuid"
+  packages = ["."]
+  pruneopts = "T"
+  revision = "f58768cc1a7a7e77a3bd49e98cdd21419399b6a3"
+  version = "v1.2.0"
+
+[[projects]]
   digest = "1:20826d3e79e028590fa1725c03f2a6c7fac963aee99131b8b842b22497997176"
   name = "github.com/scaleway/scaleway-cli"
   packages = [
@@ -736,6 +750,14 @@
   pruneopts = "T"
   revision = "dae0fa8d5b0c810a8ab733fbd5510c7cae84eca4"
   version = "v1.4.0"
+
+[[projects]]
+  branch = "master"
+  digest = "1:e867547a42244fb8fd978bc1053e29357beadea0fa3e12b61ff64496d137a416"
+  name = "github.com/skratchdot/open-golang"
+  packages = ["open"]
+  pruneopts = "T"
+  revision = "79abb63cd66e41cb1473e26d11ebdcd68b04c8e5"
 
 [[projects]]
   digest = "1:2c31831b97353515f0bb77a3e7f2df69e50c4173116aad4250e22b1c664a1484"
@@ -937,7 +959,6 @@
     "go/internal/gcimporter",
     "go/internal/packagesdriver",
     "go/packages",
-    "go/ssa/interp/testdata/src/fmt",
     "go/types/typeutil",
     "imports",
     "internal/fastwalk",
@@ -952,10 +973,12 @@
   digest = "1:2767ce07d4d6f1e8f4a7aaba38235f0ed7504cb509013cc52c4c0d57ae16aa9c"
   name = "google.golang.org/api"
   packages = [
+    "cloudresourcemanager/v1",
     "compute/v1",
     "gensupport",
     "googleapi",
     "googleapi/internal/uritemplates",
+    "iam/v1",
   ]
   pruneopts = "T"
   revision = "e742f5a8defa1f9f5d723dfa04c962e680dc33f0"
@@ -996,6 +1019,14 @@
   pruneopts = "T"
   revision = "d2d2541c53f18d2a059457998ce2876cc8e67cbf"
   version = "v0.9.1"
+
+[[projects]]
+  digest = "1:b27d18c34be6fece92668d44e5e4779572e78488f21f43b56fb5cc59413b95fe"
+  name = "gopkg.in/ini.v1"
+  packages = ["."]
+  pruneopts = "T"
+  revision = "c85607071cf08ca1adaf48319cd1aa322e81d8c1"
+  version = "v1.42.0"
 
 [[projects]]
   digest = "1:0e2b287089d3f5f286d556e7a78d11df072d172c3c452eebf9ad4c790fb2709c"
@@ -1357,15 +1388,20 @@
   analyzer-version = 1
   input-imports = [
     "github.com/Azure/azure-sdk-for-go/profiles/2017-03-09/resources/mgmt/subscriptions",
+    "github.com/Azure/azure-sdk-for-go/profiles/latest/authorization/mgmt/authorization",
+    "github.com/Azure/azure-sdk-for-go/profiles/latest/graphrbac/graphrbac",
+    "github.com/Azure/azure-sdk-for-go/profiles/preview/preview/apimanagement/mgmt/apimanagement",
     "github.com/Azure/azure-sdk-for-go/services/compute/mgmt/2017-12-01/compute",
     "github.com/Azure/go-autorest/autorest",
     "github.com/Azure/go-autorest/autorest/adal",
     "github.com/Azure/go-autorest/autorest/azure",
+    "github.com/Azure/go-autorest/autorest/date",
     "github.com/JamesClonk/vultr/lib",
     "github.com/appscode/go/flags",
     "github.com/appscode/go/log",
     "github.com/appscode/go/runtime",
     "github.com/appscode/go/term",
+    "github.com/appscode/go/types",
     "github.com/appscode/go/version",
     "github.com/aws/aws-sdk-go/aws",
     "github.com/aws/aws-sdk-go/aws/credentials",
@@ -1377,15 +1413,19 @@
     "github.com/onsi/ginkgo",
     "github.com/onsi/gomega",
     "github.com/packethost/packngo",
+    "github.com/pborman/uuid",
     "github.com/pkg/errors",
     "github.com/scaleway/scaleway-cli/pkg/api",
+    "github.com/skratchdot/open-golang/open",
     "github.com/spf13/cobra",
     "github.com/spf13/pflag",
     "golang.org/x/net/context",
     "golang.org/x/oauth2",
     "golang.org/x/oauth2/google",
-    "golang.org/x/tools/go/ssa/interp/testdata/src/fmt",
+    "google.golang.org/api/cloudresourcemanager/v1",
     "google.golang.org/api/compute/v1",
+    "google.golang.org/api/iam/v1",
+    "gopkg.in/ini.v1",
     "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1beta1",
     "k8s.io/apimachinery/pkg/api/meta",
     "k8s.io/apimachinery/pkg/api/resource",
@@ -1396,6 +1436,7 @@
     "k8s.io/apimachinery/pkg/runtime/serializer",
     "k8s.io/apimachinery/pkg/types",
     "k8s.io/apimachinery/pkg/util/runtime",
+    "k8s.io/apimachinery/pkg/util/wait",
     "k8s.io/apimachinery/pkg/version",
     "k8s.io/apimachinery/pkg/watch",
     "k8s.io/client-go/discovery",

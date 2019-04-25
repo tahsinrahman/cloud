@@ -29,14 +29,14 @@ import (
 )
 
 var supportedProvider = []string{
-	"gce",
-	"digitalocean",
-	"packet",
-	"aws",
-	"azure",
-	"vultr",
-	"linode",
-	"scaleway",
+	apis.GCE,
+	apis.DigitalOcean,
+	apis.Packet,
+	apis.AWS,
+	apis.Azure,
+	apis.Vultr,
+	apis.Linode,
+	apis.Scaleway,
 }
 
 type Interface interface {

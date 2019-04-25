@@ -27,6 +27,7 @@ import (
 type CloudV1Interface interface {
 	RESTClient() rest.Interface
 	CloudProvidersGetter
+	CredentialsGetter
 	CredentialFormatsGetter
 	KubernetesVersionsGetter
 	MachineTypesGetter
@@ -39,6 +40,10 @@ type CloudV1Client struct {
 
 func (c *CloudV1Client) CloudProviders() CloudProviderInterface {
 	return newCloudProviders(c)
+}
+
+func (c *CloudV1Client) Credentials() CredentialInterface {
+	return newCredentials(c)
 }
 
 func (c *CloudV1Client) CredentialFormats() CredentialFormatInterface {

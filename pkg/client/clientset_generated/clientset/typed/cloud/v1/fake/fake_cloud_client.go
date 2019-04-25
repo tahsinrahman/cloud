@@ -31,6 +31,10 @@ func (c *FakeCloudV1) CloudProviders() v1.CloudProviderInterface {
 	return &FakeCloudProviders{c}
 }
 
+func (c *FakeCloudV1) Credentials() v1.CredentialInterface {
+	return &FakeCredentials{c}
+}
+
 func (c *FakeCloudV1) CredentialFormats() v1.CredentialFormatInterface {
 	return &FakeCredentialFormats{c}
 }

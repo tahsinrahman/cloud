@@ -19,6 +19,8 @@ package v1
 
 type CloudProviderExpansion interface{}
 
+type CredentialExpansion interface{}
+
 type CredentialFormatExpansion interface{}
 
 type KubernetesVersionExpansion interface{}
