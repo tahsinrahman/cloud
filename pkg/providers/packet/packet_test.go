@@ -1,11 +1,9 @@
 package packet
 
 import (
-	"encoding/json"
-	"fmt"
 	"testing"
 
-	"github.com/pharmer/cloud/pkg/util"
+	"github.com/pharmer/cloud/pkg/credential"
 )
 
 func TestRegion(t *testing.T) {
@@ -36,10 +34,8 @@ func TestInstance(t *testing.T) {
 	}
 }
 
-func getToken() Options {
-	b, _ := util.ReadFile("/home/ac/Downloads/cred/packet.json")
-	var v Options
-	fmt.Println(json.Unmarshal(b, &v))
-	//fmt.Println(v)
+func getToken() credential.Packet {
+	var v credential.Packet
+	v.LoadFromJSON("/home/ac/Downloads/cred/packet.json")
 	return v
 }

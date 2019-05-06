@@ -1,11 +1,10 @@
 package scaleway
 
 import (
-	"encoding/json"
 	"fmt"
 	"testing"
 
-	"github.com/pharmer/cloud/pkg/util"
+	"github.com/pharmer/cloud/pkg/credential"
 )
 
 func TestInstance(t *testing.T) {
@@ -20,10 +19,8 @@ func TestInstance(t *testing.T) {
 	fmt.Println(insList)
 }
 
-func getToken() Options {
-	b, _ := util.ReadFile("/home/ac/Downloads/cred/scaleway.json")
-	var v Options
-	fmt.Println(json.Unmarshal(b, &v))
-	//fmt.Println(v)
+func getToken() credential.Scaleway {
+	var v credential.Scaleway
+	v.LoadFromJSON("/home/ac/Downloads/cred/scaleway.json")
 	return v
 }

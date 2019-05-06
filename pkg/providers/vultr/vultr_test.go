@@ -1,11 +1,10 @@
 package vultr
 
 import (
-	"encoding/json"
 	"fmt"
 	"testing"
 
-	"github.com/pharmer/cloud/pkg/util"
+	"github.com/pharmer/cloud/pkg/credential"
 )
 
 func TestRegion(t *testing.T) {
@@ -35,10 +34,8 @@ func TestInstance(t *testing.T) {
 	fmt.Println("total:", len(instances))
 }
 
-func getToken() Options {
-	b, _ := util.ReadFile("/home/ac/Downloads/cred/vultr.json")
-	var v Options
-	fmt.Println(json.Unmarshal(b, &v))
-	//fmt.Println(v)
+func getToken() credential.Vultr {
+	var v credential.Vultr
+	v.LoadFromJSON("/home/ac/Downloads/cred/vultr.json")
 	return v
 }

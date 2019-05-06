@@ -1,11 +1,10 @@
 package linode
 
 import (
-	"encoding/json"
 	"fmt"
 	"testing"
 
-	"github.com/pharmer/cloud/pkg/util"
+	"github.com/pharmer/cloud/pkg/credential"
 )
 
 func TestRegion(t *testing.T) {
@@ -36,10 +35,8 @@ func TestInstance(t *testing.T) {
 	}
 }
 
-func getToken() Options {
-	b, _ := util.ReadFile("/home/ac/Downloads/cred/linode.json")
-	var v Options
-	fmt.Println(json.Unmarshal(b, &v))
-	//fmt.Println(v)
+func getToken() credential.Linode {
+	var v credential.Linode
+	v.LoadFromJSON("/home/ac/Downloads/cred/linode.json")
 	return v
 }

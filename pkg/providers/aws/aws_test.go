@@ -6,10 +6,15 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/pharmer/cloud/pkg/credential"
 )
 
-var opts = Options{
-	Region: "us-east-1",
+var opts = credential.AWS{
+	CommonSpec: credential.CommonSpec{
+		Data: map[string]string{
+			credential.AWSRegion: "us-east-1",
+		},
+	},
 }
 
 func TestRegion(t *testing.T) {
@@ -19,7 +24,7 @@ func TestRegion(t *testing.T) {
 		return
 	}
 	g.session, err = session.NewSession(&aws.Config{
-		Region:      string_ptr("us-east-1"),
+		Region:      aws.String("us-east-1"),
 		Credentials: credentials.NewStaticCredentials("", "", ""),
 	})
 	if err != nil {
@@ -44,10 +49,4 @@ func TestInstance(t *testing.T) {
 		t.Error(err)
 		return
 	}
-}
-
-func string_ptr(in string) *string {
-	var out *string
-	out = &in
-	return out
 }

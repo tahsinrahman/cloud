@@ -1,11 +1,9 @@
 package digitalocean
 
 import (
-	"encoding/json"
-	"fmt"
 	"testing"
 
-	"github.com/pharmer/cloud/pkg/util"
+	"github.com/pharmer/cloud/pkg/credential"
 )
 
 func TestRegion(t *testing.T) {
@@ -36,9 +34,8 @@ func TestInstance(t *testing.T) {
 	}
 }
 
-func getToken() Options {
-	b, _ := util.ReadFile("/home/ac/Downloads/cred/digitalocean.json")
-	var v Options
-	fmt.Println(json.Unmarshal(b, &v))
+func getToken() credential.DigitalOcean {
+	var v credential.DigitalOcean
+	v.LoadFromJSON("/home/ac/Downloads/cred/digitalocean.json")
 	return v
 }
