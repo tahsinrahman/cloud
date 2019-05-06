@@ -148,6 +148,30 @@ func LoadCredentialDataFromJson(provider string, fileName string) (CommonSpec, e
 	}
 }
 
+func GetFormat(provider string) v1.CredentialFormat {
+	switch provider {
+	case apis.GCE:
+		return GCE{}.Format()
+	case apis.DigitalOcean:
+		return DigitalOcean{}.Format()
+	case apis.Packet:
+		return Packet{}.Format()
+	case apis.AWS:
+		return AWS{}.Format()
+	case apis.Azure:
+		return Azure{}.Format()
+	case apis.AzureStorage:
+		return AzureStorage{}.Format()
+	case apis.Vultr:
+		return Vultr{}.Format()
+	case apis.Linode:
+		return Linode{}.Format()
+	case apis.Scaleway:
+		return Scaleway{}.Format()
+	}
+	panic("unknown provider " + provider)
+}
+
 func get(m map[string]string, k, alt string) string {
 	if v, ok := m[k]; ok {
 		return v
