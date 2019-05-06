@@ -15,6 +15,14 @@ type Vultr struct {
 
 func (c Vultr) Token() string { return get(c.Data, VultrAPIToken, c.token) }
 
+func (c *Vultr) LoadFromEnv() {
+	c.CommonSpec.LoadFromEnv(c.Format())
+}
+
+func (c Vultr) IsValid() (bool, error) {
+	return c.CommonSpec.IsValid(c.Format())
+}
+
 func (c *Vultr) AddFlags(fs *pflag.FlagSet) {
 	fs.StringVar(&c.token, apis.Vultr+"."+VultrAPIToken, c.token, "Vultr token")
 }

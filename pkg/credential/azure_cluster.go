@@ -21,6 +21,14 @@ func (c Azure) ClientSecret() string   { return get(c.Data, AzureClientSecret, c
 func (c Azure) SubscriptionID() string { return get(c.Data, AzureSubscriptionID, c.subscriptionID) }
 func (c Azure) TenantID() string       { return get(c.Data, AzureTenantID, c.tenantID) }
 
+func (c *Azure) LoadFromEnv() {
+	c.CommonSpec.LoadFromEnv(c.Format())
+}
+
+func (c Azure) IsValid() (bool, error) {
+	return c.CommonSpec.IsValid(c.Format())
+}
+
 func (c *Azure) AddFlags(fs *pflag.FlagSet) {
 	fs.StringVar(&c.tenantID, apis.Azure+"."+AzureTenantID, c.tenantID, "provide this flag when provider is azure")
 	fs.StringVar(&c.subscriptionID, apis.Azure+"."+AzureSubscriptionID, c.subscriptionID, "provide this flag when provider is azure")

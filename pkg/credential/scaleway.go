@@ -17,6 +17,14 @@ type Scaleway struct {
 func (c Scaleway) Organization() string { return get(c.Data, ScalewayOrganization, c.organization) }
 func (c Scaleway) Token() string        { return get(c.Data, ScalewayToken, c.token) }
 
+func (c *Scaleway) LoadFromEnv() {
+	c.CommonSpec.LoadFromEnv(c.Format())
+}
+
+func (c Scaleway) IsValid() (bool, error) {
+	return c.CommonSpec.IsValid(c.Format())
+}
+
 func (c *Scaleway) AddFlags(fs *pflag.FlagSet) {
 	fs.StringVar(&c.token, apis.Scaleway+"."+ScalewayToken, c.token, "Scaleway token")
 	fs.StringVar(&c.organization, apis.Scaleway+"."+ScalewayOrganization, c.organization, "Scaleway organization")

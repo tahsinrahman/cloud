@@ -34,6 +34,14 @@ func (c GCE) ServiceAccount() string {
 	return string(data)
 }
 
+func (c *GCE) LoadFromEnv() {
+	c.CommonSpec.LoadFromEnv(c.Format())
+}
+
+func (c GCE) IsValid() (bool, error) {
+	return c.CommonSpec.IsValid(c.Format())
+}
+
 func (c *GCE) Load(filename string) error {
 	data, err := ioutil.ReadFile(filename)
 	if err != nil {

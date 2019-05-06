@@ -15,6 +15,14 @@ type Linode struct {
 
 func (c Linode) APIToken() string { return get(c.Data, LinodeAPIToken, c.token) }
 
+func (c *Linode) LoadFromEnv() {
+	c.CommonSpec.LoadFromEnv(c.Format())
+}
+
+func (c Linode) IsValid() (bool, error) {
+	return c.CommonSpec.IsValid(c.Format())
+}
+
 func (c *Linode) AddFlags(fs *pflag.FlagSet) {
 	fs.StringVar(&c.token, apis.Linode+"."+LinodeAPIToken, c.token, "Linode api token")
 }

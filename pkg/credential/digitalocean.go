@@ -15,6 +15,14 @@ type DigitalOcean struct {
 
 func (c DigitalOcean) Token() string { return get(c.Data, DigitalOceanToken, c.token) }
 
+func (c *DigitalOcean) LoadFromEnv() {
+	c.CommonSpec.LoadFromEnv(c.Format())
+}
+
+func (c DigitalOcean) IsValid() (bool, error) {
+	return c.CommonSpec.IsValid(c.Format())
+}
+
 func (c *DigitalOcean) AddFlags(fs *pflag.FlagSet) {
 	fs.StringVar(&c.token, apis.DigitalOcean+"."+DigitalOceanToken, c.token, "DigitalOcean token")
 }

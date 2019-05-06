@@ -17,6 +17,14 @@ type Packet struct {
 func (c Packet) APIKey() string    { return get(c.Data, PacketAPIKey, c.token) }
 func (c Packet) ProjectID() string { return get(c.Data, PacketProjectID, c.projectID) }
 
+func (c *Packet) LoadFromEnv() {
+	c.CommonSpec.LoadFromEnv(c.Format())
+}
+
+func (c Packet) IsValid() (bool, error) {
+	return c.CommonSpec.IsValid(c.Format())
+}
+
 func (c *Packet) AddFlags(fs *pflag.FlagSet) {
 	fs.StringVar(&c.token, apis.Packet+"."+PacketAPIKey, c.token, "Packet api key")
 	fs.StringVar(&c.projectID, apis.Packet+"."+PacketProjectID, c.projectID, "Packet project id")
