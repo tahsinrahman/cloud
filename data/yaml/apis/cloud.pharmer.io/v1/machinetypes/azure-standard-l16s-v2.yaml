@@ -1,0 +1,19 @@
+apiVersion: cloud.pharmer.io/v1
+kind: MachineType
+metadata:
+  creationTimestamp: null
+  labels:
+    cloud.pharmer.io/provider: azure
+  name: azure-standard-l16s-v2
+spec:
+  cpu: "16"
+  description: Standard_L16s_v2
+  disk: "3623962"
+  ram: 128Ki
+  sku: Standard_L16s_v2
+  zones:
+  - eastus
+  - eastus2
+  - southeastasia
+  - westeurope
+  - westus2

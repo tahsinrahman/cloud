@@ -1,0 +1,34 @@
+apiVersion: cloud.pharmer.io/v1
+kind: MachineType
+metadata:
+  creationTimestamp: null
+  labels:
+    cloud.pharmer.io/provider: azure
+  name: azure-standard-m64-16ms
+spec:
+  cpu: "64"
+  description: Standard_M64-16ms
+  disk: 2000Ki
+  ram: 1750Ki
+  sku: Standard_M64-16ms
+  zones:
+  - australiaeast
+  - australiasoutheast
+  - canadacentral
+  - canadaeast
+  - centralindia
+  - eastasia
+  - eastus
+  - eastus2
+  - japaneast
+  - japanwest
+  - koreacentral
+  - koreasouth
+  - northeurope
+  - southcentralus
+  - southeastasia
+  - southindia
+  - uksouth
+  - ukwest
+  - westeurope
+  - westus2

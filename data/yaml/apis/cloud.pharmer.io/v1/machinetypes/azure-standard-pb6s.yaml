@@ -1,0 +1,18 @@
+apiVersion: cloud.pharmer.io/v1
+kind: MachineType
+metadata:
+  creationTimestamp: null
+  labels:
+    cloud.pharmer.io/provider: azure
+  name: azure-standard-pb6s
+spec:
+  cpu: "6"
+  description: Standard_PB6s
+  disk: 336Ki
+  ram: 112Ki
+  sku: Standard_PB6s
+  zones:
+  - eastus
+  - southeastasia
+  - westeurope
+  - westus2

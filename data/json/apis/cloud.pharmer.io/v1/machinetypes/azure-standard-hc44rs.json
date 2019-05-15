@@ -1,0 +1,22 @@
+{
+  "kind": "MachineType",
+  "apiVersion": "cloud.pharmer.io/v1",
+  "metadata": {
+    "name": "azure-standard-hc44rs",
+    "creationTimestamp": null,
+    "labels": {
+      "cloud.pharmer.io/provider": "azure"
+    }
+  },
+  "spec": {
+    "sku": "Standard_HC44rs",
+    "description": "Standard_HC44rs",
+    "cpu": "44",
+    "ram": "335693",
+    "disk": "700Ki",
+    "zones": [
+      "eastus",
+      "westus2"
+    ]
+  }
+}

@@ -18,12 +18,17 @@ package hdinsight
 // Changes may cause incorrect behavior and will be lost if the code is regenerated.
 
 import (
+	"context"
 	"encoding/json"
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
 	"github.com/Azure/go-autorest/autorest/to"
+	"github.com/Azure/go-autorest/tracing"
 	"net/http"
 )
+
+// The package's fully qualified name.
+const fqdn = "github.com/Azure/azure-sdk-for-go/services/preview/hdinsight/mgmt/2018-06-01-preview/hdinsight"
 
 // AsyncOperationState enumerates the values for async operation state.
 type AsyncOperationState string
@@ -74,6 +79,23 @@ const (
 // PossibleDirectoryTypeValues returns an array of possible values for the DirectoryType const type.
 func PossibleDirectoryTypeValues() []DirectoryType {
 	return []DirectoryType{ActiveDirectory}
+}
+
+// JSONWebKeyEncryptionAlgorithm enumerates the values for json web key encryption algorithm.
+type JSONWebKeyEncryptionAlgorithm string
+
+const (
+	// RSA15 ...
+	RSA15 JSONWebKeyEncryptionAlgorithm = "RSA1_5"
+	// RSAOAEP ...
+	RSAOAEP JSONWebKeyEncryptionAlgorithm = "RSA-OAEP"
+	// RSAOAEP256 ...
+	RSAOAEP256 JSONWebKeyEncryptionAlgorithm = "RSA-OAEP-256"
+)
+
+// PossibleJSONWebKeyEncryptionAlgorithmValues returns an array of possible values for the JSONWebKeyEncryptionAlgorithm const type.
+func PossibleJSONWebKeyEncryptionAlgorithmValues() []JSONWebKeyEncryptionAlgorithm {
+	return []JSONWebKeyEncryptionAlgorithm{RSA15, RSAOAEP, RSAOAEP256}
 }
 
 // OSType enumerates the values for os type.
@@ -134,11 +156,11 @@ type Application struct {
 	Tags map[string]*string `json:"tags"`
 	// Properties - The properties of the application.
 	Properties *ApplicationProperties `json:"properties,omitempty"`
-	// ID - Fully qualified resource Id for the resource.
+	// ID - READ-ONLY; Fully qualified resource Id for the resource.
 	ID *string `json:"id,omitempty"`
-	// Name - The name of the resource
+	// Name - READ-ONLY; The name of the resource
 	Name *string `json:"name,omitempty"`
-	// Type - The type of the resource.
+	// Type - READ-ONLY; The type of the resource.
 	Type *string `json:"type,omitempty"`
 }
 
@@ -153,15 +175,6 @@ func (a Application) MarshalJSON() ([]byte, error) {
 	}
 	if a.Properties != nil {
 		objectMap["properties"] = a.Properties
-	}
-	if a.ID != nil {
-		objectMap["id"] = a.ID
-	}
-	if a.Name != nil {
-		objectMap["name"] = a.Name
-	}
-	if a.Type != nil {
-		objectMap["type"] = a.Type
 	}
 	return json.Marshal(objectMap)
 }
@@ -178,8 +191,6 @@ type ApplicationGetEndpoint struct {
 
 // ApplicationGetHTTPSEndpoint gets the application HTTP endpoints.
 type ApplicationGetHTTPSEndpoint struct {
-	// AdditionalProperties - Unmatched properties from the message are deserialized this collection
-	AdditionalProperties map[string]*string `json:""`
 	// AccessModes - The list of access modes for the application.
 	AccessModes *[]string `json:"accessModes,omitempty"`
 	// Location - The location of the endpoint.
@@ -190,97 +201,13 @@ type ApplicationGetHTTPSEndpoint struct {
 	PublicPort *int32 `json:"publicPort,omitempty"`
 }
 
-// MarshalJSON is the custom marshaler for ApplicationGetHTTPSEndpoint.
-func (aghe ApplicationGetHTTPSEndpoint) MarshalJSON() ([]byte, error) {
-	objectMap := make(map[string]interface{})
-	if aghe.AccessModes != nil {
-		objectMap["accessModes"] = aghe.AccessModes
-	}
-	if aghe.Location != nil {
-		objectMap["location"] = aghe.Location
-	}
-	if aghe.DestinationPort != nil {
-		objectMap["destinationPort"] = aghe.DestinationPort
-	}
-	if aghe.PublicPort != nil {
-		objectMap["publicPort"] = aghe.PublicPort
-	}
-	for k, v := range aghe.AdditionalProperties {
-		objectMap[k] = v
-	}
-	return json.Marshal(objectMap)
-}
-
-// UnmarshalJSON is the custom unmarshaler for ApplicationGetHTTPSEndpoint struct.
-func (aghe *ApplicationGetHTTPSEndpoint) UnmarshalJSON(body []byte) error {
-	var m map[string]*json.RawMessage
-	err := json.Unmarshal(body, &m)
-	if err != nil {
-		return err
-	}
-	for k, v := range m {
-		switch k {
-		default:
-			if v != nil {
-				var additionalProperties string
-				err = json.Unmarshal(*v, &additionalProperties)
-				if err != nil {
-					return err
-				}
-				if aghe.AdditionalProperties == nil {
-					aghe.AdditionalProperties = make(map[string]*string)
-				}
-				aghe.AdditionalProperties[k] = &additionalProperties
-			}
-		case "accessModes":
-			if v != nil {
-				var accessModes []string
-				err = json.Unmarshal(*v, &accessModes)
-				if err != nil {
-					return err
-				}
-				aghe.AccessModes = &accessModes
-			}
-		case "location":
-			if v != nil {
-				var location string
-				err = json.Unmarshal(*v, &location)
-				if err != nil {
-					return err
-				}
-				aghe.Location = &location
-			}
-		case "destinationPort":
-			if v != nil {
-				var destinationPort int32
-				err = json.Unmarshal(*v, &destinationPort)
-				if err != nil {
-					return err
-				}
-				aghe.DestinationPort = &destinationPort
-			}
-		case "publicPort":
-			if v != nil {
-				var publicPort int32
-				err = json.Unmarshal(*v, &publicPort)
-				if err != nil {
-					return err
-				}
-				aghe.PublicPort = &publicPort
-			}
-		}
-	}
-
-	return nil
-}
-
-// ApplicationListResult result of the request to list cluster Applications. It contains a list of operations and a
-// URL link to get the next set of results.
+// ApplicationListResult result of the request to list cluster Applications. It contains a list of
+// operations and a URL link to get the next set of results.
 type ApplicationListResult struct {
 	autorest.Response `json:"-"`
 	// Value - The list of HDInsight applications installed on HDInsight cluster.
 	Value *[]Application `json:"value,omitempty"`
-	// NextLink - The URL to get the next set of operation list results if there are any.
+	// NextLink - READ-ONLY; The URL to get the next set of operation list results if there are any.
 	NextLink *string `json:"nextLink,omitempty"`
 }
 
@@ -290,20 +217,37 @@ type ApplicationListResultIterator struct {
 	page ApplicationListResultPage
 }
 
-// Next advances to the next value.  If there was an error making
+// NextWithContext advances to the next value.  If there was an error making
 // the request the iterator does not advance and the error is returned.
-func (iter *ApplicationListResultIterator) Next() error {
+func (iter *ApplicationListResultIterator) NextWithContext(ctx context.Context) (err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/ApplicationListResultIterator.NextWithContext")
+		defer func() {
+			sc := -1
+			if iter.Response().Response.Response != nil {
+				sc = iter.Response().Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	iter.i++
 	if iter.i < len(iter.page.Values()) {
 		return nil
 	}
-	err := iter.page.Next()
+	err = iter.page.NextWithContext(ctx)
 	if err != nil {
 		iter.i--
 		return err
 	}
 	iter.i = 0
 	return nil
+}
+
+// Next advances to the next value.  If there was an error making
+// the request the iterator does not advance and the error is returned.
+// Deprecated: Use NextWithContext() instead.
+func (iter *ApplicationListResultIterator) Next() error {
+	return iter.NextWithContext(context.Background())
 }
 
 // NotDone returns true if the enumeration should be started or is not yet complete.
@@ -325,6 +269,11 @@ func (iter ApplicationListResultIterator) Value() Application {
 	return iter.page.Values()[iter.i]
 }
 
+// Creates a new instance of the ApplicationListResultIterator type.
+func NewApplicationListResultIterator(page ApplicationListResultPage) ApplicationListResultIterator {
+	return ApplicationListResultIterator{page: page}
+}
+
 // IsEmpty returns true if the ListResult contains no values.
 func (alr ApplicationListResult) IsEmpty() bool {
 	return alr.Value == nil || len(*alr.Value) == 0
@@ -332,11 +281,11 @@ func (alr ApplicationListResult) IsEmpty() bool {
 
 // applicationListResultPreparer prepares a request to retrieve the next set of results.
 // It returns nil if no more results exist.
-func (alr ApplicationListResult) applicationListResultPreparer() (*http.Request, error) {
+func (alr ApplicationListResult) applicationListResultPreparer(ctx context.Context) (*http.Request, error) {
 	if alr.NextLink == nil || len(to.String(alr.NextLink)) < 1 {
 		return nil, nil
 	}
-	return autorest.Prepare(&http.Request{},
+	return autorest.Prepare((&http.Request{}).WithContext(ctx),
 		autorest.AsJSON(),
 		autorest.AsGet(),
 		autorest.WithBaseURL(to.String(alr.NextLink)))
@@ -344,19 +293,36 @@ func (alr ApplicationListResult) applicationListResultPreparer() (*http.Request,
 
 // ApplicationListResultPage contains a page of Application values.
 type ApplicationListResultPage struct {
-	fn  func(ApplicationListResult) (ApplicationListResult, error)
+	fn  func(context.Context, ApplicationListResult) (ApplicationListResult, error)
 	alr ApplicationListResult
 }
 
-// Next advances to the next page of values.  If there was an error making
+// NextWithContext advances to the next page of values.  If there was an error making
 // the request the page does not advance and the error is returned.
-func (page *ApplicationListResultPage) Next() error {
-	next, err := page.fn(page.alr)
+func (page *ApplicationListResultPage) NextWithContext(ctx context.Context) (err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/ApplicationListResultPage.NextWithContext")
+		defer func() {
+			sc := -1
+			if page.Response().Response.Response != nil {
+				sc = page.Response().Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
+	next, err := page.fn(ctx, page.alr)
 	if err != nil {
 		return err
 	}
 	page.alr = next
 	return nil
+}
+
+// Next advances to the next page of values.  If there was an error making
+// the request the page does not advance and the error is returned.
+// Deprecated: Use NextWithContext() instead.
+func (page *ApplicationListResultPage) Next() error {
+	return page.NextWithContext(context.Background())
 }
 
 // NotDone returns true if the page enumeration should be started or is not yet complete.
@@ -377,6 +343,11 @@ func (page ApplicationListResultPage) Values() []Application {
 	return *page.alr.Value
 }
 
+// Creates a new instance of the ApplicationListResultPage type.
+func NewApplicationListResultPage(getNextPage func(context.Context, ApplicationListResult) (ApplicationListResult, error)) ApplicationListResultPage {
+	return ApplicationListResultPage{fn: getNextPage}
+}
+
 // ApplicationProperties the HDInsight cluster application GET response.
 type ApplicationProperties struct {
 	// ComputeProfile - The list of roles in the cluster.
@@ -389,23 +360,22 @@ type ApplicationProperties struct {
 	HTTPSEndpoints *[]ApplicationGetHTTPSEndpoint `json:"httpsEndpoints,omitempty"`
 	// SSHEndpoints - The list of application SSH endpoints.
 	SSHEndpoints *[]ApplicationGetEndpoint `json:"sshEndpoints,omitempty"`
-	// ProvisioningState - The provisioning state of the application.
+	// ProvisioningState - READ-ONLY; The provisioning state of the application.
 	ProvisioningState *string `json:"provisioningState,omitempty"`
 	// ApplicationType - The application type.
 	ApplicationType *string `json:"applicationType,omitempty"`
-	// ApplicationState - The application state.
+	// ApplicationState - READ-ONLY; The application state.
 	ApplicationState *string `json:"applicationState,omitempty"`
 	// Errors - The list of errors.
 	Errors *[]Errors `json:"errors,omitempty"`
-	// CreatedDate - The application create date time.
+	// CreatedDate - READ-ONLY; The application create date time.
 	CreatedDate *string `json:"createdDate,omitempty"`
-	// MarketplaceIdentifier - The marketplace identifier.
+	// MarketplaceIdentifier - READ-ONLY; The marketplace identifier.
 	MarketplaceIdentifier *string `json:"marketplaceIdentifier,omitempty"`
-	// AdditionalProperties - The additional properties for application.
-	AdditionalProperties *string `json:"additionalProperties,omitempty"`
 }
 
-// ApplicationsCreateFuture an abstraction for monitoring and retrieving the results of a long-running operation.
+// ApplicationsCreateFuture an abstraction for monitoring and retrieving the results of a long-running
+// operation.
 type ApplicationsCreateFuture struct {
 	azure.Future
 }
@@ -414,7 +384,7 @@ type ApplicationsCreateFuture struct {
 // If the operation has not completed it will return an error.
 func (future *ApplicationsCreateFuture) Result(client ApplicationsClient) (a Application, err error) {
 	var done bool
-	done, err = future.Done(client)
+	done, err = future.DoneWithContext(context.Background(), client)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "hdinsight.ApplicationsCreateFuture", "Result", future.Response(), "Polling failure")
 		return
@@ -433,7 +403,8 @@ func (future *ApplicationsCreateFuture) Result(client ApplicationsClient) (a App
 	return
 }
 
-// ApplicationsDeleteFuture an abstraction for monitoring and retrieving the results of a long-running operation.
+// ApplicationsDeleteFuture an abstraction for monitoring and retrieving the results of a long-running
+// operation.
 type ApplicationsDeleteFuture struct {
 	azure.Future
 }
@@ -442,7 +413,7 @@ type ApplicationsDeleteFuture struct {
 // If the operation has not completed it will return an error.
 func (future *ApplicationsDeleteFuture) Result(client ApplicationsClient) (ar autorest.Response, err error) {
 	var done bool
-	done, err = future.Done(client)
+	done, err = future.DoneWithContext(context.Background(), client)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "hdinsight.ApplicationsDeleteFuture", "Result", future.Response(), "Polling failure")
 		return
@@ -468,11 +439,11 @@ type Cluster struct {
 	Location *string `json:"location,omitempty"`
 	// Tags - Resource tags.
 	Tags map[string]*string `json:"tags"`
-	// ID - Fully qualified resource Id for the resource.
+	// ID - READ-ONLY; Fully qualified resource Id for the resource.
 	ID *string `json:"id,omitempty"`
-	// Name - The name of the resource
+	// Name - READ-ONLY; The name of the resource
 	Name *string `json:"name,omitempty"`
-	// Type - The type of the resource.
+	// Type - READ-ONLY; The type of the resource.
 	Type *string `json:"type,omitempty"`
 }
 
@@ -494,14 +465,21 @@ func (c Cluster) MarshalJSON() ([]byte, error) {
 	if c.Tags != nil {
 		objectMap["tags"] = c.Tags
 	}
-	if c.ID != nil {
-		objectMap["id"] = c.ID
-	}
-	if c.Name != nil {
-		objectMap["name"] = c.Name
-	}
-	if c.Type != nil {
-		objectMap["type"] = c.Type
+	return json.Marshal(objectMap)
+}
+
+// ClusterConfigurations the configuration object for the specified cluster.
+type ClusterConfigurations struct {
+	autorest.Response `json:"-"`
+	// Configurations - The configuration object for the specified configuration for the specified cluster.
+	Configurations map[string]map[string]*string `json:"configurations"`
+}
+
+// MarshalJSON is the custom marshaler for ClusterConfigurations.
+func (cc ClusterConfigurations) MarshalJSON() ([]byte, error) {
+	objectMap := make(map[string]interface{})
+	if cc.Configurations != nil {
+		objectMap["configurations"] = cc.Configurations
 	}
 	return json.Marshal(objectMap)
 }
@@ -552,6 +530,8 @@ type ClusterCreateProperties struct {
 	ComputeProfile *ComputeProfile `json:"computeProfile,omitempty"`
 	// StorageProfile - The storage profile.
 	StorageProfile *StorageProfile `json:"storageProfile,omitempty"`
+	// DiskEncryptionProperties - The disk encryption properties.
+	DiskEncryptionProperties *DiskEncryptionProperties `json:"diskEncryptionProperties,omitempty"`
 }
 
 // ClusterDefinition the cluster definition.
@@ -578,8 +558,20 @@ func (cd ClusterDefinition) MarshalJSON() ([]byte, error) {
 	if cd.ComponentVersion != nil {
 		objectMap["componentVersion"] = cd.ComponentVersion
 	}
-	objectMap["configurations"] = cd.Configurations
+	if cd.Configurations != nil {
+		objectMap["configurations"] = cd.Configurations
+	}
 	return json.Marshal(objectMap)
+}
+
+// ClusterDiskEncryptionParameters the Disk Encryption Cluster request parameters.
+type ClusterDiskEncryptionParameters struct {
+	// VaultURI - Base key vault URI where the customers key is located eg. https://myvault.vault.azure.net
+	VaultURI *string `json:"vaultUri,omitempty"`
+	// KeyName - Key name that is used for enabling disk encryption.
+	KeyName *string `json:"keyName,omitempty"`
+	// KeyVersion - Specific key version that is used for enabling disk encryption.
+	KeyVersion *string `json:"keyVersion,omitempty"`
 }
 
 // ClusterGetProperties the properties of cluster.
@@ -608,13 +600,15 @@ type ClusterGetProperties struct {
 	Errors *[]Errors `json:"errors,omitempty"`
 	// ConnectivityEndpoints - The list of connectivity endpoints.
 	ConnectivityEndpoints *[]ConnectivityEndpoint `json:"connectivityEndpoints,omitempty"`
+	// DiskEncryptionProperties - The disk encryption properties.
+	DiskEncryptionProperties *DiskEncryptionProperties `json:"diskEncryptionProperties,omitempty"`
 }
 
 // ClusterIdentity identity for the cluster.
 type ClusterIdentity struct {
-	// PrincipalID - The principal id of cluster identity. This property will only be provided for a system assigned identity.
+	// PrincipalID - READ-ONLY; The principal id of cluster identity. This property will only be provided for a system assigned identity.
 	PrincipalID *string `json:"principalId,omitempty"`
-	// TenantID - The tenant id associated with the cluster. This property will only be provided for a system assigned identity.
+	// TenantID - READ-ONLY; The tenant id associated with the cluster. This property will only be provided for a system assigned identity.
 	TenantID *string `json:"tenantId,omitempty"`
 	// Type - The type of identity used for the cluster. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. Possible values include: 'SystemAssigned', 'UserAssigned', 'SystemAssignedUserAssigned', 'None'
 	Type ResourceIdentityType `json:"type,omitempty"`
@@ -625,12 +619,6 @@ type ClusterIdentity struct {
 // MarshalJSON is the custom marshaler for ClusterIdentity.
 func (ci ClusterIdentity) MarshalJSON() ([]byte, error) {
 	objectMap := make(map[string]interface{})
-	if ci.PrincipalID != nil {
-		objectMap["principalId"] = ci.PrincipalID
-	}
-	if ci.TenantID != nil {
-		objectMap["tenantId"] = ci.TenantID
-	}
 	if ci.Type != "" {
 		objectMap["type"] = ci.Type
 	}
@@ -642,9 +630,9 @@ func (ci ClusterIdentity) MarshalJSON() ([]byte, error) {
 
 // ClusterIdentityUserAssignedIdentitiesValue ...
 type ClusterIdentityUserAssignedIdentitiesValue struct {
-	// PrincipalID - The principal id of user assigned identity.
+	// PrincipalID - READ-ONLY; The principal id of user assigned identity.
 	PrincipalID *string `json:"principalId,omitempty"`
-	// ClientID - The client id of user assigned identity.
+	// ClientID - READ-ONLY; The client id of user assigned identity.
 	ClientID *string `json:"clientId,omitempty"`
 }
 
@@ -652,7 +640,7 @@ type ClusterIdentityUserAssignedIdentitiesValue struct {
 type ClusterListPersistedScriptActionsResult struct {
 	// Value - The list of Persisted Script Actions.
 	Value *[]RuntimeScriptAction `json:"value,omitempty"`
-	// NextLink - The link (url) to the next page of results.
+	// NextLink - READ-ONLY; The link (url) to the next page of results.
 	NextLink *string `json:"nextLink,omitempty"`
 }
 
@@ -661,7 +649,7 @@ type ClusterListResult struct {
 	autorest.Response `json:"-"`
 	// Value - The list of Clusters.
 	Value *[]Cluster `json:"value,omitempty"`
-	// NextLink - The link (url) to the next page of results.
+	// NextLink - READ-ONLY; The link (url) to the next page of results.
 	NextLink *string `json:"nextLink,omitempty"`
 }
 
@@ -671,20 +659,37 @@ type ClusterListResultIterator struct {
 	page ClusterListResultPage
 }
 
-// Next advances to the next value.  If there was an error making
+// NextWithContext advances to the next value.  If there was an error making
 // the request the iterator does not advance and the error is returned.
-func (iter *ClusterListResultIterator) Next() error {
+func (iter *ClusterListResultIterator) NextWithContext(ctx context.Context) (err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/ClusterListResultIterator.NextWithContext")
+		defer func() {
+			sc := -1
+			if iter.Response().Response.Response != nil {
+				sc = iter.Response().Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	iter.i++
 	if iter.i < len(iter.page.Values()) {
 		return nil
 	}
-	err := iter.page.Next()
+	err = iter.page.NextWithContext(ctx)
 	if err != nil {
 		iter.i--
 		return err
 	}
 	iter.i = 0
 	return nil
+}
+
+// Next advances to the next value.  If there was an error making
+// the request the iterator does not advance and the error is returned.
+// Deprecated: Use NextWithContext() instead.
+func (iter *ClusterListResultIterator) Next() error {
+	return iter.NextWithContext(context.Background())
 }
 
 // NotDone returns true if the enumeration should be started or is not yet complete.
@@ -706,6 +711,11 @@ func (iter ClusterListResultIterator) Value() Cluster {
 	return iter.page.Values()[iter.i]
 }
 
+// Creates a new instance of the ClusterListResultIterator type.
+func NewClusterListResultIterator(page ClusterListResultPage) ClusterListResultIterator {
+	return ClusterListResultIterator{page: page}
+}
+
 // IsEmpty returns true if the ListResult contains no values.
 func (clr ClusterListResult) IsEmpty() bool {
 	return clr.Value == nil || len(*clr.Value) == 0
@@ -713,11 +723,11 @@ func (clr ClusterListResult) IsEmpty() bool {
 
 // clusterListResultPreparer prepares a request to retrieve the next set of results.
 // It returns nil if no more results exist.
-func (clr ClusterListResult) clusterListResultPreparer() (*http.Request, error) {
+func (clr ClusterListResult) clusterListResultPreparer(ctx context.Context) (*http.Request, error) {
 	if clr.NextLink == nil || len(to.String(clr.NextLink)) < 1 {
 		return nil, nil
 	}
-	return autorest.Prepare(&http.Request{},
+	return autorest.Prepare((&http.Request{}).WithContext(ctx),
 		autorest.AsJSON(),
 		autorest.AsGet(),
 		autorest.WithBaseURL(to.String(clr.NextLink)))
@@ -725,19 +735,36 @@ func (clr ClusterListResult) clusterListResultPreparer() (*http.Request, error) 
 
 // ClusterListResultPage contains a page of Cluster values.
 type ClusterListResultPage struct {
-	fn  func(ClusterListResult) (ClusterListResult, error)
+	fn  func(context.Context, ClusterListResult) (ClusterListResult, error)
 	clr ClusterListResult
 }
 
-// Next advances to the next page of values.  If there was an error making
+// NextWithContext advances to the next page of values.  If there was an error making
 // the request the page does not advance and the error is returned.
-func (page *ClusterListResultPage) Next() error {
-	next, err := page.fn(page.clr)
+func (page *ClusterListResultPage) NextWithContext(ctx context.Context) (err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/ClusterListResultPage.NextWithContext")
+		defer func() {
+			sc := -1
+			if page.Response().Response.Response != nil {
+				sc = page.Response().Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
+	next, err := page.fn(ctx, page.clr)
 	if err != nil {
 		return err
 	}
 	page.clr = next
 	return nil
+}
+
+// Next advances to the next page of values.  If there was an error making
+// the request the page does not advance and the error is returned.
+// Deprecated: Use NextWithContext() instead.
+func (page *ClusterListResultPage) Next() error {
+	return page.NextWithContext(context.Background())
 }
 
 // NotDone returns true if the page enumeration should be started or is not yet complete.
@@ -758,11 +785,16 @@ func (page ClusterListResultPage) Values() []Cluster {
 	return *page.clr.Value
 }
 
+// Creates a new instance of the ClusterListResultPage type.
+func NewClusterListResultPage(getNextPage func(context.Context, ClusterListResult) (ClusterListResult, error)) ClusterListResultPage {
+	return ClusterListResultPage{fn: getNextPage}
+}
+
 // ClusterListRuntimeScriptActionDetailResult the list runtime script action detail response.
 type ClusterListRuntimeScriptActionDetailResult struct {
-	// Value - The list of persisted script action details for the cluster.
+	// Value - READ-ONLY; The list of persisted script action details for the cluster.
 	Value *[]RuntimeScriptActionDetail `json:"value,omitempty"`
-	// NextLink - The link (url) to the next page of results.
+	// NextLink - READ-ONLY; The link (url) to the next page of results.
 	NextLink *string `json:"nextLink,omitempty"`
 }
 
@@ -804,7 +836,8 @@ type ClusterResizeParameters struct {
 	TargetInstanceCount *int32 `json:"targetInstanceCount,omitempty"`
 }
 
-// ClustersCreateFuture an abstraction for monitoring and retrieving the results of a long-running operation.
+// ClustersCreateFuture an abstraction for monitoring and retrieving the results of a long-running
+// operation.
 type ClustersCreateFuture struct {
 	azure.Future
 }
@@ -813,7 +846,7 @@ type ClustersCreateFuture struct {
 // If the operation has not completed it will return an error.
 func (future *ClustersCreateFuture) Result(client ClustersClient) (c Cluster, err error) {
 	var done bool
-	done, err = future.Done(client)
+	done, err = future.DoneWithContext(context.Background(), client)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "hdinsight.ClustersCreateFuture", "Result", future.Response(), "Polling failure")
 		return
@@ -832,7 +865,8 @@ func (future *ClustersCreateFuture) Result(client ClustersClient) (c Cluster, er
 	return
 }
 
-// ClustersDeleteFuture an abstraction for monitoring and retrieving the results of a long-running operation.
+// ClustersDeleteFuture an abstraction for monitoring and retrieving the results of a long-running
+// operation.
 type ClustersDeleteFuture struct {
 	azure.Future
 }
@@ -841,7 +875,7 @@ type ClustersDeleteFuture struct {
 // If the operation has not completed it will return an error.
 func (future *ClustersDeleteFuture) Result(client ClustersClient) (ar autorest.Response, err error) {
 	var done bool
-	done, err = future.Done(client)
+	done, err = future.DoneWithContext(context.Background(), client)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "hdinsight.ClustersDeleteFuture", "Result", future.Response(), "Polling failure")
 		return
@@ -854,8 +888,8 @@ func (future *ClustersDeleteFuture) Result(client ClustersClient) (ar autorest.R
 	return
 }
 
-// ClustersExecuteScriptActionsFuture an abstraction for monitoring and retrieving the results of a long-running
-// operation.
+// ClustersExecuteScriptActionsFuture an abstraction for monitoring and retrieving the results of a
+// long-running operation.
 type ClustersExecuteScriptActionsFuture struct {
 	azure.Future
 }
@@ -864,7 +898,7 @@ type ClustersExecuteScriptActionsFuture struct {
 // If the operation has not completed it will return an error.
 func (future *ClustersExecuteScriptActionsFuture) Result(client ClustersClient) (ar autorest.Response, err error) {
 	var done bool
-	done, err = future.Done(client)
+	done, err = future.DoneWithContext(context.Background(), client)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "hdinsight.ClustersExecuteScriptActionsFuture", "Result", future.Response(), "Polling failure")
 		return
@@ -877,7 +911,8 @@ func (future *ClustersExecuteScriptActionsFuture) Result(client ClustersClient) 
 	return
 }
 
-// ClustersResizeFuture an abstraction for monitoring and retrieving the results of a long-running operation.
+// ClustersResizeFuture an abstraction for monitoring and retrieving the results of a long-running
+// operation.
 type ClustersResizeFuture struct {
 	azure.Future
 }
@@ -886,7 +921,7 @@ type ClustersResizeFuture struct {
 // If the operation has not completed it will return an error.
 func (future *ClustersResizeFuture) Result(client ClustersClient) (ar autorest.Response, err error) {
 	var done bool
-	done, err = future.Done(client)
+	done, err = future.DoneWithContext(context.Background(), client)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "hdinsight.ClustersResizeFuture", "Result", future.Response(), "Polling failure")
 		return
@@ -899,13 +934,60 @@ func (future *ClustersResizeFuture) Result(client ClustersClient) (ar autorest.R
 	return
 }
 
+// ClustersRotateDiskEncryptionKeyFuture an abstraction for monitoring and retrieving the results of a
+// long-running operation.
+type ClustersRotateDiskEncryptionKeyFuture struct {
+	azure.Future
+}
+
+// Result returns the result of the asynchronous operation.
+// If the operation has not completed it will return an error.
+func (future *ClustersRotateDiskEncryptionKeyFuture) Result(client ClustersClient) (ar autorest.Response, err error) {
+	var done bool
+	done, err = future.DoneWithContext(context.Background(), client)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "hdinsight.ClustersRotateDiskEncryptionKeyFuture", "Result", future.Response(), "Polling failure")
+		return
+	}
+	if !done {
+		err = azure.NewAsyncOpIncompleteError("hdinsight.ClustersRotateDiskEncryptionKeyFuture")
+		return
+	}
+	ar.Response = future.Response()
+	return
+}
+
+// ClustersUpdateGatewaySettingsFuture an abstraction for monitoring and retrieving the results of a
+// long-running operation.
+type ClustersUpdateGatewaySettingsFuture struct {
+	azure.Future
+}
+
+// Result returns the result of the asynchronous operation.
+// If the operation has not completed it will return an error.
+func (future *ClustersUpdateGatewaySettingsFuture) Result(client ClustersClient) (ar autorest.Response, err error) {
+	var done bool
+	done, err = future.DoneWithContext(context.Background(), client)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "hdinsight.ClustersUpdateGatewaySettingsFuture", "Result", future.Response(), "Polling failure")
+		return
+	}
+	if !done {
+		err = azure.NewAsyncOpIncompleteError("hdinsight.ClustersUpdateGatewaySettingsFuture")
+		return
+	}
+	ar.Response = future.Response()
+	return
+}
+
 // ComputeProfile describes the compute profile.
 type ComputeProfile struct {
 	// Roles - The list of roles in the cluster.
 	Roles *[]Role `json:"roles,omitempty"`
 }
 
-// ConfigurationsUpdateFuture an abstraction for monitoring and retrieving the results of a long-running operation.
+// ConfigurationsUpdateFuture an abstraction for monitoring and retrieving the results of a long-running
+// operation.
 type ConfigurationsUpdateFuture struct {
 	azure.Future
 }
@@ -914,7 +996,7 @@ type ConfigurationsUpdateFuture struct {
 // If the operation has not completed it will return an error.
 func (future *ConfigurationsUpdateFuture) Result(client ConfigurationsClient) (ar autorest.Response, err error) {
 	var done bool
-	done, err = future.Done(client)
+	done, err = future.DoneWithContext(context.Background(), client)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "hdinsight.ConfigurationsUpdateFuture", "Result", future.Response(), "Polling failure")
 		return
@@ -943,10 +1025,24 @@ type ConnectivityEndpoint struct {
 type DataDisksGroups struct {
 	// DisksPerNode - The number of disks per node.
 	DisksPerNode *int32 `json:"disksPerNode,omitempty"`
-	// StorageAccountType - ReadOnly. The storage account type. Do not set this value.
+	// StorageAccountType - READ-ONLY; ReadOnly. The storage account type. Do not set this value.
 	StorageAccountType *string `json:"storageAccountType,omitempty"`
-	// DiskSizeGB - ReadOnly. The DiskSize in GB. Do not set this value.
+	// DiskSizeGB - READ-ONLY; ReadOnly. The DiskSize in GB. Do not set this value.
 	DiskSizeGB *int32 `json:"diskSizeGB,omitempty"`
+}
+
+// DiskEncryptionProperties the disk encryption properties
+type DiskEncryptionProperties struct {
+	// VaultURI - Base key vault URI where the customers key is located eg. https://myvault.vault.azure.net
+	VaultURI *string `json:"vaultUri,omitempty"`
+	// KeyName - Key name that is used for enabling disk encryption.
+	KeyName *string `json:"keyName,omitempty"`
+	// KeyVersion - Specific key version that is used for enabling disk encryption.
+	KeyVersion *string `json:"keyVersion,omitempty"`
+	// EncryptionAlgorithm - Algorithm identifier for encryption, default RSA-OAEP. Possible values include: 'RSAOAEP', 'RSAOAEP256', 'RSA15'
+	EncryptionAlgorithm JSONWebKeyEncryptionAlgorithm `json:"encryptionAlgorithm,omitempty"`
+	// MsiResourceID - Resource ID of Managed Identity that is used to access the key vault.
+	MsiResourceID *string `json:"msiResourceId,omitempty"`
 }
 
 // ErrorResponse describes the format of Error response.
@@ -982,7 +1078,8 @@ type Extension struct {
 	PrimaryKey *string `json:"primaryKey,omitempty"`
 }
 
-// ExtensionsCreateFuture an abstraction for monitoring and retrieving the results of a long-running operation.
+// ExtensionsCreateFuture an abstraction for monitoring and retrieving the results of a long-running
+// operation.
 type ExtensionsCreateFuture struct {
 	azure.Future
 }
@@ -991,7 +1088,7 @@ type ExtensionsCreateFuture struct {
 // If the operation has not completed it will return an error.
 func (future *ExtensionsCreateFuture) Result(client ExtensionsClient) (ar autorest.Response, err error) {
 	var done bool
-	done, err = future.Done(client)
+	done, err = future.DoneWithContext(context.Background(), client)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "hdinsight.ExtensionsCreateFuture", "Result", future.Response(), "Polling failure")
 		return
@@ -1004,7 +1101,8 @@ func (future *ExtensionsCreateFuture) Result(client ExtensionsClient) (ar autore
 	return
 }
 
-// ExtensionsDeleteFuture an abstraction for monitoring and retrieving the results of a long-running operation.
+// ExtensionsDeleteFuture an abstraction for monitoring and retrieving the results of a long-running
+// operation.
 type ExtensionsDeleteFuture struct {
 	azure.Future
 }
@@ -1013,7 +1111,7 @@ type ExtensionsDeleteFuture struct {
 // If the operation has not completed it will return an error.
 func (future *ExtensionsDeleteFuture) Result(client ExtensionsClient) (ar autorest.Response, err error) {
 	var done bool
-	done, err = future.Done(client)
+	done, err = future.DoneWithContext(context.Background(), client)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "hdinsight.ExtensionsDeleteFuture", "Result", future.Response(), "Polling failure")
 		return
@@ -1026,8 +1124,8 @@ func (future *ExtensionsDeleteFuture) Result(client ExtensionsClient) (ar autore
 	return
 }
 
-// ExtensionsDisableMonitoringFuture an abstraction for monitoring and retrieving the results of a long-running
-// operation.
+// ExtensionsDisableMonitoringFuture an abstraction for monitoring and retrieving the results of a
+// long-running operation.
 type ExtensionsDisableMonitoringFuture struct {
 	azure.Future
 }
@@ -1036,7 +1134,7 @@ type ExtensionsDisableMonitoringFuture struct {
 // If the operation has not completed it will return an error.
 func (future *ExtensionsDisableMonitoringFuture) Result(client ExtensionsClient) (ar autorest.Response, err error) {
 	var done bool
-	done, err = future.Done(client)
+	done, err = future.DoneWithContext(context.Background(), client)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "hdinsight.ExtensionsDisableMonitoringFuture", "Result", future.Response(), "Polling failure")
 		return
@@ -1049,8 +1147,8 @@ func (future *ExtensionsDisableMonitoringFuture) Result(client ExtensionsClient)
 	return
 }
 
-// ExtensionsEnableMonitoringFuture an abstraction for monitoring and retrieving the results of a long-running
-// operation.
+// ExtensionsEnableMonitoringFuture an abstraction for monitoring and retrieving the results of a
+// long-running operation.
 type ExtensionsEnableMonitoringFuture struct {
 	azure.Future
 }
@@ -1059,7 +1157,7 @@ type ExtensionsEnableMonitoringFuture struct {
 // If the operation has not completed it will return an error.
 func (future *ExtensionsEnableMonitoringFuture) Result(client ExtensionsClient) (ar autorest.Response, err error) {
 	var done bool
-	done, err = future.Done(client)
+	done, err = future.DoneWithContext(context.Background(), client)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "hdinsight.ExtensionsEnableMonitoringFuture", "Result", future.Response(), "Polling failure")
 		return
@@ -1070,6 +1168,17 @@ func (future *ExtensionsEnableMonitoringFuture) Result(client ExtensionsClient) 
 	}
 	ar.Response = future.Response()
 	return
+}
+
+// GatewaySettings gateway settings.
+type GatewaySettings struct {
+	autorest.Response `json:"-"`
+	// IsCredentialEnabled - READ-ONLY; Indicates whether or not the gateway settings based authorization is enabled.
+	IsCredentialEnabled *string `json:"restAuthCredential.isEnabled,omitempty"`
+	// UserName - READ-ONLY; The gateway settings user name.
+	UserName *string `json:"restAuthCredential.username,omitempty"`
+	// Password - READ-ONLY; The gateway settings user password.
+	Password *string `json:"restAuthCredential.password,omitempty"`
 }
 
 // HardwareProfile the hardware profile.
@@ -1114,8 +1223,8 @@ type OperationDisplay struct {
 	Operation *string `json:"operation,omitempty"`
 }
 
-// OperationListResult result of the request to list HDInsight operations. It contains a list of operations and a
-// URL link to get the next set of results.
+// OperationListResult result of the request to list HDInsight operations. It contains a list of operations
+// and a URL link to get the next set of results.
 type OperationListResult struct {
 	autorest.Response `json:"-"`
 	// Value - The list of HDInsight operations supported by the HDInsight resource provider.
@@ -1130,20 +1239,37 @@ type OperationListResultIterator struct {
 	page OperationListResultPage
 }
 
-// Next advances to the next value.  If there was an error making
+// NextWithContext advances to the next value.  If there was an error making
 // the request the iterator does not advance and the error is returned.
-func (iter *OperationListResultIterator) Next() error {
+func (iter *OperationListResultIterator) NextWithContext(ctx context.Context) (err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/OperationListResultIterator.NextWithContext")
+		defer func() {
+			sc := -1
+			if iter.Response().Response.Response != nil {
+				sc = iter.Response().Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	iter.i++
 	if iter.i < len(iter.page.Values()) {
 		return nil
 	}
-	err := iter.page.Next()
+	err = iter.page.NextWithContext(ctx)
 	if err != nil {
 		iter.i--
 		return err
 	}
 	iter.i = 0
 	return nil
+}
+
+// Next advances to the next value.  If there was an error making
+// the request the iterator does not advance and the error is returned.
+// Deprecated: Use NextWithContext() instead.
+func (iter *OperationListResultIterator) Next() error {
+	return iter.NextWithContext(context.Background())
 }
 
 // NotDone returns true if the enumeration should be started or is not yet complete.
@@ -1165,6 +1291,11 @@ func (iter OperationListResultIterator) Value() Operation {
 	return iter.page.Values()[iter.i]
 }
 
+// Creates a new instance of the OperationListResultIterator type.
+func NewOperationListResultIterator(page OperationListResultPage) OperationListResultIterator {
+	return OperationListResultIterator{page: page}
+}
+
 // IsEmpty returns true if the ListResult contains no values.
 func (olr OperationListResult) IsEmpty() bool {
 	return olr.Value == nil || len(*olr.Value) == 0
@@ -1172,11 +1303,11 @@ func (olr OperationListResult) IsEmpty() bool {
 
 // operationListResultPreparer prepares a request to retrieve the next set of results.
 // It returns nil if no more results exist.
-func (olr OperationListResult) operationListResultPreparer() (*http.Request, error) {
+func (olr OperationListResult) operationListResultPreparer(ctx context.Context) (*http.Request, error) {
 	if olr.NextLink == nil || len(to.String(olr.NextLink)) < 1 {
 		return nil, nil
 	}
-	return autorest.Prepare(&http.Request{},
+	return autorest.Prepare((&http.Request{}).WithContext(ctx),
 		autorest.AsJSON(),
 		autorest.AsGet(),
 		autorest.WithBaseURL(to.String(olr.NextLink)))
@@ -1184,19 +1315,36 @@ func (olr OperationListResult) operationListResultPreparer() (*http.Request, err
 
 // OperationListResultPage contains a page of Operation values.
 type OperationListResultPage struct {
-	fn  func(OperationListResult) (OperationListResult, error)
+	fn  func(context.Context, OperationListResult) (OperationListResult, error)
 	olr OperationListResult
 }
 
-// Next advances to the next page of values.  If there was an error making
+// NextWithContext advances to the next page of values.  If there was an error making
 // the request the page does not advance and the error is returned.
-func (page *OperationListResultPage) Next() error {
-	next, err := page.fn(page.olr)
+func (page *OperationListResultPage) NextWithContext(ctx context.Context) (err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/OperationListResultPage.NextWithContext")
+		defer func() {
+			sc := -1
+			if page.Response().Response.Response != nil {
+				sc = page.Response().Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
+	next, err := page.fn(ctx, page.olr)
 	if err != nil {
 		return err
 	}
 	page.olr = next
 	return nil
+}
+
+// Next advances to the next page of values.  If there was an error making
+// the request the page does not advance and the error is returned.
+// Deprecated: Use NextWithContext() instead.
+func (page *OperationListResultPage) Next() error {
+	return page.NextWithContext(context.Background())
 }
 
 // NotDone returns true if the page enumeration should be started or is not yet complete.
@@ -1217,6 +1365,11 @@ func (page OperationListResultPage) Values() []Operation {
 	return *page.olr.Value
 }
 
+// Creates a new instance of the OperationListResultPage type.
+func NewOperationListResultPage(getNextPage func(context.Context, OperationListResult) (OperationListResult, error)) OperationListResultPage {
+	return OperationListResultPage{fn: getNextPage}
+}
+
 // OperationResource the azure async operation response.
 type OperationResource struct {
 	// Status - The async operation state. Possible values include: 'InProgress', 'Succeeded', 'Failed'
@@ -1234,11 +1387,11 @@ type OsProfile struct {
 // ProxyResource the resource model definition for a ARM proxy resource. It will have everything other than
 // required location and tags
 type ProxyResource struct {
-	// ID - Fully qualified resource Id for the resource.
+	// ID - READ-ONLY; Fully qualified resource Id for the resource.
 	ID *string `json:"id,omitempty"`
-	// Name - The name of the resource
+	// Name - READ-ONLY; The name of the resource
 	Name *string `json:"name,omitempty"`
-	// Type - The type of the resource.
+	// Type - READ-ONLY; The type of the resource.
 	Type *string `json:"type,omitempty"`
 }
 
@@ -1250,11 +1403,11 @@ type QuotaInfo struct {
 
 // Resource the core properties of ARM resources
 type Resource struct {
-	// ID - Fully qualified resource Id for the resource.
+	// ID - READ-ONLY; Fully qualified resource Id for the resource.
 	ID *string `json:"id,omitempty"`
-	// Name - The name of the resource
+	// Name - READ-ONLY; The name of the resource
 	Name *string `json:"name,omitempty"`
-	// Type - The type of the resource.
+	// Type - READ-ONLY; The type of the resource.
 	Type *string `json:"type,omitempty"`
 }
 
@@ -1288,26 +1441,26 @@ type RuntimeScriptAction struct {
 	Parameters *string `json:"parameters,omitempty"`
 	// Roles - The list of roles where script will be executed.
 	Roles *[]string `json:"roles,omitempty"`
-	// ApplicationName - The application name of the script action, if any.
+	// ApplicationName - READ-ONLY; The application name of the script action, if any.
 	ApplicationName *string `json:"applicationName,omitempty"`
 }
 
 // RuntimeScriptActionDetail the execution details of a script action.
 type RuntimeScriptActionDetail struct {
 	autorest.Response `json:"-"`
-	// ScriptExecutionID - The execution id of the script action.
+	// ScriptExecutionID - READ-ONLY; The execution id of the script action.
 	ScriptExecutionID *int64 `json:"scriptExecutionId,omitempty"`
-	// StartTime - The start time of script action execution.
+	// StartTime - READ-ONLY; The start time of script action execution.
 	StartTime *string `json:"startTime,omitempty"`
-	// EndTime - The end time of script action execution.
+	// EndTime - READ-ONLY; The end time of script action execution.
 	EndTime *string `json:"endTime,omitempty"`
-	// Status - The current execution status of the script action.
+	// Status - READ-ONLY; The current execution status of the script action.
 	Status *string `json:"status,omitempty"`
-	// Operation - The reason why the script action was executed.
+	// Operation - READ-ONLY; The reason why the script action was executed.
 	Operation *string `json:"operation,omitempty"`
-	// ExecutionSummary - The summary of script action execution result.
+	// ExecutionSummary - READ-ONLY; The summary of script action execution result.
 	ExecutionSummary *[]ScriptActionExecutionSummary `json:"executionSummary,omitempty"`
-	// DebugInformation - The script action execution debug information.
+	// DebugInformation - READ-ONLY; The script action execution debug information.
 	DebugInformation *string `json:"debugInformation,omitempty"`
 	// Name - The name of the script action.
 	Name *string `json:"name,omitempty"`
@@ -1317,7 +1470,7 @@ type RuntimeScriptActionDetail struct {
 	Parameters *string `json:"parameters,omitempty"`
 	// Roles - The list of roles where script will be executed.
 	Roles *[]string `json:"roles,omitempty"`
-	// ApplicationName - The application name of the script action, if any.
+	// ApplicationName - READ-ONLY; The application name of the script action, if any.
 	ApplicationName *string `json:"applicationName,omitempty"`
 }
 
@@ -1334,33 +1487,50 @@ type ScriptAction struct {
 // ScriptActionExecutionHistoryList the list script execution history response.
 type ScriptActionExecutionHistoryList struct {
 	autorest.Response `json:"-"`
-	// Value - The list of persisted script action details for the cluster.
+	// Value - READ-ONLY; The list of persisted script action details for the cluster.
 	Value *[]RuntimeScriptActionDetail `json:"value,omitempty"`
-	// NextLink - The link (url) to the next page of results.
+	// NextLink - READ-ONLY; The link (url) to the next page of results.
 	NextLink *string `json:"nextLink,omitempty"`
 }
 
-// ScriptActionExecutionHistoryListIterator provides access to a complete listing of RuntimeScriptActionDetail
-// values.
+// ScriptActionExecutionHistoryListIterator provides access to a complete listing of
+// RuntimeScriptActionDetail values.
 type ScriptActionExecutionHistoryListIterator struct {
 	i    int
 	page ScriptActionExecutionHistoryListPage
 }
 
-// Next advances to the next value.  If there was an error making
+// NextWithContext advances to the next value.  If there was an error making
 // the request the iterator does not advance and the error is returned.
-func (iter *ScriptActionExecutionHistoryListIterator) Next() error {
+func (iter *ScriptActionExecutionHistoryListIterator) NextWithContext(ctx context.Context) (err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/ScriptActionExecutionHistoryListIterator.NextWithContext")
+		defer func() {
+			sc := -1
+			if iter.Response().Response.Response != nil {
+				sc = iter.Response().Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	iter.i++
 	if iter.i < len(iter.page.Values()) {
 		return nil
 	}
-	err := iter.page.Next()
+	err = iter.page.NextWithContext(ctx)
 	if err != nil {
 		iter.i--
 		return err
 	}
 	iter.i = 0
 	return nil
+}
+
+// Next advances to the next value.  If there was an error making
+// the request the iterator does not advance and the error is returned.
+// Deprecated: Use NextWithContext() instead.
+func (iter *ScriptActionExecutionHistoryListIterator) Next() error {
+	return iter.NextWithContext(context.Background())
 }
 
 // NotDone returns true if the enumeration should be started or is not yet complete.
@@ -1382,6 +1552,11 @@ func (iter ScriptActionExecutionHistoryListIterator) Value() RuntimeScriptAction
 	return iter.page.Values()[iter.i]
 }
 
+// Creates a new instance of the ScriptActionExecutionHistoryListIterator type.
+func NewScriptActionExecutionHistoryListIterator(page ScriptActionExecutionHistoryListPage) ScriptActionExecutionHistoryListIterator {
+	return ScriptActionExecutionHistoryListIterator{page: page}
+}
+
 // IsEmpty returns true if the ListResult contains no values.
 func (saehl ScriptActionExecutionHistoryList) IsEmpty() bool {
 	return saehl.Value == nil || len(*saehl.Value) == 0
@@ -1389,11 +1564,11 @@ func (saehl ScriptActionExecutionHistoryList) IsEmpty() bool {
 
 // scriptActionExecutionHistoryListPreparer prepares a request to retrieve the next set of results.
 // It returns nil if no more results exist.
-func (saehl ScriptActionExecutionHistoryList) scriptActionExecutionHistoryListPreparer() (*http.Request, error) {
+func (saehl ScriptActionExecutionHistoryList) scriptActionExecutionHistoryListPreparer(ctx context.Context) (*http.Request, error) {
 	if saehl.NextLink == nil || len(to.String(saehl.NextLink)) < 1 {
 		return nil, nil
 	}
-	return autorest.Prepare(&http.Request{},
+	return autorest.Prepare((&http.Request{}).WithContext(ctx),
 		autorest.AsJSON(),
 		autorest.AsGet(),
 		autorest.WithBaseURL(to.String(saehl.NextLink)))
@@ -1401,19 +1576,36 @@ func (saehl ScriptActionExecutionHistoryList) scriptActionExecutionHistoryListPr
 
 // ScriptActionExecutionHistoryListPage contains a page of RuntimeScriptActionDetail values.
 type ScriptActionExecutionHistoryListPage struct {
-	fn    func(ScriptActionExecutionHistoryList) (ScriptActionExecutionHistoryList, error)
+	fn    func(context.Context, ScriptActionExecutionHistoryList) (ScriptActionExecutionHistoryList, error)
 	saehl ScriptActionExecutionHistoryList
 }
 
-// Next advances to the next page of values.  If there was an error making
+// NextWithContext advances to the next page of values.  If there was an error making
 // the request the page does not advance and the error is returned.
-func (page *ScriptActionExecutionHistoryListPage) Next() error {
-	next, err := page.fn(page.saehl)
+func (page *ScriptActionExecutionHistoryListPage) NextWithContext(ctx context.Context) (err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/ScriptActionExecutionHistoryListPage.NextWithContext")
+		defer func() {
+			sc := -1
+			if page.Response().Response.Response != nil {
+				sc = page.Response().Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
+	next, err := page.fn(ctx, page.saehl)
 	if err != nil {
 		return err
 	}
 	page.saehl = next
 	return nil
+}
+
+// Next advances to the next page of values.  If there was an error making
+// the request the page does not advance and the error is returned.
+// Deprecated: Use NextWithContext() instead.
+func (page *ScriptActionExecutionHistoryListPage) Next() error {
+	return page.NextWithContext(context.Background())
 }
 
 // NotDone returns true if the page enumeration should be started or is not yet complete.
@@ -1434,11 +1626,16 @@ func (page ScriptActionExecutionHistoryListPage) Values() []RuntimeScriptActionD
 	return *page.saehl.Value
 }
 
+// Creates a new instance of the ScriptActionExecutionHistoryListPage type.
+func NewScriptActionExecutionHistoryListPage(getNextPage func(context.Context, ScriptActionExecutionHistoryList) (ScriptActionExecutionHistoryList, error)) ScriptActionExecutionHistoryListPage {
+	return ScriptActionExecutionHistoryListPage{fn: getNextPage}
+}
+
 // ScriptActionExecutionSummary the execution summary of a script action.
 type ScriptActionExecutionSummary struct {
-	// Status - The status of script action execution.
+	// Status - READ-ONLY; The status of script action execution.
 	Status *string `json:"status,omitempty"`
-	// InstanceCount - The instance count for a given script action execution status.
+	// InstanceCount - READ-ONLY; The instance count for a given script action execution status.
 	InstanceCount *int32 `json:"instanceCount,omitempty"`
 }
 
@@ -1461,7 +1658,7 @@ type ScriptActionsList struct {
 	autorest.Response `json:"-"`
 	// Value - The list of persisted script action details for the cluster.
 	Value *[]RuntimeScriptActionDetail `json:"value,omitempty"`
-	// NextLink - The link (url) to the next page of results.
+	// NextLink - READ-ONLY; The link (url) to the next page of results.
 	NextLink *string `json:"nextLink,omitempty"`
 }
 
@@ -1471,20 +1668,37 @@ type ScriptActionsListIterator struct {
 	page ScriptActionsListPage
 }
 
-// Next advances to the next value.  If there was an error making
+// NextWithContext advances to the next value.  If there was an error making
 // the request the iterator does not advance and the error is returned.
-func (iter *ScriptActionsListIterator) Next() error {
+func (iter *ScriptActionsListIterator) NextWithContext(ctx context.Context) (err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/ScriptActionsListIterator.NextWithContext")
+		defer func() {
+			sc := -1
+			if iter.Response().Response.Response != nil {
+				sc = iter.Response().Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	iter.i++
 	if iter.i < len(iter.page.Values()) {
 		return nil
 	}
-	err := iter.page.Next()
+	err = iter.page.NextWithContext(ctx)
 	if err != nil {
 		iter.i--
 		return err
 	}
 	iter.i = 0
 	return nil
+}
+
+// Next advances to the next value.  If there was an error making
+// the request the iterator does not advance and the error is returned.
+// Deprecated: Use NextWithContext() instead.
+func (iter *ScriptActionsListIterator) Next() error {
+	return iter.NextWithContext(context.Background())
 }
 
 // NotDone returns true if the enumeration should be started or is not yet complete.
@@ -1506,6 +1720,11 @@ func (iter ScriptActionsListIterator) Value() RuntimeScriptActionDetail {
 	return iter.page.Values()[iter.i]
 }
 
+// Creates a new instance of the ScriptActionsListIterator type.
+func NewScriptActionsListIterator(page ScriptActionsListPage) ScriptActionsListIterator {
+	return ScriptActionsListIterator{page: page}
+}
+
 // IsEmpty returns true if the ListResult contains no values.
 func (sal ScriptActionsList) IsEmpty() bool {
 	return sal.Value == nil || len(*sal.Value) == 0
@@ -1513,11 +1732,11 @@ func (sal ScriptActionsList) IsEmpty() bool {
 
 // scriptActionsListPreparer prepares a request to retrieve the next set of results.
 // It returns nil if no more results exist.
-func (sal ScriptActionsList) scriptActionsListPreparer() (*http.Request, error) {
+func (sal ScriptActionsList) scriptActionsListPreparer(ctx context.Context) (*http.Request, error) {
 	if sal.NextLink == nil || len(to.String(sal.NextLink)) < 1 {
 		return nil, nil
 	}
-	return autorest.Prepare(&http.Request{},
+	return autorest.Prepare((&http.Request{}).WithContext(ctx),
 		autorest.AsJSON(),
 		autorest.AsGet(),
 		autorest.WithBaseURL(to.String(sal.NextLink)))
@@ -1525,19 +1744,36 @@ func (sal ScriptActionsList) scriptActionsListPreparer() (*http.Request, error) 
 
 // ScriptActionsListPage contains a page of RuntimeScriptActionDetail values.
 type ScriptActionsListPage struct {
-	fn  func(ScriptActionsList) (ScriptActionsList, error)
+	fn  func(context.Context, ScriptActionsList) (ScriptActionsList, error)
 	sal ScriptActionsList
 }
 
-// Next advances to the next page of values.  If there was an error making
+// NextWithContext advances to the next page of values.  If there was an error making
 // the request the page does not advance and the error is returned.
-func (page *ScriptActionsListPage) Next() error {
-	next, err := page.fn(page.sal)
+func (page *ScriptActionsListPage) NextWithContext(ctx context.Context) (err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/ScriptActionsListPage.NextWithContext")
+		defer func() {
+			sc := -1
+			if page.Response().Response.Response != nil {
+				sc = page.Response().Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
+	next, err := page.fn(ctx, page.sal)
 	if err != nil {
 		return err
 	}
 	page.sal = next
 	return nil
+}
+
+// Next advances to the next page of values.  If there was an error making
+// the request the page does not advance and the error is returned.
+// Deprecated: Use NextWithContext() instead.
+func (page *ScriptActionsListPage) Next() error {
+	return page.NextWithContext(context.Background())
 }
 
 // NotDone returns true if the page enumeration should be started or is not yet complete.
@@ -1556,6 +1792,11 @@ func (page ScriptActionsListPage) Values() []RuntimeScriptActionDetail {
 		return nil
 	}
 	return *page.sal.Value
+}
+
+// Creates a new instance of the ScriptActionsListPage type.
+func NewScriptActionsListPage(getNextPage func(context.Context, ScriptActionsList) (ScriptActionsList, error)) ScriptActionsListPage {
+	return ScriptActionsListPage{fn: getNextPage}
 }
 
 // SecurityProfile the security profile which contains Ssh public key for the HDInsight cluster.
@@ -1619,6 +1860,10 @@ type StorageAccount struct {
 	FileSystem *string `json:"fileSystem,omitempty"`
 	// Key - The storage account access key.
 	Key *string `json:"key,omitempty"`
+	// ResourceID - The resource ID of storage account, only to be specified for Azure Data Lake Storage Gen 2.
+	ResourceID *string `json:"resourceId,omitempty"`
+	// MsiResourceID - The managed identity (MSI) that is allowed to access the storage account, only to be specified for Azure Data Lake Storage Gen 2.
+	MsiResourceID *string `json:"msiResourceId,omitempty"`
 }
 
 // StorageProfile the storage profile.
@@ -1633,11 +1878,11 @@ type TrackedResource struct {
 	Location *string `json:"location,omitempty"`
 	// Tags - Resource tags.
 	Tags map[string]*string `json:"tags"`
-	// ID - Fully qualified resource Id for the resource.
+	// ID - READ-ONLY; Fully qualified resource Id for the resource.
 	ID *string `json:"id,omitempty"`
-	// Name - The name of the resource
+	// Name - READ-ONLY; The name of the resource
 	Name *string `json:"name,omitempty"`
-	// Type - The type of the resource.
+	// Type - READ-ONLY; The type of the resource.
 	Type *string `json:"type,omitempty"`
 }
 
@@ -1650,16 +1895,17 @@ func (tr TrackedResource) MarshalJSON() ([]byte, error) {
 	if tr.Tags != nil {
 		objectMap["tags"] = tr.Tags
 	}
-	if tr.ID != nil {
-		objectMap["id"] = tr.ID
-	}
-	if tr.Name != nil {
-		objectMap["name"] = tr.Name
-	}
-	if tr.Type != nil {
-		objectMap["type"] = tr.Type
-	}
 	return json.Marshal(objectMap)
+}
+
+// UpdateGatewaySettingsParameters the update gateway settings request parameters.
+type UpdateGatewaySettingsParameters struct {
+	// IsCredentialEnabled - Indicates whether or not the gateway settings based authorization is enabled.
+	IsCredentialEnabled *bool `json:"restAuthCredential.isEnabled,omitempty"`
+	// UserName - The gateway settings user name.
+	UserName *string `json:"restAuthCredential.username,omitempty"`
+	// Password - The gateway settings user password.
+	Password *string `json:"restAuthCredential.password,omitempty"`
 }
 
 // Usage the details about the usage of a particular limited resource.

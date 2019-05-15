@@ -1,0 +1,35 @@
+{
+  "kind": "MachineType",
+  "apiVersion": "cloud.pharmer.io/v1",
+  "metadata": {
+    "name": "azure-standard-d4",
+    "creationTimestamp": null,
+    "labels": {
+      "cloud.pharmer.io/provider": "azure"
+    }
+  },
+  "spec": {
+    "sku": "Standard_D4",
+    "description": "Standard_D4",
+    "cpu": "8",
+    "ram": "28Ki",
+    "disk": "400Ki",
+    "zones": [
+      "australiaeast",
+      "australiasoutheast",
+      "brazilsouth",
+      "centralus",
+      "eastasia",
+      "eastus",
+      "eastus2",
+      "japaneast",
+      "japanwest",
+      "northcentralus",
+      "northeurope",
+      "southcentralus",
+      "southeastasia",
+      "westeurope",
+      "westus"
+    ]
+  }
+}

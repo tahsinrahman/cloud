@@ -33,11 +33,15 @@ required = [
 
 [[override]]
   name = "github.com/Azure/azure-sdk-for-go"
-  version = "=v21.3.0"
+  version = "=v29.0.0"
 
 [[override]]
   name = "github.com/Azure/go-autorest"
-  version = "=v11.1.0"
+  version = "=v12.0.0"
+
+[[override]]
+  name = "contrib.go.opencensus.io/exporter/ocagent"
+  version = "=v0.4.12"
 
 [[override]]
   name = "k8s.io/api"

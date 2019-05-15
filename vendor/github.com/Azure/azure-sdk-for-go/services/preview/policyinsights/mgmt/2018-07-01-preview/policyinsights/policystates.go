@@ -23,6 +23,7 @@ import (
 	"github.com/Azure/go-autorest/autorest/azure"
 	"github.com/Azure/go-autorest/autorest/date"
 	"github.com/Azure/go-autorest/autorest/validation"
+	"github.com/Azure/go-autorest/tracing"
 	"net/http"
 )
 
@@ -46,6 +47,16 @@ func NewPolicyStatesClientWithBaseURI(baseURI string) PolicyStatesClient {
 // scope - a valid scope, i.e. management group, subscription, resource group, or resource ID. Scope used has
 // no effect on metadata returned.
 func (client PolicyStatesClient) GetMetadata(ctx context.Context, scope string) (result String, err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PolicyStatesClient.GetMetadata")
+		defer func() {
+			sc := -1
+			if result.Response.Response != nil {
+				sc = result.Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	req, err := client.GetMetadataPreparer(ctx, scope)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "policyinsights.PolicyStatesClient", "GetMetadata", nil, "Failure preparing request")
@@ -73,7 +84,7 @@ func (client PolicyStatesClient) GetMetadataPreparer(ctx context.Context, scope 
 		"scope": scope,
 	}
 
-	const APIVersion = "2018-04-04"
+	const APIVersion = "2018-07-01-preview"
 	queryParameters := map[string]interface{}{
 		"api-version": APIVersion,
 	}
@@ -123,6 +134,16 @@ func (client PolicyStatesClient) GetMetadataResponder(resp *http.Response) (resu
 // filter - oData filter expression.
 // apply - oData apply expression for aggregations.
 func (client PolicyStatesClient) ListQueryResultsForManagementGroup(ctx context.Context, policyStatesResource PolicyStatesResource, managementGroupName string, top *int32, orderBy string, selectParameter string, from *date.Time, toParameter *date.Time, filter string, apply string) (result PolicyStatesQueryResults, err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PolicyStatesClient.ListQueryResultsForManagementGroup")
+		defer func() {
+			sc := -1
+			if result.Response.Response != nil {
+				sc = result.Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	if err := validation.Validate([]validation.Validation{
 		{TargetValue: top,
 			Constraints: []validation.Constraint{{Target: "top", Name: validation.Null, Rule: false,
@@ -159,7 +180,7 @@ func (client PolicyStatesClient) ListQueryResultsForManagementGroupPreparer(ctx 
 		"policyStatesResource":      autorest.Encode("path", policyStatesResource),
 	}
 
-	const APIVersion = "2018-04-04"
+	const APIVersion = "2018-07-01-preview"
 	queryParameters := map[string]interface{}{
 		"api-version": APIVersion,
 	}
@@ -231,6 +252,16 @@ func (client PolicyStatesClient) ListQueryResultsForManagementGroupResponder(res
 // filter - oData filter expression.
 // apply - oData apply expression for aggregations.
 func (client PolicyStatesClient) ListQueryResultsForPolicyDefinition(ctx context.Context, policyStatesResource PolicyStatesResource, subscriptionID string, policyDefinitionName string, top *int32, orderBy string, selectParameter string, from *date.Time, toParameter *date.Time, filter string, apply string) (result PolicyStatesQueryResults, err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PolicyStatesClient.ListQueryResultsForPolicyDefinition")
+		defer func() {
+			sc := -1
+			if result.Response.Response != nil {
+				sc = result.Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	if err := validation.Validate([]validation.Validation{
 		{TargetValue: top,
 			Constraints: []validation.Constraint{{Target: "top", Name: validation.Null, Rule: false,
@@ -268,7 +299,7 @@ func (client PolicyStatesClient) ListQueryResultsForPolicyDefinitionPreparer(ctx
 		"subscriptionId":         autorest.Encode("path", subscriptionID),
 	}
 
-	const APIVersion = "2018-04-04"
+	const APIVersion = "2018-07-01-preview"
 	queryParameters := map[string]interface{}{
 		"api-version": APIVersion,
 	}
@@ -340,6 +371,16 @@ func (client PolicyStatesClient) ListQueryResultsForPolicyDefinitionResponder(re
 // filter - oData filter expression.
 // apply - oData apply expression for aggregations.
 func (client PolicyStatesClient) ListQueryResultsForPolicySetDefinition(ctx context.Context, policyStatesResource PolicyStatesResource, subscriptionID string, policySetDefinitionName string, top *int32, orderBy string, selectParameter string, from *date.Time, toParameter *date.Time, filter string, apply string) (result PolicyStatesQueryResults, err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PolicyStatesClient.ListQueryResultsForPolicySetDefinition")
+		defer func() {
+			sc := -1
+			if result.Response.Response != nil {
+				sc = result.Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	if err := validation.Validate([]validation.Validation{
 		{TargetValue: top,
 			Constraints: []validation.Constraint{{Target: "top", Name: validation.Null, Rule: false,
@@ -377,7 +418,7 @@ func (client PolicyStatesClient) ListQueryResultsForPolicySetDefinitionPreparer(
 		"subscriptionId":          autorest.Encode("path", subscriptionID),
 	}
 
-	const APIVersion = "2018-04-04"
+	const APIVersion = "2018-07-01-preview"
 	queryParameters := map[string]interface{}{
 		"api-version": APIVersion,
 	}
@@ -447,7 +488,19 @@ func (client PolicyStatesClient) ListQueryResultsForPolicySetDefinitionResponder
 // specified, the service uses request time.
 // filter - oData filter expression.
 // apply - oData apply expression for aggregations.
-func (client PolicyStatesClient) ListQueryResultsForResource(ctx context.Context, policyStatesResource PolicyStatesResource, resourceID string, top *int32, orderBy string, selectParameter string, from *date.Time, toParameter *date.Time, filter string, apply string) (result PolicyStatesQueryResults, err error) {
+// expand - the $expand query parameter. For example, to expand policyEvaluationDetails, use
+// $expand=policyEvaluationDetails
+func (client PolicyStatesClient) ListQueryResultsForResource(ctx context.Context, policyStatesResource PolicyStatesResource, resourceID string, top *int32, orderBy string, selectParameter string, from *date.Time, toParameter *date.Time, filter string, apply string, expand string) (result PolicyStatesQueryResults, err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PolicyStatesClient.ListQueryResultsForResource")
+		defer func() {
+			sc := -1
+			if result.Response.Response != nil {
+				sc = result.Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	if err := validation.Validate([]validation.Validation{
 		{TargetValue: top,
 			Constraints: []validation.Constraint{{Target: "top", Name: validation.Null, Rule: false,
@@ -455,7 +508,7 @@ func (client PolicyStatesClient) ListQueryResultsForResource(ctx context.Context
 		return result, validation.NewError("policyinsights.PolicyStatesClient", "ListQueryResultsForResource", err.Error())
 	}
 
-	req, err := client.ListQueryResultsForResourcePreparer(ctx, policyStatesResource, resourceID, top, orderBy, selectParameter, from, toParameter, filter, apply)
+	req, err := client.ListQueryResultsForResourcePreparer(ctx, policyStatesResource, resourceID, top, orderBy, selectParameter, from, toParameter, filter, apply, expand)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "policyinsights.PolicyStatesClient", "ListQueryResultsForResource", nil, "Failure preparing request")
 		return
@@ -477,13 +530,13 @@ func (client PolicyStatesClient) ListQueryResultsForResource(ctx context.Context
 }
 
 // ListQueryResultsForResourcePreparer prepares the ListQueryResultsForResource request.
-func (client PolicyStatesClient) ListQueryResultsForResourcePreparer(ctx context.Context, policyStatesResource PolicyStatesResource, resourceID string, top *int32, orderBy string, selectParameter string, from *date.Time, toParameter *date.Time, filter string, apply string) (*http.Request, error) {
+func (client PolicyStatesClient) ListQueryResultsForResourcePreparer(ctx context.Context, policyStatesResource PolicyStatesResource, resourceID string, top *int32, orderBy string, selectParameter string, from *date.Time, toParameter *date.Time, filter string, apply string, expand string) (*http.Request, error) {
 	pathParameters := map[string]interface{}{
 		"policyStatesResource": autorest.Encode("path", policyStatesResource),
 		"resourceId":           resourceID,
 	}
 
-	const APIVersion = "2018-04-04"
+	const APIVersion = "2018-07-01-preview"
 	queryParameters := map[string]interface{}{
 		"api-version": APIVersion,
 	}
@@ -507,6 +560,9 @@ func (client PolicyStatesClient) ListQueryResultsForResourcePreparer(ctx context
 	}
 	if len(apply) > 0 {
 		queryParameters["$apply"] = autorest.Encode("query", apply)
+	}
+	if len(expand) > 0 {
+		queryParameters["$expand"] = autorest.Encode("query", expand)
 	}
 
 	preparer := autorest.CreatePreparer(
@@ -555,6 +611,16 @@ func (client PolicyStatesClient) ListQueryResultsForResourceResponder(resp *http
 // filter - oData filter expression.
 // apply - oData apply expression for aggregations.
 func (client PolicyStatesClient) ListQueryResultsForResourceGroup(ctx context.Context, policyStatesResource PolicyStatesResource, subscriptionID string, resourceGroupName string, top *int32, orderBy string, selectParameter string, from *date.Time, toParameter *date.Time, filter string, apply string) (result PolicyStatesQueryResults, err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PolicyStatesClient.ListQueryResultsForResourceGroup")
+		defer func() {
+			sc := -1
+			if result.Response.Response != nil {
+				sc = result.Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	if err := validation.Validate([]validation.Validation{
 		{TargetValue: top,
 			Constraints: []validation.Constraint{{Target: "top", Name: validation.Null, Rule: false,
@@ -591,7 +657,7 @@ func (client PolicyStatesClient) ListQueryResultsForResourceGroupPreparer(ctx co
 		"subscriptionId":       autorest.Encode("path", subscriptionID),
 	}
 
-	const APIVersion = "2018-04-04"
+	const APIVersion = "2018-07-01-preview"
 	queryParameters := map[string]interface{}{
 		"api-version": APIVersion,
 	}
@@ -665,6 +731,16 @@ func (client PolicyStatesClient) ListQueryResultsForResourceGroupResponder(resp 
 // filter - oData filter expression.
 // apply - oData apply expression for aggregations.
 func (client PolicyStatesClient) ListQueryResultsForResourceGroupLevelPolicyAssignment(ctx context.Context, policyStatesResource PolicyStatesResource, subscriptionID string, resourceGroupName string, policyAssignmentName string, top *int32, orderBy string, selectParameter string, from *date.Time, toParameter *date.Time, filter string, apply string) (result PolicyStatesQueryResults, err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PolicyStatesClient.ListQueryResultsForResourceGroupLevelPolicyAssignment")
+		defer func() {
+			sc := -1
+			if result.Response.Response != nil {
+				sc = result.Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	if err := validation.Validate([]validation.Validation{
 		{TargetValue: top,
 			Constraints: []validation.Constraint{{Target: "top", Name: validation.Null, Rule: false,
@@ -703,7 +779,7 @@ func (client PolicyStatesClient) ListQueryResultsForResourceGroupLevelPolicyAssi
 		"subscriptionId":         autorest.Encode("path", subscriptionID),
 	}
 
-	const APIVersion = "2018-04-04"
+	const APIVersion = "2018-07-01-preview"
 	queryParameters := map[string]interface{}{
 		"api-version": APIVersion,
 	}
@@ -774,6 +850,16 @@ func (client PolicyStatesClient) ListQueryResultsForResourceGroupLevelPolicyAssi
 // filter - oData filter expression.
 // apply - oData apply expression for aggregations.
 func (client PolicyStatesClient) ListQueryResultsForSubscription(ctx context.Context, policyStatesResource PolicyStatesResource, subscriptionID string, top *int32, orderBy string, selectParameter string, from *date.Time, toParameter *date.Time, filter string, apply string) (result PolicyStatesQueryResults, err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PolicyStatesClient.ListQueryResultsForSubscription")
+		defer func() {
+			sc := -1
+			if result.Response.Response != nil {
+				sc = result.Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	if err := validation.Validate([]validation.Validation{
 		{TargetValue: top,
 			Constraints: []validation.Constraint{{Target: "top", Name: validation.Null, Rule: false,
@@ -809,7 +895,7 @@ func (client PolicyStatesClient) ListQueryResultsForSubscriptionPreparer(ctx con
 		"subscriptionId":       autorest.Encode("path", subscriptionID),
 	}
 
-	const APIVersion = "2018-04-04"
+	const APIVersion = "2018-07-01-preview"
 	queryParameters := map[string]interface{}{
 		"api-version": APIVersion,
 	}
@@ -882,6 +968,16 @@ func (client PolicyStatesClient) ListQueryResultsForSubscriptionResponder(resp *
 // filter - oData filter expression.
 // apply - oData apply expression for aggregations.
 func (client PolicyStatesClient) ListQueryResultsForSubscriptionLevelPolicyAssignment(ctx context.Context, policyStatesResource PolicyStatesResource, subscriptionID string, policyAssignmentName string, top *int32, orderBy string, selectParameter string, from *date.Time, toParameter *date.Time, filter string, apply string) (result PolicyStatesQueryResults, err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PolicyStatesClient.ListQueryResultsForSubscriptionLevelPolicyAssignment")
+		defer func() {
+			sc := -1
+			if result.Response.Response != nil {
+				sc = result.Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	if err := validation.Validate([]validation.Validation{
 		{TargetValue: top,
 			Constraints: []validation.Constraint{{Target: "top", Name: validation.Null, Rule: false,
@@ -919,7 +1015,7 @@ func (client PolicyStatesClient) ListQueryResultsForSubscriptionLevelPolicyAssig
 		"subscriptionId":         autorest.Encode("path", subscriptionID),
 	}
 
-	const APIVersion = "2018-04-04"
+	const APIVersion = "2018-07-01-preview"
 	queryParameters := map[string]interface{}{
 		"api-version": APIVersion,
 	}
@@ -983,6 +1079,16 @@ func (client PolicyStatesClient) ListQueryResultsForSubscriptionLevelPolicyAssig
 // specified, the service uses request time.
 // filter - oData filter expression.
 func (client PolicyStatesClient) SummarizeForManagementGroup(ctx context.Context, managementGroupName string, top *int32, from *date.Time, toParameter *date.Time, filter string) (result SummarizeResults, err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PolicyStatesClient.SummarizeForManagementGroup")
+		defer func() {
+			sc := -1
+			if result.Response.Response != nil {
+				sc = result.Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	if err := validation.Validate([]validation.Validation{
 		{TargetValue: top,
 			Constraints: []validation.Constraint{{Target: "top", Name: validation.Null, Rule: false,
@@ -1019,7 +1125,7 @@ func (client PolicyStatesClient) SummarizeForManagementGroupPreparer(ctx context
 		"policyStatesSummaryResource": autorest.Encode("path", "latest"),
 	}
 
-	const APIVersion = "2018-04-04"
+	const APIVersion = "2018-07-01-preview"
 	queryParameters := map[string]interface{}{
 		"api-version": APIVersion,
 	}
@@ -1075,6 +1181,16 @@ func (client PolicyStatesClient) SummarizeForManagementGroupResponder(resp *http
 // specified, the service uses request time.
 // filter - oData filter expression.
 func (client PolicyStatesClient) SummarizeForPolicyDefinition(ctx context.Context, subscriptionID string, policyDefinitionName string, top *int32, from *date.Time, toParameter *date.Time, filter string) (result SummarizeResults, err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PolicyStatesClient.SummarizeForPolicyDefinition")
+		defer func() {
+			sc := -1
+			if result.Response.Response != nil {
+				sc = result.Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	if err := validation.Validate([]validation.Validation{
 		{TargetValue: top,
 			Constraints: []validation.Constraint{{Target: "top", Name: validation.Null, Rule: false,
@@ -1112,7 +1228,7 @@ func (client PolicyStatesClient) SummarizeForPolicyDefinitionPreparer(ctx contex
 		"subscriptionId":              autorest.Encode("path", subscriptionID),
 	}
 
-	const APIVersion = "2018-04-04"
+	const APIVersion = "2018-07-01-preview"
 	queryParameters := map[string]interface{}{
 		"api-version": APIVersion,
 	}
@@ -1168,6 +1284,16 @@ func (client PolicyStatesClient) SummarizeForPolicyDefinitionResponder(resp *htt
 // specified, the service uses request time.
 // filter - oData filter expression.
 func (client PolicyStatesClient) SummarizeForPolicySetDefinition(ctx context.Context, subscriptionID string, policySetDefinitionName string, top *int32, from *date.Time, toParameter *date.Time, filter string) (result SummarizeResults, err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PolicyStatesClient.SummarizeForPolicySetDefinition")
+		defer func() {
+			sc := -1
+			if result.Response.Response != nil {
+				sc = result.Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	if err := validation.Validate([]validation.Validation{
 		{TargetValue: top,
 			Constraints: []validation.Constraint{{Target: "top", Name: validation.Null, Rule: false,
@@ -1205,7 +1331,7 @@ func (client PolicyStatesClient) SummarizeForPolicySetDefinitionPreparer(ctx con
 		"subscriptionId":              autorest.Encode("path", subscriptionID),
 	}
 
-	const APIVersion = "2018-04-04"
+	const APIVersion = "2018-07-01-preview"
 	queryParameters := map[string]interface{}{
 		"api-version": APIVersion,
 	}
@@ -1260,6 +1386,16 @@ func (client PolicyStatesClient) SummarizeForPolicySetDefinitionResponder(resp *
 // specified, the service uses request time.
 // filter - oData filter expression.
 func (client PolicyStatesClient) SummarizeForResource(ctx context.Context, resourceID string, top *int32, from *date.Time, toParameter *date.Time, filter string) (result SummarizeResults, err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PolicyStatesClient.SummarizeForResource")
+		defer func() {
+			sc := -1
+			if result.Response.Response != nil {
+				sc = result.Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	if err := validation.Validate([]validation.Validation{
 		{TargetValue: top,
 			Constraints: []validation.Constraint{{Target: "top", Name: validation.Null, Rule: false,
@@ -1295,7 +1431,7 @@ func (client PolicyStatesClient) SummarizeForResourcePreparer(ctx context.Contex
 		"resourceId":                  resourceID,
 	}
 
-	const APIVersion = "2018-04-04"
+	const APIVersion = "2018-07-01-preview"
 	queryParameters := map[string]interface{}{
 		"api-version": APIVersion,
 	}
@@ -1351,6 +1487,16 @@ func (client PolicyStatesClient) SummarizeForResourceResponder(resp *http.Respon
 // specified, the service uses request time.
 // filter - oData filter expression.
 func (client PolicyStatesClient) SummarizeForResourceGroup(ctx context.Context, subscriptionID string, resourceGroupName string, top *int32, from *date.Time, toParameter *date.Time, filter string) (result SummarizeResults, err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PolicyStatesClient.SummarizeForResourceGroup")
+		defer func() {
+			sc := -1
+			if result.Response.Response != nil {
+				sc = result.Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	if err := validation.Validate([]validation.Validation{
 		{TargetValue: top,
 			Constraints: []validation.Constraint{{Target: "top", Name: validation.Null, Rule: false,
@@ -1387,7 +1533,7 @@ func (client PolicyStatesClient) SummarizeForResourceGroupPreparer(ctx context.C
 		"subscriptionId":              autorest.Encode("path", subscriptionID),
 	}
 
-	const APIVersion = "2018-04-04"
+	const APIVersion = "2018-07-01-preview"
 	queryParameters := map[string]interface{}{
 		"api-version": APIVersion,
 	}
@@ -1445,6 +1591,16 @@ func (client PolicyStatesClient) SummarizeForResourceGroupResponder(resp *http.R
 // specified, the service uses request time.
 // filter - oData filter expression.
 func (client PolicyStatesClient) SummarizeForResourceGroupLevelPolicyAssignment(ctx context.Context, subscriptionID string, resourceGroupName string, policyAssignmentName string, top *int32, from *date.Time, toParameter *date.Time, filter string) (result SummarizeResults, err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PolicyStatesClient.SummarizeForResourceGroupLevelPolicyAssignment")
+		defer func() {
+			sc := -1
+			if result.Response.Response != nil {
+				sc = result.Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	if err := validation.Validate([]validation.Validation{
 		{TargetValue: top,
 			Constraints: []validation.Constraint{{Target: "top", Name: validation.Null, Rule: false,
@@ -1483,7 +1639,7 @@ func (client PolicyStatesClient) SummarizeForResourceGroupLevelPolicyAssignmentP
 		"subscriptionId":              autorest.Encode("path", subscriptionID),
 	}
 
-	const APIVersion = "2018-04-04"
+	const APIVersion = "2018-07-01-preview"
 	queryParameters := map[string]interface{}{
 		"api-version": APIVersion,
 	}
@@ -1538,6 +1694,16 @@ func (client PolicyStatesClient) SummarizeForResourceGroupLevelPolicyAssignmentR
 // specified, the service uses request time.
 // filter - oData filter expression.
 func (client PolicyStatesClient) SummarizeForSubscription(ctx context.Context, subscriptionID string, top *int32, from *date.Time, toParameter *date.Time, filter string) (result SummarizeResults, err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PolicyStatesClient.SummarizeForSubscription")
+		defer func() {
+			sc := -1
+			if result.Response.Response != nil {
+				sc = result.Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	if err := validation.Validate([]validation.Validation{
 		{TargetValue: top,
 			Constraints: []validation.Constraint{{Target: "top", Name: validation.Null, Rule: false,
@@ -1573,7 +1739,7 @@ func (client PolicyStatesClient) SummarizeForSubscriptionPreparer(ctx context.Co
 		"subscriptionId":              autorest.Encode("path", subscriptionID),
 	}
 
-	const APIVersion = "2018-04-04"
+	const APIVersion = "2018-07-01-preview"
 	queryParameters := map[string]interface{}{
 		"api-version": APIVersion,
 	}
@@ -1629,6 +1795,16 @@ func (client PolicyStatesClient) SummarizeForSubscriptionResponder(resp *http.Re
 // specified, the service uses request time.
 // filter - oData filter expression.
 func (client PolicyStatesClient) SummarizeForSubscriptionLevelPolicyAssignment(ctx context.Context, subscriptionID string, policyAssignmentName string, top *int32, from *date.Time, toParameter *date.Time, filter string) (result SummarizeResults, err error) {
+	if tracing.IsEnabled() {
+		ctx = tracing.StartSpan(ctx, fqdn+"/PolicyStatesClient.SummarizeForSubscriptionLevelPolicyAssignment")
+		defer func() {
+			sc := -1
+			if result.Response.Response != nil {
+				sc = result.Response.Response.StatusCode
+			}
+			tracing.EndSpan(ctx, sc, err)
+		}()
+	}
 	if err := validation.Validate([]validation.Validation{
 		{TargetValue: top,
 			Constraints: []validation.Constraint{{Target: "top", Name: validation.Null, Rule: false,
@@ -1666,7 +1842,7 @@ func (client PolicyStatesClient) SummarizeForSubscriptionLevelPolicyAssignmentPr
 		"subscriptionId":              autorest.Encode("path", subscriptionID),
 	}
 
-	const APIVersion = "2018-04-04"
+	const APIVersion = "2018-07-01-preview"
 	queryParameters := map[string]interface{}{
 		"api-version": APIVersion,
 	}

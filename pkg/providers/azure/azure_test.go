@@ -4,10 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"os"
+	"path/filepath"
 	"testing"
 
-	"github.com/Azure/azure-sdk-for-go/profiles/2017-03-09/resources/mgmt/subscriptions"
-	"github.com/Azure/azure-sdk-for-go/services/compute/mgmt/2017-12-01/compute"
+	"github.com/Azure/azure-sdk-for-go/profiles/2019-03-01/resources/mgmt/subscriptions"
+	"github.com/Azure/azure-sdk-for-go/services/compute/mgmt/2019-03-01/compute"
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/adal"
 	"github.com/Azure/go-autorest/autorest/azure"
@@ -38,7 +40,7 @@ func TestRegion(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	groupsClient := subscriptions.NewClient()
+	groupsClient := subscriptions.NewGroupClient()
 	groupsClient.Authorizer = autorest.NewBearerAuthorizer(spt)
 	g := Client{
 		GroupsClient:   groupsClient,
@@ -68,7 +70,7 @@ func TestInstances(t *testing.T) {
 	}
 	vmSzClient := compute.NewVirtualMachineSizesClient(cred.SubscriptionId)
 	vmSzClient.Authorizer = autorest.NewBearerAuthorizer(spt)
-	groupsClient := subscriptions.NewClient()
+	groupsClient := subscriptions.NewGroupClient()
 	groupsClient.Authorizer = autorest.NewBearerAuthorizer(spt)
 	g := Client{
 		VmSizesClient:  vmSzClient,
@@ -84,7 +86,9 @@ func TestInstances(t *testing.T) {
 
 func getCredential() (*credInfo, error) {
 	var cred credInfo
-	bytes, err := ioutil.ReadFile("/home/ac/Downloads/cred/azure.json")
+	bytes, err := ioutil.ReadFile(filepath.Join(
+		os.Getenv("HOME"), ".pharmer", "store.d", os.Getenv("USER"), "credentials", "azure.json"))
+
 	if err != nil {
 		return nil, err
 	}

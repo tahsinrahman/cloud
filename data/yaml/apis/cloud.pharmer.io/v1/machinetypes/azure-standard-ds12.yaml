@@ -1,0 +1,28 @@
+apiVersion: cloud.pharmer.io/v1
+kind: MachineType
+metadata:
+  creationTimestamp: null
+  labels:
+    cloud.pharmer.io/provider: azure
+  name: azure-standard-ds12
+spec:
+  cpu: "4"
+  description: Standard_DS12
+  disk: 56Ki
+  ram: 28Ki
+  sku: Standard_DS12
+  zones:
+  - australiaeast
+  - australiasoutheast
+  - brazilsouth
+  - centralus
+  - eastasia
+  - eastus
+  - eastus2
+  - japaneast
+  - japanwest
+  - northeurope
+  - southcentralus
+  - southeastasia
+  - westeurope
+  - westus

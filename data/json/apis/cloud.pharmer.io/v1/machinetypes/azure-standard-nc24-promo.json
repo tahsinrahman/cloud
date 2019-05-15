@@ -1,0 +1,29 @@
+{
+  "kind": "MachineType",
+  "apiVersion": "cloud.pharmer.io/v1",
+  "metadata": {
+    "name": "azure-standard-nc24-promo",
+    "creationTimestamp": null,
+    "labels": {
+      "cloud.pharmer.io/provider": "azure"
+    }
+  },
+  "spec": {
+    "sku": "Standard_NC24_Promo",
+    "description": "Standard_NC24_Promo",
+    "cpu": "24",
+    "ram": "224Ki",
+    "disk": "1440Ki",
+    "zones": [
+      "australiaeast",
+      "eastus",
+      "eastus2",
+      "northcentralus",
+      "northeurope",
+      "southcentralus",
+      "uksouth",
+      "westeurope",
+      "westus2"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "kind": "MachineType",
+  "apiVersion": "cloud.pharmer.io/v1",
+  "metadata": {
+    "name": "azure-standard-m32ts",
+    "creationTimestamp": null,
+    "labels": {
+      "cloud.pharmer.io/provider": "azure"
+    }
+  },
+  "spec": {
+    "sku": "Standard_M32ts",
+    "description": "Standard_M32ts",
+    "cpu": "32",
+    "ram": "192Ki",
+    "disk": "1000Ki",
+    "zones": [
+      "australiaeast",
+      "australiasoutheast",
+      "canadacentral",
+      "canadaeast",
+      "centralindia",
+      "eastasia",
+      "eastus",
+      "eastus2",
+      "japaneast",
+      "japanwest",
+      "koreacentral",
+      "koreasouth",
+      "northeurope",
+      "southcentralus",
+      "southeastasia",
+      "southindia",
+      "uksouth",
+      "ukwest",
+      "westeurope",
+      "westus2"
+    ]
+  }
+}

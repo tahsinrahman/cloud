@@ -1,0 +1,18 @@
+apiVersion: cloud.pharmer.io/v1
+kind: MachineType
+metadata:
+  creationTimestamp: null
+  labels:
+    cloud.pharmer.io/provider: azure
+  name: azure-standard-nd6s
+spec:
+  cpu: "6"
+  description: Standard_ND6s
+  disk: 336Ki
+  ram: 112Ki
+  sku: Standard_ND6s
+  zones:
+  - eastus
+  - southeastasia
+  - westeurope
+  - westus2
