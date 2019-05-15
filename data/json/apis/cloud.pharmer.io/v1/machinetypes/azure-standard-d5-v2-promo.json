@@ -12,8 +12,8 @@
     "sku": "Standard_D5_v2_Promo",
     "description": "Standard_D5_v2_Promo",
     "cpu": "16",
-    "ram": "56Ki",
-    "disk": "800Ki",
+    "ram": "57344M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

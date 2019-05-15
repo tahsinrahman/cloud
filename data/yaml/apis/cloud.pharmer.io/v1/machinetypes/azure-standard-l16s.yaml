@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "16"
   description: Standard_L16s
-  disk: 2807Ki
-  ram: 128Ki
+  disk: 1047552M
+  ram: 131072M
   sku: Standard_L16s
   zones:
   - australiaeast

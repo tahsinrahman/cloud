@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "16"
   description: Standard_D5_v2_Promo
-  disk: 800Ki
-  ram: 56Ki
+  disk: 1047552M
+  ram: 57344M
   sku: Standard_D5_v2_Promo
   zones:
   - australiaeast

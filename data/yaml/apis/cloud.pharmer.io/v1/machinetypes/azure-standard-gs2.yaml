@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "4"
   description: Standard_GS2
-  disk: 112Ki
-  ram: 56Ki
+  disk: 1047552M
+  ram: 57344M
   sku: Standard_GS2
   zones:
   - australiaeast

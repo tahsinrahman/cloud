@@ -12,8 +12,8 @@
     "sku": "Standard_M128",
     "description": "Standard_M128",
     "cpu": "128",
-    "ram": "2000Ki",
-    "disk": "16000Ki",
+    "ram": "2048G",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

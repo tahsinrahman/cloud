@@ -12,8 +12,8 @@
     "sku": "Standard_M32-8ms",
     "description": "Standard_M32-8ms",
     "cpu": "32",
-    "ram": "875Ki",
-    "disk": "1000Ki",
+    "ram": "896G",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

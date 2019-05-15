@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "12"
   description: Standard_ND12s
-  disk: 672Ki
-  ram: 224Ki
+  disk: 1047552M
+  ram: 229376M
   sku: Standard_ND12s
   zones:
   - eastus

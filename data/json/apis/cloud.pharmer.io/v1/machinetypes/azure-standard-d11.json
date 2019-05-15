@@ -12,8 +12,8 @@
     "sku": "Standard_D11",
     "description": "Standard_D11",
     "cpu": "2",
-    "ram": "14Ki",
-    "disk": "100Ki",
+    "ram": "14336M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

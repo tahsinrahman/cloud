@@ -12,8 +12,8 @@
     "sku": "Basic_A4",
     "description": "Basic_A4",
     "cpu": "8",
-    "ram": "14Ki",
-    "disk": "240Ki",
+    "ram": "14336M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

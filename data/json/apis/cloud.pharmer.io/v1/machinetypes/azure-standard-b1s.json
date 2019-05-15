@@ -12,8 +12,8 @@
     "sku": "Standard_B1s",
     "description": "Standard_B1s",
     "cpu": "1",
-    "ram": "1Ki",
-    "disk": "2Ki",
+    "ram": "1024M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

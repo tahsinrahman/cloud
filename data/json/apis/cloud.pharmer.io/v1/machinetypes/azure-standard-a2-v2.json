@@ -12,8 +12,8 @@
     "sku": "Standard_A2_v2",
     "description": "Standard_A2_v2",
     "cpu": "2",
-    "ram": "4Ki",
-    "disk": "20Ki",
+    "ram": "4096M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

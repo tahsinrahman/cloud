@@ -12,8 +12,8 @@
     "sku": "Standard_H16mr_Promo",
     "description": "Standard_H16mr_Promo",
     "cpu": "16",
-    "ram": "224Ki",
-    "disk": "2000Ki",
+    "ram": "229376M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "centralindia",

@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "72"
   description: Standard_F72s_v2
-  disk: 576Ki
-  ram: 144Ki
+  disk: 1047552M
+  ram: 147456M
   sku: Standard_F72s_v2
   zones:
   - australiaeast

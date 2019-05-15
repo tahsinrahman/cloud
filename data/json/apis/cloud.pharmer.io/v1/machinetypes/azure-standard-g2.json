@@ -12,8 +12,8 @@
     "sku": "Standard_G2",
     "description": "Standard_G2",
     "cpu": "4",
-    "ram": "56Ki",
-    "disk": "768Ki",
+    "ram": "57344M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "canadacentral",

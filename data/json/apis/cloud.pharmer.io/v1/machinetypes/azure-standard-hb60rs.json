@@ -12,8 +12,8 @@
     "sku": "Standard_HB60rs",
     "description": "Standard_HB60rs",
     "cpu": "60",
-    "ram": "228881",
-    "disk": "700Ki",
+    "ram": "228881M",
+    "disk": "1047552M",
     "zones": [
       "southcentralus",
       "westeurope"

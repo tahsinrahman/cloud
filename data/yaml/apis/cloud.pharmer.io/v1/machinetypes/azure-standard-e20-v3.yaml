@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "20"
   description: Standard_E20_v3
-  disk: 500Ki
-  ram: 160Ki
+  disk: 1047552M
+  ram: 163840M
   sku: Standard_E20_v3
   zones:
   - australiaeast

@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "4"
   description: Standard_D4_v3
-  disk: 100Ki
-  ram: 16Ki
+  disk: 1047552M
+  ram: 16384M
   sku: Standard_D4_v3
   zones:
   - australiaeast

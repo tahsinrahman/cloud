@@ -12,8 +12,8 @@
     "sku": "Standard_DS11-1_v2",
     "description": "Standard_DS11-1_v2",
     "cpu": "2",
-    "ram": "14Ki",
-    "disk": "28Ki",
+    "ram": "14336M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

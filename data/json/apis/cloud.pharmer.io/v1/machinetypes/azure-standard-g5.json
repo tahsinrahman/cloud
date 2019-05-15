@@ -12,8 +12,8 @@
     "sku": "Standard_G5",
     "description": "Standard_G5",
     "cpu": "32",
-    "ram": "448Ki",
-    "disk": "6Mi",
+    "ram": "458752M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "canadacentral",

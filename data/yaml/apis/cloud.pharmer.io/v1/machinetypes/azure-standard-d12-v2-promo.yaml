@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "4"
   description: Standard_D12_v2_Promo
-  disk: 200Ki
-  ram: 28Ki
+  disk: 1047552M
+  ram: 28672M
   sku: Standard_D12_v2_Promo
   zones:
   - australiaeast

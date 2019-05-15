@@ -12,8 +12,8 @@
     "sku": "Standard_DS4",
     "description": "Standard_DS4",
     "cpu": "8",
-    "ram": "28Ki",
-    "disk": "56Ki",
+    "ram": "28672M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

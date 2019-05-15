@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "2"
   description: Standard_DS2
-  disk: 14Ki
-  ram: 7Ki
+  disk: 1047552M
+  ram: 7168M
   sku: Standard_DS2
   zones:
   - australiaeast

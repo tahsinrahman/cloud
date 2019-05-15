@@ -12,8 +12,8 @@
     "sku": "Standard_A4_v2",
     "description": "Standard_A4_v2",
     "cpu": "4",
-    "ram": "8Ki",
-    "disk": "40Ki",
+    "ram": "8192M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

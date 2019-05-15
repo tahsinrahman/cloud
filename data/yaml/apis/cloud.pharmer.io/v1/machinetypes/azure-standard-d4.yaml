@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "8"
   description: Standard_D4
-  disk: 400Ki
-  ram: 28Ki
+  disk: 1047552M
+  ram: 28672M
   sku: Standard_D4
   zones:
   - australiaeast

@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "16"
   description: Standard_F16s_v2
-  disk: 128Ki
-  ram: 32Ki
+  disk: 1047552M
+  ram: 32768M
   sku: Standard_F16s_v2
   zones:
   - australiaeast

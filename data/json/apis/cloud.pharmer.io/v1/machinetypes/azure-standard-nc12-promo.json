@@ -12,8 +12,8 @@
     "sku": "Standard_NC12_Promo",
     "description": "Standard_NC12_Promo",
     "cpu": "12",
-    "ram": "112Ki",
-    "disk": "680Ki",
+    "ram": "114688M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "eastus",

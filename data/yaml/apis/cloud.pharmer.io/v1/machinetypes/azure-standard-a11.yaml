@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "16"
   description: Standard_A11
-  disk: 382Ki
-  ram: 112Ki
+  disk: 1047552M
+  ram: 114688M
   sku: Standard_A11
   zones:
   - eastus

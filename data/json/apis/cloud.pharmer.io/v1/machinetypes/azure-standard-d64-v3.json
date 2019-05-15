@@ -12,8 +12,8 @@
     "sku": "Standard_D64_v3",
     "description": "Standard_D64_v3",
     "cpu": "64",
-    "ram": "256Ki",
-    "disk": "1600Ki",
+    "ram": "262144M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

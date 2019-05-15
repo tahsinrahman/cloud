@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "4"
   description: Standard_A6
-  disk: 285Ki
-  ram: 28Ki
+  disk: 1047552M
+  ram: 28672M
   sku: Standard_A6
   zones:
   - australiaeast

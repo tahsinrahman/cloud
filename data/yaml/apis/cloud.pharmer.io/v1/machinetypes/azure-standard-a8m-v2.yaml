@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "8"
   description: Standard_A8m_v2
-  disk: 80Ki
-  ram: 64Ki
+  disk: 1047552M
+  ram: 65536M
   sku: Standard_A8m_v2
   zones:
   - australiaeast

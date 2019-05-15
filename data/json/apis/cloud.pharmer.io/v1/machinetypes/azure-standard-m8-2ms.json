@@ -12,8 +12,8 @@
     "sku": "Standard_M8-2ms",
     "description": "Standard_M8-2ms",
     "cpu": "8",
-    "ram": "224000",
-    "disk": "250Ki",
+    "ram": "224G",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

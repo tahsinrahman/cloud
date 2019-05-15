@@ -12,8 +12,8 @@
     "sku": "Standard_E20_v3",
     "description": "Standard_E20_v3",
     "cpu": "20",
-    "ram": "160Ki",
-    "disk": "500Ki",
+    "ram": "163840M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

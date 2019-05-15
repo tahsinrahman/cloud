@@ -12,8 +12,8 @@
     "sku": "Standard_DS1",
     "description": "Standard_DS1",
     "cpu": "1",
-    "ram": "3584",
-    "disk": "7Ki",
+    "ram": "3584M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

@@ -12,8 +12,8 @@
     "sku": "Standard_D32s_v3",
     "description": "Standard_D32s_v3",
     "cpu": "32",
-    "ram": "128Ki",
-    "disk": "256Ki",
+    "ram": "131072M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

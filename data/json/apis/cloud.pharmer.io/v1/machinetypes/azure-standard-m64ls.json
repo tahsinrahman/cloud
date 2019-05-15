@@ -12,8 +12,8 @@
     "sku": "Standard_M64ls",
     "description": "Standard_M64ls",
     "cpu": "64",
-    "ram": "512Ki",
-    "disk": "2000Ki",
+    "ram": "524288M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

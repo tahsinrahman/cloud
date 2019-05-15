@@ -12,8 +12,8 @@
     "sku": "Standard_F64s_v2",
     "description": "Standard_F64s_v2",
     "cpu": "64",
-    "ram": "128Ki",
-    "disk": "512Ki",
+    "ram": "131072M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

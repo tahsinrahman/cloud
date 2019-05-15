@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "4"
   description: Standard_F4
-  disk: 64Ki
-  ram: 8Ki
+  disk: 1047552M
+  ram: 8192M
   sku: Standard_F4
   zones:
   - australiaeast

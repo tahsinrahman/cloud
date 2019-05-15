@@ -12,8 +12,8 @@
     "sku": "Standard_DS15_v2",
     "description": "Standard_DS15_v2",
     "cpu": "20",
-    "ram": "140Ki",
-    "disk": "280Ki",
+    "ram": "143360M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

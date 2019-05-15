@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "208"
   description: Standard_M208s_v2
-  disk: 4Mi
-  ram: 2850Ki
+  disk: 1047552M
+  ram: 2918400M
   sku: Standard_M208s_v2
   zones:
   - eastus

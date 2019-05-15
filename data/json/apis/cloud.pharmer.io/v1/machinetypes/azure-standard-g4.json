@@ -12,8 +12,8 @@
     "sku": "Standard_G4",
     "description": "Standard_G4",
     "cpu": "16",
-    "ram": "224Ki",
-    "disk": "3Mi",
+    "ram": "229376M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "canadacentral",

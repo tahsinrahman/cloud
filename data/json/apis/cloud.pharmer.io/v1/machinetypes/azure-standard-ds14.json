@@ -12,8 +12,8 @@
     "sku": "Standard_DS14",
     "description": "Standard_DS14",
     "cpu": "16",
-    "ram": "112Ki",
-    "disk": "224Ki",
+    "ram": "114688M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

@@ -12,8 +12,8 @@
     "sku": "Standard_L80s_v2",
     "description": "Standard_L80s_v2",
     "cpu": "80",
-    "ram": "640Ki",
-    "disk": "18119810",
+    "ram": "655360M",
+    "disk": "1047552M",
     "zones": [
       "eastus",
       "eastus2",

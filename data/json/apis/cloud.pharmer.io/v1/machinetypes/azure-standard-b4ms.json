@@ -12,8 +12,8 @@
     "sku": "Standard_B4ms",
     "description": "Standard_B4ms",
     "cpu": "4",
-    "ram": "16Ki",
-    "disk": "32Ki",
+    "ram": "16384M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

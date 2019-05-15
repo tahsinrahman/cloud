@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "1"
   description: Standard_DS1
-  disk: 7Ki
-  ram: "3584"
+  disk: 1047552M
+  ram: 3584M
   sku: Standard_DS1
   zones:
   - australiaeast

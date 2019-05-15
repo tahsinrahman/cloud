@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "60"
   description: Standard_HB60rs
-  disk: 700Ki
-  ram: "228881"
+  disk: 1047552M
+  ram: 228881M
   sku: Standard_HB60rs
   zones:
   - southcentralus

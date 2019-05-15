@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "32"
   description: Standard_E32-8s_v3
-  disk: 512Ki
-  ram: 256Ki
+  disk: 1047552M
+  ram: 262144M
   sku: Standard_E32-8s_v3
   zones:
   - australiaeast

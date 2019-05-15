@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "4"
   description: Standard_L4s
-  disk: 678Ki
-  ram: 32Ki
+  disk: 1047552M
+  ram: 32768M
   sku: Standard_L4s
   zones:
   - australiaeast

@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "6"
   description: Standard_NC6s_v3
-  disk: 336Ki
-  ram: 112Ki
+  disk: 1047552M
+  ram: 114688M
   sku: Standard_NC6s_v3
   zones:
   - australiaeast

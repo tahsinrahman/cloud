@@ -12,8 +12,8 @@
     "sku": "Standard_L32s",
     "description": "Standard_L32s",
     "cpu": "32",
-    "ram": "256Ki",
-    "disk": "5630Ki",
+    "ram": "262144M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "canadacentral",

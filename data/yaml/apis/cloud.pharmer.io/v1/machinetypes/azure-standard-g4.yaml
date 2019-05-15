@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "16"
   description: Standard_G4
-  disk: 3Mi
-  ram: 224Ki
+  disk: 1047552M
+  ram: 229376M
   sku: Standard_G4
   zones:
   - australiaeast

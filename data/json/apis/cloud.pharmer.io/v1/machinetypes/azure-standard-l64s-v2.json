@@ -12,8 +12,8 @@
     "sku": "Standard_L64s_v2",
     "description": "Standard_L64s_v2",
     "cpu": "64",
-    "ram": "512Ki",
-    "disk": "14495849",
+    "ram": "524288M",
+    "disk": "1047552M",
     "zones": [
       "eastus",
       "eastus2",

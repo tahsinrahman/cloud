@@ -12,8 +12,8 @@
     "sku": "Standard_L16s_v2",
     "description": "Standard_L16s_v2",
     "cpu": "16",
-    "ram": "128Ki",
-    "disk": "3623962",
+    "ram": "131072M",
+    "disk": "1047552M",
     "zones": [
       "eastus",
       "eastus2",

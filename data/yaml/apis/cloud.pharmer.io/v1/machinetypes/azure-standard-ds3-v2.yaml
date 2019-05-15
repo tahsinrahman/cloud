@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "4"
   description: Standard_DS3_v2
-  disk: 28Ki
-  ram: 14Ki
+  disk: 1047552M
+  ram: 14336M
   sku: Standard_DS3_v2
   zones:
   - australiaeast

@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "48"
   description: Standard_NV48s_v3
-  disk: 1344Ki
-  ram: 448Ki
+  disk: 1047552M
+  ram: 458752M
   sku: Standard_NV48s_v3
   zones:
   - northeurope

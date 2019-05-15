@@ -12,8 +12,8 @@
     "sku": "Standard_NC24r",
     "description": "Standard_NC24r",
     "cpu": "24",
-    "ram": "224Ki",
-    "disk": "1440Ki",
+    "ram": "229376M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "eastus",

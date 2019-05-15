@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "16"
   description: Standard_M16-4ms
-  disk: 500Ki
-  ram: "448000"
+  disk: 1047552M
+  ram: 448G
   sku: Standard_M16-4ms
   zones:
   - australiaeast

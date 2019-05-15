@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "80"
   description: Standard_L80s_v2
-  disk: "18119810"
-  ram: 640Ki
+  disk: 1047552M
+  ram: 655360M
   sku: Standard_L80s_v2
   zones:
   - eastus

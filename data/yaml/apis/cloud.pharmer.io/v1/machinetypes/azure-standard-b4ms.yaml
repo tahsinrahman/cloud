@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "4"
   description: Standard_B4ms
-  disk: 32Ki
-  ram: 16Ki
+  disk: 1047552M
+  ram: 16384M
   sku: Standard_B4ms
   zones:
   - australiaeast

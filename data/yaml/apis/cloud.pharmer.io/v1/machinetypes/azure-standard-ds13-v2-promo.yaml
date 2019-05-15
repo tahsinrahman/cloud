@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "8"
   description: Standard_DS13_v2_Promo
-  disk: 112Ki
-  ram: 56Ki
+  disk: 1047552M
+  ram: 57344M
   sku: Standard_DS13_v2_Promo
   zones:
   - australiaeast

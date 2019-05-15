@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "2"
   description: Standard_A5
-  disk: 135Ki
-  ram: 14Ki
+  disk: 1047552M
+  ram: 14336M
   sku: Standard_A5
   zones:
   - australiaeast

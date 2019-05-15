@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "2"
   description: Standard_B2s
-  disk: 8Ki
-  ram: 4Ki
+  disk: 1047552M
+  ram: 4096M
   sku: Standard_B2s
   zones:
   - australiaeast

@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "4"
   description: Standard_A4m_v2
-  disk: 40Ki
-  ram: 32Ki
+  disk: 1047552M
+  ram: 32768M
   sku: Standard_A4m_v2
   zones:
   - australiaeast

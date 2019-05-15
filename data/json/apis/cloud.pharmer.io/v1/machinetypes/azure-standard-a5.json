@@ -12,8 +12,8 @@
     "sku": "Standard_A5",
     "description": "Standard_A5",
     "cpu": "2",
-    "ram": "14Ki",
-    "disk": "135Ki",
+    "ram": "14336M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

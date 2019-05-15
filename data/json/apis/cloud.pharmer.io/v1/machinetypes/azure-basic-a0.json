@@ -12,8 +12,8 @@
     "sku": "Basic_A0",
     "description": "Basic_A0",
     "cpu": "1",
-    "ram": "768",
-    "disk": "20Ki",
+    "ram": "768M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

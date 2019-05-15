@@ -12,8 +12,8 @@
     "sku": "Standard_HC44rs",
     "description": "Standard_HC44rs",
     "cpu": "44",
-    "ram": "335693",
-    "disk": "700Ki",
+    "ram": "335693M",
+    "disk": "1047552M",
     "zones": [
       "eastus",
       "westus2"

@@ -12,8 +12,8 @@
     "sku": "Standard_L32s_v2",
     "description": "Standard_L32s_v2",
     "cpu": "32",
-    "ram": "256Ki",
-    "disk": "7247924",
+    "ram": "262144M",
+    "disk": "1047552M",
     "zones": [
       "eastus",
       "eastus2",

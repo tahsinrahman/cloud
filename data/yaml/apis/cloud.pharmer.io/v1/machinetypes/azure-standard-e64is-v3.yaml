@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "64"
   description: Standard_E64is_v3
-  disk: 864Ki
-  ram: 432Ki
+  disk: 1047552M
+  ram: 442368M
   sku: Standard_E64is_v3
   zones:
   - australiaeast

@@ -12,8 +12,8 @@
     "sku": "Standard_NV6s_v2",
     "description": "Standard_NV6s_v2",
     "cpu": "6",
-    "ram": "112Ki",
-    "disk": "336Ki",
+    "ram": "114688M",
+    "disk": "1047552M",
     "zones": [
       "northeurope",
       "southcentralus",

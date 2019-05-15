@@ -12,8 +12,8 @@
     "sku": "Standard_A8_v2",
     "description": "Standard_A8_v2",
     "cpu": "8",
-    "ram": "16Ki",
-    "disk": "80Ki",
+    "ram": "16384M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

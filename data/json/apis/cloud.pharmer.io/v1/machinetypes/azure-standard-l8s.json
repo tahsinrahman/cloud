@@ -12,8 +12,8 @@
     "sku": "Standard_L8s",
     "description": "Standard_L8s",
     "cpu": "8",
-    "ram": "64Ki",
-    "disk": "1388Ki",
+    "ram": "65536M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "canadacentral",

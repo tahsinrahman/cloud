@@ -12,8 +12,8 @@
     "sku": "Standard_L16s",
     "description": "Standard_L16s",
     "cpu": "16",
-    "ram": "128Ki",
-    "disk": "2807Ki",
+    "ram": "131072M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "canadacentral",

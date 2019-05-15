@@ -12,8 +12,8 @@
     "sku": "Standard_E8-4s_v3",
     "description": "Standard_E8-4s_v3",
     "cpu": "8",
-    "ram": "64Ki",
-    "disk": "128Ki",
+    "ram": "65536M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

@@ -12,8 +12,8 @@
     "sku": "Standard_H8m_Promo",
     "description": "Standard_H8m_Promo",
     "cpu": "8",
-    "ram": "112Ki",
-    "disk": "1000Ki",
+    "ram": "114688M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "centralindia",

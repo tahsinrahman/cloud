@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "2"
   description: Standard_E2s_v3
-  disk: 32Ki
-  ram: 16Ki
+  disk: 1047552M
+  ram: 16384M
   sku: Standard_E2s_v3
   zones:
   - australiaeast

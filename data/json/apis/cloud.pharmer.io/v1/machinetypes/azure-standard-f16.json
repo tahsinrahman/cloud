@@ -12,8 +12,8 @@
     "sku": "Standard_F16",
     "description": "Standard_F16",
     "cpu": "16",
-    "ram": "32Ki",
-    "disk": "256Ki",
+    "ram": "32768M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

@@ -12,8 +12,8 @@
     "sku": "Standard_ND6s",
     "description": "Standard_ND6s",
     "cpu": "6",
-    "ram": "112Ki",
-    "disk": "336Ki",
+    "ram": "114688M",
+    "disk": "1047552M",
     "zones": [
       "eastus",
       "southeastasia",

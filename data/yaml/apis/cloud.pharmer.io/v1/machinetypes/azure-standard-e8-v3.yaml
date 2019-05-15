@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "8"
   description: Standard_E8_v3
-  disk: 200Ki
-  ram: 64Ki
+  disk: 1047552M
+  ram: 65536M
   sku: Standard_E8_v3
   zones:
   - australiaeast

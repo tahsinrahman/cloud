@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "20"
   description: Standard_DS15_v2
-  disk: 280Ki
-  ram: 140Ki
+  disk: 1047552M
+  ram: 143360M
   sku: Standard_DS15_v2
   zones:
   - australiaeast

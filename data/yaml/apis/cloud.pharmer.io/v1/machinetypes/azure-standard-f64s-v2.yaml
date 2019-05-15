@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "64"
   description: Standard_F64s_v2
-  disk: 512Ki
-  ram: 128Ki
+  disk: 1047552M
+  ram: 131072M
   sku: Standard_F64s_v2
   zones:
   - australiaeast

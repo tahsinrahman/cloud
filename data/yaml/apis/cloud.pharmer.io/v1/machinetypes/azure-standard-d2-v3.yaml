@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "2"
   description: Standard_D2_v3
-  disk: 50Ki
-  ram: 8Ki
+  disk: 1047552M
+  ram: 8192M
   sku: Standard_D2_v3
   zones:
   - australiaeast

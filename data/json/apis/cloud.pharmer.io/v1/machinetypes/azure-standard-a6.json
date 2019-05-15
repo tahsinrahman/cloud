@@ -12,8 +12,8 @@
     "sku": "Standard_A6",
     "description": "Standard_A6",
     "cpu": "4",
-    "ram": "28Ki",
-    "disk": "285Ki",
+    "ram": "28672M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

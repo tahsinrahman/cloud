@@ -46,8 +46,8 @@ spec:
     spec:
       cpu: "1"
       description: Basic_A0
-      disk: 20Ki
-      ram: "768"
+      disk: 1047552M
+      ram: 768M
       sku: Basic_A0
       zones:
       - australiaeast
@@ -86,8 +86,8 @@ spec:
     spec:
       cpu: "1"
       description: Basic_A1
-      disk: 40Ki
-      ram: "1792"
+      disk: 1047552M
+      ram: 1792M
       sku: Basic_A1
       zones:
       - australiaeast
@@ -126,8 +126,8 @@ spec:
     spec:
       cpu: "2"
       description: Basic_A2
-      disk: 60Ki
-      ram: "3584"
+      disk: 1047552M
+      ram: 3584M
       sku: Basic_A2
       zones:
       - australiaeast
@@ -166,8 +166,8 @@ spec:
     spec:
       cpu: "4"
       description: Basic_A3
-      disk: 120Ki
-      ram: 7Ki
+      disk: 1047552M
+      ram: 7168M
       sku: Basic_A3
       zones:
       - australiaeast
@@ -206,8 +206,8 @@ spec:
     spec:
       cpu: "8"
       description: Basic_A4
-      disk: 240Ki
-      ram: 14Ki
+      disk: 1047552M
+      ram: 14336M
       sku: Basic_A4
       zones:
       - australiaeast
@@ -246,8 +246,8 @@ spec:
     spec:
       cpu: "1"
       description: Standard_A0
-      disk: 20Ki
-      ram: "768"
+      disk: 1047552M
+      ram: 768M
       sku: Standard_A0
       zones:
       - australiaeast
@@ -286,8 +286,8 @@ spec:
     spec:
       cpu: "1"
       description: Standard_A1
-      disk: 70Ki
-      ram: "1792"
+      disk: 1047552M
+      ram: 1792M
       sku: Standard_A1
       zones:
       - australiaeast
@@ -326,8 +326,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_A10
-      disk: 382Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_A10
       zones:
       - eastus
@@ -344,8 +344,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_A11
-      disk: 382Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_A11
       zones:
       - eastus
@@ -362,8 +362,8 @@ spec:
     spec:
       cpu: "1"
       description: Standard_A1_v2
-      disk: 10Ki
-      ram: 2Ki
+      disk: 1047552M
+      ram: 2048M
       sku: Standard_A1_v2
       zones:
       - australiaeast
@@ -402,8 +402,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_A2
-      disk: 135Ki
-      ram: "3584"
+      disk: 1047552M
+      ram: 3584M
       sku: Standard_A2
       zones:
       - australiaeast
@@ -442,8 +442,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_A2_v2
-      disk: 20Ki
-      ram: 4Ki
+      disk: 1047552M
+      ram: 4096M
       sku: Standard_A2_v2
       zones:
       - australiaeast
@@ -482,8 +482,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_A2m_v2
-      disk: 20Ki
-      ram: 16Ki
+      disk: 1047552M
+      ram: 16384M
       sku: Standard_A2m_v2
       zones:
       - australiaeast
@@ -522,8 +522,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_A3
-      disk: 285Ki
-      ram: 7Ki
+      disk: 1047552M
+      ram: 7168M
       sku: Standard_A3
       zones:
       - australiaeast
@@ -562,8 +562,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_A4
-      disk: 605Ki
-      ram: 14Ki
+      disk: 1047552M
+      ram: 14336M
       sku: Standard_A4
       zones:
       - australiaeast
@@ -602,8 +602,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_A4_v2
-      disk: 40Ki
-      ram: 8Ki
+      disk: 1047552M
+      ram: 8192M
       sku: Standard_A4_v2
       zones:
       - australiaeast
@@ -642,8 +642,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_A4m_v2
-      disk: 40Ki
-      ram: 32Ki
+      disk: 1047552M
+      ram: 32768M
       sku: Standard_A4m_v2
       zones:
       - australiaeast
@@ -682,8 +682,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_A5
-      disk: 135Ki
-      ram: 14Ki
+      disk: 1047552M
+      ram: 14336M
       sku: Standard_A5
       zones:
       - australiaeast
@@ -722,8 +722,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_A6
-      disk: 285Ki
-      ram: 28Ki
+      disk: 1047552M
+      ram: 28672M
       sku: Standard_A6
       zones:
       - australiaeast
@@ -762,8 +762,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_A7
-      disk: 605Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_A7
       zones:
       - australiaeast
@@ -802,8 +802,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_A8
-      disk: 382Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_A8
       zones:
       - eastus
@@ -820,8 +820,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_A8_v2
-      disk: 80Ki
-      ram: 16Ki
+      disk: 1047552M
+      ram: 16384M
       sku: Standard_A8_v2
       zones:
       - australiaeast
@@ -860,8 +860,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_A8m_v2
-      disk: 80Ki
-      ram: 64Ki
+      disk: 1047552M
+      ram: 65536M
       sku: Standard_A8m_v2
       zones:
       - australiaeast
@@ -900,8 +900,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_A9
-      disk: 382Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_A9
       zones:
       - eastus
@@ -918,8 +918,8 @@ spec:
     spec:
       cpu: "1"
       description: Standard_B1ls
-      disk: 1Ki
-      ram: "512"
+      disk: 1047552M
+      ram: 512M
       sku: Standard_B1ls
       zones:
       - australiaeast
@@ -958,8 +958,8 @@ spec:
     spec:
       cpu: "1"
       description: Standard_B1ms
-      disk: 4Ki
-      ram: 2Ki
+      disk: 1047552M
+      ram: 2048M
       sku: Standard_B1ms
       zones:
       - australiaeast
@@ -998,8 +998,8 @@ spec:
     spec:
       cpu: "1"
       description: Standard_B1s
-      disk: 2Ki
-      ram: 1Ki
+      disk: 1047552M
+      ram: 1024M
       sku: Standard_B1s
       zones:
       - australiaeast
@@ -1038,8 +1038,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_B2ms
-      disk: 16Ki
-      ram: 8Ki
+      disk: 1047552M
+      ram: 8192M
       sku: Standard_B2ms
       zones:
       - australiaeast
@@ -1078,8 +1078,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_B2s
-      disk: 8Ki
-      ram: 4Ki
+      disk: 1047552M
+      ram: 4096M
       sku: Standard_B2s
       zones:
       - australiaeast
@@ -1118,8 +1118,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_B4ms
-      disk: 32Ki
-      ram: 16Ki
+      disk: 1047552M
+      ram: 16384M
       sku: Standard_B4ms
       zones:
       - australiaeast
@@ -1158,8 +1158,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_B8ms
-      disk: 64Ki
-      ram: 32Ki
+      disk: 1047552M
+      ram: 32768M
       sku: Standard_B8ms
       zones:
       - australiaeast
@@ -1198,8 +1198,8 @@ spec:
     spec:
       cpu: "1"
       description: Standard_D1
-      disk: 50Ki
-      ram: "3584"
+      disk: 1047552M
+      ram: 3584M
       sku: Standard_D1
       zones:
       - australiaeast
@@ -1225,8 +1225,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_D11
-      disk: 100Ki
-      ram: 14Ki
+      disk: 1047552M
+      ram: 14336M
       sku: Standard_D11
       zones:
       - australiaeast
@@ -1252,8 +1252,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_D11_v2
-      disk: 100Ki
-      ram: 14Ki
+      disk: 1047552M
+      ram: 14336M
       sku: Standard_D11_v2
       zones:
       - australiaeast
@@ -1292,8 +1292,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_D11_v2_Promo
-      disk: 100Ki
-      ram: 14Ki
+      disk: 1047552M
+      ram: 14336M
       sku: Standard_D11_v2_Promo
       zones:
       - australiaeast
@@ -1332,8 +1332,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_D12
-      disk: 200Ki
-      ram: 28Ki
+      disk: 1047552M
+      ram: 28672M
       sku: Standard_D12
       zones:
       - australiaeast
@@ -1359,8 +1359,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_D12_v2
-      disk: 200Ki
-      ram: 28Ki
+      disk: 1047552M
+      ram: 28672M
       sku: Standard_D12_v2
       zones:
       - australiaeast
@@ -1399,8 +1399,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_D12_v2_Promo
-      disk: 200Ki
-      ram: 28Ki
+      disk: 1047552M
+      ram: 28672M
       sku: Standard_D12_v2_Promo
       zones:
       - australiaeast
@@ -1439,8 +1439,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_D13
-      disk: 400Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_D13
       zones:
       - australiaeast
@@ -1466,8 +1466,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_D13_v2
-      disk: 400Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_D13_v2
       zones:
       - australiaeast
@@ -1506,8 +1506,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_D13_v2_Promo
-      disk: 400Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_D13_v2_Promo
       zones:
       - australiaeast
@@ -1546,8 +1546,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_D14
-      disk: 800Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_D14
       zones:
       - australiaeast
@@ -1573,8 +1573,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_D14_v2
-      disk: 800Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_D14_v2
       zones:
       - australiaeast
@@ -1613,8 +1613,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_D14_v2_Promo
-      disk: 800Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_D14_v2_Promo
       zones:
       - australiaeast
@@ -1653,8 +1653,8 @@ spec:
     spec:
       cpu: "20"
       description: Standard_D15_v2
-      disk: 280Ki
-      ram: 140Ki
+      disk: 1047552M
+      ram: 143360M
       sku: Standard_D15_v2
       zones:
       - australiaeast
@@ -1693,8 +1693,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_D16_v3
-      disk: 400Ki
-      ram: "65636"
+      disk: 1047552M
+      ram: 65636M
       sku: Standard_D16_v3
       zones:
       - australiaeast
@@ -1733,8 +1733,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_D16s_v3
-      disk: 128Ki
-      ram: 64Ki
+      disk: 1047552M
+      ram: 65536M
       sku: Standard_D16s_v3
       zones:
       - australiaeast
@@ -1773,8 +1773,8 @@ spec:
     spec:
       cpu: "1"
       description: Standard_D1_v2
-      disk: 50Ki
-      ram: "3584"
+      disk: 1047552M
+      ram: 3584M
       sku: Standard_D1_v2
       zones:
       - australiaeast
@@ -1813,8 +1813,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_D2
-      disk: 100Ki
-      ram: 7Ki
+      disk: 1047552M
+      ram: 7168M
       sku: Standard_D2
       zones:
       - australiaeast
@@ -1840,8 +1840,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_D2_v2
-      disk: 100Ki
-      ram: 7Ki
+      disk: 1047552M
+      ram: 7168M
       sku: Standard_D2_v2
       zones:
       - australiaeast
@@ -1880,8 +1880,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_D2_v2_Promo
-      disk: 100Ki
-      ram: 7Ki
+      disk: 1047552M
+      ram: 7168M
       sku: Standard_D2_v2_Promo
       zones:
       - australiaeast
@@ -1920,8 +1920,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_D2_v3
-      disk: 50Ki
-      ram: 8Ki
+      disk: 1047552M
+      ram: 8192M
       sku: Standard_D2_v3
       zones:
       - australiaeast
@@ -1960,8 +1960,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_D2s_v3
-      disk: 16Ki
-      ram: 8Ki
+      disk: 1047552M
+      ram: 8192M
       sku: Standard_D2s_v3
       zones:
       - australiaeast
@@ -2000,8 +2000,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_D3
-      disk: 200Ki
-      ram: 14Ki
+      disk: 1047552M
+      ram: 14336M
       sku: Standard_D3
       zones:
       - australiaeast
@@ -2027,8 +2027,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_D32_v3
-      disk: 800Ki
-      ram: 128Ki
+      disk: 1047552M
+      ram: 131072M
       sku: Standard_D32_v3
       zones:
       - australiaeast
@@ -2067,8 +2067,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_D32s_v3
-      disk: 256Ki
-      ram: 128Ki
+      disk: 1047552M
+      ram: 131072M
       sku: Standard_D32s_v3
       zones:
       - australiaeast
@@ -2107,8 +2107,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_D3_v2
-      disk: 200Ki
-      ram: 14Ki
+      disk: 1047552M
+      ram: 14336M
       sku: Standard_D3_v2
       zones:
       - australiaeast
@@ -2147,8 +2147,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_D3_v2_Promo
-      disk: 200Ki
-      ram: 14Ki
+      disk: 1047552M
+      ram: 14336M
       sku: Standard_D3_v2_Promo
       zones:
       - australiaeast
@@ -2187,8 +2187,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_D4
-      disk: 400Ki
-      ram: 28Ki
+      disk: 1047552M
+      ram: 28672M
       sku: Standard_D4
       zones:
       - australiaeast
@@ -2214,8 +2214,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_D4_v2
-      disk: 400Ki
-      ram: 28Ki
+      disk: 1047552M
+      ram: 28672M
       sku: Standard_D4_v2
       zones:
       - australiaeast
@@ -2254,8 +2254,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_D4_v2_Promo
-      disk: 400Ki
-      ram: 28Ki
+      disk: 1047552M
+      ram: 28672M
       sku: Standard_D4_v2_Promo
       zones:
       - australiaeast
@@ -2294,8 +2294,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_D4_v3
-      disk: 100Ki
-      ram: 16Ki
+      disk: 1047552M
+      ram: 16384M
       sku: Standard_D4_v3
       zones:
       - australiaeast
@@ -2334,8 +2334,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_D4s_v3
-      disk: 32Ki
-      ram: 16Ki
+      disk: 1047552M
+      ram: 16384M
       sku: Standard_D4s_v3
       zones:
       - australiaeast
@@ -2374,8 +2374,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_D5_v2
-      disk: 800Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_D5_v2
       zones:
       - australiaeast
@@ -2414,8 +2414,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_D5_v2_Promo
-      disk: 800Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_D5_v2_Promo
       zones:
       - australiaeast
@@ -2454,8 +2454,8 @@ spec:
     spec:
       cpu: "64"
       description: Standard_D64_v3
-      disk: 1600Ki
-      ram: 256Ki
+      disk: 1047552M
+      ram: 262144M
       sku: Standard_D64_v3
       zones:
       - australiaeast
@@ -2494,8 +2494,8 @@ spec:
     spec:
       cpu: "64"
       description: Standard_D64s_v3
-      disk: 512Ki
-      ram: 256Ki
+      disk: 1047552M
+      ram: 262144M
       sku: Standard_D64s_v3
       zones:
       - australiaeast
@@ -2533,8 +2533,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_D8_v3
-      disk: 200Ki
-      ram: 32Ki
+      disk: 1047552M
+      ram: 32768M
       sku: Standard_D8_v3
       zones:
       - australiaeast
@@ -2573,8 +2573,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_D8s_v3
-      disk: 64Ki
-      ram: 32Ki
+      disk: 1047552M
+      ram: 32768M
       sku: Standard_D8s_v3
       zones:
       - australiaeast
@@ -2613,8 +2613,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_DC2s
-      disk: 100Ki
-      ram: 8Ki
+      disk: 1047552M
+      ram: 8192M
       sku: Standard_DC2s
       zones:
       - eastus
@@ -2627,8 +2627,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_DC4s
-      disk: 200Ki
-      ram: 16Ki
+      disk: 1047552M
+      ram: 16384M
       sku: Standard_DC4s
       zones:
       - eastus
@@ -2641,8 +2641,8 @@ spec:
     spec:
       cpu: "1"
       description: Standard_DS1
-      disk: 7Ki
-      ram: "3584"
+      disk: 1047552M
+      ram: 3584M
       sku: Standard_DS1
       zones:
       - australiaeast
@@ -2667,8 +2667,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_DS11
-      disk: 28Ki
-      ram: 14Ki
+      disk: 1047552M
+      ram: 14336M
       sku: Standard_DS11
       zones:
       - australiaeast
@@ -2693,8 +2693,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_DS11-1_v2
-      disk: 28Ki
-      ram: 14Ki
+      disk: 1047552M
+      ram: 14336M
       sku: Standard_DS11-1_v2
       zones:
       - australiaeast
@@ -2733,8 +2733,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_DS11_v2
-      disk: 28Ki
-      ram: 14Ki
+      disk: 1047552M
+      ram: 14336M
       sku: Standard_DS11_v2
       zones:
       - australiaeast
@@ -2773,8 +2773,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_DS11_v2_Promo
-      disk: 28Ki
-      ram: 14Ki
+      disk: 1047552M
+      ram: 14336M
       sku: Standard_DS11_v2_Promo
       zones:
       - australiaeast
@@ -2813,8 +2813,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_DS12
-      disk: 56Ki
-      ram: 28Ki
+      disk: 1047552M
+      ram: 28672M
       sku: Standard_DS12
       zones:
       - australiaeast
@@ -2839,8 +2839,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_DS12-1_v2
-      disk: 56Ki
-      ram: 28Ki
+      disk: 1047552M
+      ram: 28672M
       sku: Standard_DS12-1_v2
       zones:
       - australiaeast
@@ -2879,8 +2879,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_DS12-2_v2
-      disk: 56Ki
-      ram: 28Ki
+      disk: 1047552M
+      ram: 28672M
       sku: Standard_DS12-2_v2
       zones:
       - australiaeast
@@ -2919,8 +2919,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_DS12_v2
-      disk: 56Ki
-      ram: 28Ki
+      disk: 1047552M
+      ram: 28672M
       sku: Standard_DS12_v2
       zones:
       - australiaeast
@@ -2959,8 +2959,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_DS12_v2_Promo
-      disk: 56Ki
-      ram: 28Ki
+      disk: 1047552M
+      ram: 28672M
       sku: Standard_DS12_v2_Promo
       zones:
       - australiaeast
@@ -2999,8 +2999,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_DS13
-      disk: 112Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_DS13
       zones:
       - australiaeast
@@ -3025,8 +3025,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_DS13-2_v2
-      disk: 112Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_DS13-2_v2
       zones:
       - australiaeast
@@ -3065,8 +3065,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_DS13-4_v2
-      disk: 112Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_DS13-4_v2
       zones:
       - australiaeast
@@ -3105,8 +3105,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_DS13_v2
-      disk: 112Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_DS13_v2
       zones:
       - australiaeast
@@ -3145,8 +3145,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_DS13_v2_Promo
-      disk: 112Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_DS13_v2_Promo
       zones:
       - australiaeast
@@ -3185,8 +3185,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_DS14
-      disk: 224Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_DS14
       zones:
       - australiaeast
@@ -3211,8 +3211,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_DS14-4_v2
-      disk: 224Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_DS14-4_v2
       zones:
       - australiaeast
@@ -3251,8 +3251,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_DS14-8_v2
-      disk: 224Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_DS14-8_v2
       zones:
       - australiaeast
@@ -3291,8 +3291,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_DS14_v2
-      disk: 224Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_DS14_v2
       zones:
       - australiaeast
@@ -3331,8 +3331,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_DS14_v2_Promo
-      disk: 224Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_DS14_v2_Promo
       zones:
       - australiaeast
@@ -3371,8 +3371,8 @@ spec:
     spec:
       cpu: "20"
       description: Standard_DS15_v2
-      disk: 280Ki
-      ram: 140Ki
+      disk: 1047552M
+      ram: 143360M
       sku: Standard_DS15_v2
       zones:
       - australiaeast
@@ -3409,8 +3409,8 @@ spec:
     spec:
       cpu: "1"
       description: Standard_DS1_v2
-      disk: 7Ki
-      ram: "3584"
+      disk: 1047552M
+      ram: 3584M
       sku: Standard_DS1_v2
       zones:
       - australiaeast
@@ -3449,8 +3449,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_DS2
-      disk: 14Ki
-      ram: 7Ki
+      disk: 1047552M
+      ram: 7168M
       sku: Standard_DS2
       zones:
       - australiaeast
@@ -3475,8 +3475,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_DS2_v2
-      disk: 14Ki
-      ram: 7Ki
+      disk: 1047552M
+      ram: 7168M
       sku: Standard_DS2_v2
       zones:
       - australiaeast
@@ -3515,8 +3515,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_DS2_v2_Promo
-      disk: 14Ki
-      ram: 7Ki
+      disk: 1047552M
+      ram: 7168M
       sku: Standard_DS2_v2_Promo
       zones:
       - australiaeast
@@ -3555,8 +3555,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_DS3
-      disk: 28Ki
-      ram: 14Ki
+      disk: 1047552M
+      ram: 14336M
       sku: Standard_DS3
       zones:
       - australiaeast
@@ -3581,8 +3581,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_DS3_v2
-      disk: 28Ki
-      ram: 14Ki
+      disk: 1047552M
+      ram: 14336M
       sku: Standard_DS3_v2
       zones:
       - australiaeast
@@ -3621,8 +3621,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_DS3_v2_Promo
-      disk: 28Ki
-      ram: 14Ki
+      disk: 1047552M
+      ram: 14336M
       sku: Standard_DS3_v2_Promo
       zones:
       - australiaeast
@@ -3661,8 +3661,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_DS4
-      disk: 56Ki
-      ram: 28Ki
+      disk: 1047552M
+      ram: 28672M
       sku: Standard_DS4
       zones:
       - australiaeast
@@ -3687,8 +3687,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_DS4_v2
-      disk: 56Ki
-      ram: 28Ki
+      disk: 1047552M
+      ram: 28672M
       sku: Standard_DS4_v2
       zones:
       - australiaeast
@@ -3727,8 +3727,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_DS4_v2_Promo
-      disk: 56Ki
-      ram: 28Ki
+      disk: 1047552M
+      ram: 28672M
       sku: Standard_DS4_v2_Promo
       zones:
       - australiaeast
@@ -3767,8 +3767,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_DS5_v2
-      disk: 112Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_DS5_v2
       zones:
       - australiaeast
@@ -3807,8 +3807,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_DS5_v2_Promo
-      disk: 112Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_DS5_v2_Promo
       zones:
       - australiaeast
@@ -3847,8 +3847,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_E16-4s_v3
-      disk: 256Ki
-      ram: 128Ki
+      disk: 1047552M
+      ram: 131072M
       sku: Standard_E16-4s_v3
       zones:
       - australiaeast
@@ -3886,8 +3886,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_E16-8s_v3
-      disk: 256Ki
-      ram: 128Ki
+      disk: 1047552M
+      ram: 131072M
       sku: Standard_E16-8s_v3
       zones:
       - australiaeast
@@ -3925,8 +3925,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_E16_v3
-      disk: 400Ki
-      ram: 128Ki
+      disk: 1047552M
+      ram: 131072M
       sku: Standard_E16_v3
       zones:
       - australiaeast
@@ -3964,8 +3964,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_E16s_v3
-      disk: 256Ki
-      ram: 128Ki
+      disk: 1047552M
+      ram: 131072M
       sku: Standard_E16s_v3
       zones:
       - australiaeast
@@ -4003,8 +4003,8 @@ spec:
     spec:
       cpu: "20"
       description: Standard_E20_v3
-      disk: 500Ki
-      ram: 160Ki
+      disk: 1047552M
+      ram: 163840M
       sku: Standard_E20_v3
       zones:
       - australiaeast
@@ -4042,8 +4042,8 @@ spec:
     spec:
       cpu: "20"
       description: Standard_E20s_v3
-      disk: 320Ki
-      ram: 160Ki
+      disk: 1047552M
+      ram: 163840M
       sku: Standard_E20s_v3
       zones:
       - australiaeast
@@ -4081,8 +4081,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_E2_v3
-      disk: 50Ki
-      ram: 16Ki
+      disk: 1047552M
+      ram: 16384M
       sku: Standard_E2_v3
       zones:
       - australiaeast
@@ -4120,8 +4120,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_E2s_v3
-      disk: 32Ki
-      ram: 16Ki
+      disk: 1047552M
+      ram: 16384M
       sku: Standard_E2s_v3
       zones:
       - australiaeast
@@ -4159,8 +4159,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_E32-16s_v3
-      disk: 512Ki
-      ram: 256Ki
+      disk: 1047552M
+      ram: 262144M
       sku: Standard_E32-16s_v3
       zones:
       - australiaeast
@@ -4198,8 +4198,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_E32-8s_v3
-      disk: 512Ki
-      ram: 256Ki
+      disk: 1047552M
+      ram: 262144M
       sku: Standard_E32-8s_v3
       zones:
       - australiaeast
@@ -4237,8 +4237,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_E32_v3
-      disk: 800Ki
-      ram: 256Ki
+      disk: 1047552M
+      ram: 262144M
       sku: Standard_E32_v3
       zones:
       - australiaeast
@@ -4276,8 +4276,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_E32s_v3
-      disk: 512Ki
-      ram: 256Ki
+      disk: 1047552M
+      ram: 262144M
       sku: Standard_E32s_v3
       zones:
       - australiaeast
@@ -4315,8 +4315,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_E4-2s_v3
-      disk: 64Ki
-      ram: 32Ki
+      disk: 1047552M
+      ram: 32768M
       sku: Standard_E4-2s_v3
       zones:
       - australiaeast
@@ -4354,8 +4354,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_E4_v3
-      disk: 100Ki
-      ram: 32Ki
+      disk: 1047552M
+      ram: 32768M
       sku: Standard_E4_v3
       zones:
       - australiaeast
@@ -4393,8 +4393,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_E4s_v3
-      disk: 64Ki
-      ram: 32Ki
+      disk: 1047552M
+      ram: 32768M
       sku: Standard_E4s_v3
       zones:
       - australiaeast
@@ -4432,8 +4432,8 @@ spec:
     spec:
       cpu: "64"
       description: Standard_E64-16s_v3
-      disk: 864Ki
-      ram: 432Ki
+      disk: 1047552M
+      ram: 442368M
       sku: Standard_E64-16s_v3
       zones:
       - australiaeast
@@ -4471,8 +4471,8 @@ spec:
     spec:
       cpu: "64"
       description: Standard_E64-32s_v3
-      disk: 864Ki
-      ram: 432Ki
+      disk: 1047552M
+      ram: 442368M
       sku: Standard_E64-32s_v3
       zones:
       - australiaeast
@@ -4510,8 +4510,8 @@ spec:
     spec:
       cpu: "64"
       description: Standard_E64_v3
-      disk: 1600Ki
-      ram: 432Ki
+      disk: 1047552M
+      ram: 442368M
       sku: Standard_E64_v3
       zones:
       - australiaeast
@@ -4549,8 +4549,8 @@ spec:
     spec:
       cpu: "64"
       description: Standard_E64i_v3
-      disk: 1600Ki
-      ram: 432Ki
+      disk: 1047552M
+      ram: 442368M
       sku: Standard_E64i_v3
       zones:
       - australiaeast
@@ -4588,8 +4588,8 @@ spec:
     spec:
       cpu: "64"
       description: Standard_E64is_v3
-      disk: 864Ki
-      ram: 432Ki
+      disk: 1047552M
+      ram: 442368M
       sku: Standard_E64is_v3
       zones:
       - australiaeast
@@ -4627,8 +4627,8 @@ spec:
     spec:
       cpu: "64"
       description: Standard_E64s_v3
-      disk: 864Ki
-      ram: 432Ki
+      disk: 1047552M
+      ram: 442368M
       sku: Standard_E64s_v3
       zones:
       - australiaeast
@@ -4666,8 +4666,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_E8-2s_v3
-      disk: 128Ki
-      ram: 64Ki
+      disk: 1047552M
+      ram: 65536M
       sku: Standard_E8-2s_v3
       zones:
       - australiaeast
@@ -4705,8 +4705,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_E8-4s_v3
-      disk: 128Ki
-      ram: 64Ki
+      disk: 1047552M
+      ram: 65536M
       sku: Standard_E8-4s_v3
       zones:
       - australiaeast
@@ -4744,8 +4744,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_E8_v3
-      disk: 200Ki
-      ram: 64Ki
+      disk: 1047552M
+      ram: 65536M
       sku: Standard_E8_v3
       zones:
       - australiaeast
@@ -4783,8 +4783,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_E8s_v3
-      disk: 128Ki
-      ram: 64Ki
+      disk: 1047552M
+      ram: 65536M
       sku: Standard_E8s_v3
       zones:
       - australiaeast
@@ -4822,8 +4822,8 @@ spec:
     spec:
       cpu: "1"
       description: Standard_F1
-      disk: 16Ki
-      ram: 2Ki
+      disk: 1047552M
+      ram: 2048M
       sku: Standard_F1
       zones:
       - australiaeast
@@ -4862,8 +4862,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_F16
-      disk: 256Ki
-      ram: 32Ki
+      disk: 1047552M
+      ram: 32768M
       sku: Standard_F16
       zones:
       - australiaeast
@@ -4902,8 +4902,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_F16s
-      disk: 64Ki
-      ram: 32Ki
+      disk: 1047552M
+      ram: 32768M
       sku: Standard_F16s
       zones:
       - australiaeast
@@ -4942,8 +4942,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_F16s_v2
-      disk: 128Ki
-      ram: 32Ki
+      disk: 1047552M
+      ram: 32768M
       sku: Standard_F16s_v2
       zones:
       - australiaeast
@@ -4980,8 +4980,8 @@ spec:
     spec:
       cpu: "1"
       description: Standard_F1s
-      disk: 4Ki
-      ram: 2Ki
+      disk: 1047552M
+      ram: 2048M
       sku: Standard_F1s
       zones:
       - australiaeast
@@ -5020,8 +5020,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_F2
-      disk: 32Ki
-      ram: 4Ki
+      disk: 1047552M
+      ram: 4096M
       sku: Standard_F2
       zones:
       - australiaeast
@@ -5060,8 +5060,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_F2s
-      disk: 8Ki
-      ram: 4Ki
+      disk: 1047552M
+      ram: 4096M
       sku: Standard_F2s
       zones:
       - australiaeast
@@ -5100,8 +5100,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_F2s_v2
-      disk: 16Ki
-      ram: 4Ki
+      disk: 1047552M
+      ram: 4096M
       sku: Standard_F2s_v2
       zones:
       - australiaeast
@@ -5138,8 +5138,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_F32s_v2
-      disk: 256Ki
-      ram: 64Ki
+      disk: 1047552M
+      ram: 65536M
       sku: Standard_F32s_v2
       zones:
       - australiaeast
@@ -5176,8 +5176,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_F4
-      disk: 64Ki
-      ram: 8Ki
+      disk: 1047552M
+      ram: 8192M
       sku: Standard_F4
       zones:
       - australiaeast
@@ -5216,8 +5216,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_F4s
-      disk: 16Ki
-      ram: 8Ki
+      disk: 1047552M
+      ram: 8192M
       sku: Standard_F4s
       zones:
       - australiaeast
@@ -5256,8 +5256,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_F4s_v2
-      disk: 32Ki
-      ram: 8Ki
+      disk: 1047552M
+      ram: 8192M
       sku: Standard_F4s_v2
       zones:
       - australiaeast
@@ -5294,8 +5294,8 @@ spec:
     spec:
       cpu: "64"
       description: Standard_F64s_v2
-      disk: 512Ki
-      ram: 128Ki
+      disk: 1047552M
+      ram: 131072M
       sku: Standard_F64s_v2
       zones:
       - australiaeast
@@ -5332,8 +5332,8 @@ spec:
     spec:
       cpu: "72"
       description: Standard_F72s_v2
-      disk: 576Ki
-      ram: 144Ki
+      disk: 1047552M
+      ram: 147456M
       sku: Standard_F72s_v2
       zones:
       - australiaeast
@@ -5370,8 +5370,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_F8
-      disk: 128Ki
-      ram: 16Ki
+      disk: 1047552M
+      ram: 16384M
       sku: Standard_F8
       zones:
       - australiaeast
@@ -5410,8 +5410,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_F8s
-      disk: 32Ki
-      ram: 16Ki
+      disk: 1047552M
+      ram: 16384M
       sku: Standard_F8s
       zones:
       - australiaeast
@@ -5450,8 +5450,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_F8s_v2
-      disk: 64Ki
-      ram: 16Ki
+      disk: 1047552M
+      ram: 16384M
       sku: Standard_F8s_v2
       zones:
       - australiaeast
@@ -5488,8 +5488,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_G1
-      disk: 384Ki
-      ram: 28Ki
+      disk: 1047552M
+      ram: 28672M
       sku: Standard_G1
       zones:
       - australiaeast
@@ -5512,8 +5512,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_G2
-      disk: 768Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_G2
       zones:
       - australiaeast
@@ -5536,8 +5536,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_G3
-      disk: 1536Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_G3
       zones:
       - australiaeast
@@ -5560,8 +5560,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_G4
-      disk: 3Mi
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_G4
       zones:
       - australiaeast
@@ -5584,8 +5584,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_G5
-      disk: 6Mi
-      ram: 448Ki
+      disk: 1047552M
+      ram: 458752M
       sku: Standard_G5
       zones:
       - australiaeast
@@ -5608,8 +5608,8 @@ spec:
     spec:
       cpu: "2"
       description: Standard_GS1
-      disk: 56Ki
-      ram: 28Ki
+      disk: 1047552M
+      ram: 28672M
       sku: Standard_GS1
       zones:
       - australiaeast
@@ -5632,8 +5632,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_GS2
-      disk: 112Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_GS2
       zones:
       - australiaeast
@@ -5656,8 +5656,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_GS3
-      disk: 224Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_GS3
       zones:
       - australiaeast
@@ -5680,8 +5680,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_GS4
-      disk: 448Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_GS4
       zones:
       - australiaeast
@@ -5704,8 +5704,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_GS4-4
-      disk: 448Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_GS4-4
       zones:
       - australiaeast
@@ -5728,8 +5728,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_GS4-8
-      disk: 448Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_GS4-8
       zones:
       - australiaeast
@@ -5752,8 +5752,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_GS5
-      disk: 896Ki
-      ram: 448Ki
+      disk: 1047552M
+      ram: 458752M
       sku: Standard_GS5
       zones:
       - australiaeast
@@ -5776,8 +5776,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_GS5-16
-      disk: 896Ki
-      ram: 448Ki
+      disk: 1047552M
+      ram: 458752M
       sku: Standard_GS5-16
       zones:
       - australiaeast
@@ -5800,8 +5800,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_GS5-8
-      disk: 896Ki
-      ram: 448Ki
+      disk: 1047552M
+      ram: 458752M
       sku: Standard_GS5-8
       zones:
       - australiaeast
@@ -5824,8 +5824,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_H16
-      disk: 2000Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_H16
       zones:
       - australiaeast
@@ -5848,8 +5848,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_H16_Promo
-      disk: 2000Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_H16_Promo
       zones:
       - australiaeast
@@ -5872,8 +5872,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_H16m
-      disk: 2000Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_H16m
       zones:
       - australiaeast
@@ -5896,8 +5896,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_H16m_Promo
-      disk: 2000Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_H16m_Promo
       zones:
       - australiaeast
@@ -5920,8 +5920,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_H16mr
-      disk: 2000Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_H16mr
       zones:
       - australiaeast
@@ -5944,8 +5944,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_H16mr_Promo
-      disk: 2000Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_H16mr_Promo
       zones:
       - australiaeast
@@ -5968,8 +5968,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_H16r
-      disk: 2000Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_H16r
       zones:
       - australiaeast
@@ -5992,8 +5992,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_H16r_Promo
-      disk: 2000Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_H16r_Promo
       zones:
       - australiaeast
@@ -6016,8 +6016,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_H8
-      disk: 1000Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_H8
       zones:
       - australiaeast
@@ -6040,8 +6040,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_H8_Promo
-      disk: 1000Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_H8_Promo
       zones:
       - australiaeast
@@ -6064,8 +6064,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_H8m
-      disk: 1000Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_H8m
       zones:
       - australiaeast
@@ -6088,8 +6088,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_H8m_Promo
-      disk: 1000Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_H8m_Promo
       zones:
       - australiaeast
@@ -6112,8 +6112,8 @@ spec:
     spec:
       cpu: "60"
       description: Standard_HB60rs
-      disk: 700Ki
-      ram: "228881"
+      disk: 1047552M
+      ram: 228881M
       sku: Standard_HB60rs
       zones:
       - southcentralus
@@ -6126,8 +6126,8 @@ spec:
     spec:
       cpu: "44"
       description: Standard_HC44rs
-      disk: 700Ki
-      ram: "335693"
+      disk: 1047552M
+      ram: 335693M
       sku: Standard_HC44rs
       zones:
       - eastus
@@ -6140,8 +6140,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_L16s
-      disk: 2807Ki
-      ram: 128Ki
+      disk: 1047552M
+      ram: 131072M
       sku: Standard_L16s
       zones:
       - australiaeast
@@ -6164,8 +6164,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_L16s_v2
-      disk: "3623962"
-      ram: 128Ki
+      disk: 1047552M
+      ram: 131072M
       sku: Standard_L16s_v2
       zones:
       - eastus
@@ -6181,8 +6181,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_L32s
-      disk: 5630Ki
-      ram: 256Ki
+      disk: 1047552M
+      ram: 262144M
       sku: Standard_L32s
       zones:
       - australiaeast
@@ -6205,8 +6205,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_L32s_v2
-      disk: "7247924"
-      ram: 256Ki
+      disk: 1047552M
+      ram: 262144M
       sku: Standard_L32s_v2
       zones:
       - eastus
@@ -6222,8 +6222,8 @@ spec:
     spec:
       cpu: "4"
       description: Standard_L4s
-      disk: 678Ki
-      ram: 32Ki
+      disk: 1047552M
+      ram: 32768M
       sku: Standard_L4s
       zones:
       - australiaeast
@@ -6246,8 +6246,8 @@ spec:
     spec:
       cpu: "64"
       description: Standard_L64s_v2
-      disk: "14495849"
-      ram: 512Ki
+      disk: 1047552M
+      ram: 524288M
       sku: Standard_L64s_v2
       zones:
       - eastus
@@ -6263,8 +6263,8 @@ spec:
     spec:
       cpu: "80"
       description: Standard_L80s_v2
-      disk: "18119810"
-      ram: 640Ki
+      disk: 1047552M
+      ram: 655360M
       sku: Standard_L80s_v2
       zones:
       - eastus
@@ -6280,8 +6280,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_L8s
-      disk: 1388Ki
-      ram: 64Ki
+      disk: 1047552M
+      ram: 65536M
       sku: Standard_L8s
       zones:
       - australiaeast
@@ -6304,8 +6304,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_L8s_v2
-      disk: "1811981"
-      ram: 64Ki
+      disk: 1047552M
+      ram: 65536M
       sku: Standard_L8s_v2
       zones:
       - eastus
@@ -6321,8 +6321,8 @@ spec:
     spec:
       cpu: "128"
       description: Standard_M128
-      disk: 16000Ki
-      ram: 2000Ki
+      disk: 1047552M
+      ram: 2048G
       sku: Standard_M128
       zones:
       - australiaeast
@@ -6353,8 +6353,8 @@ spec:
     spec:
       cpu: "128"
       description: Standard_M128-32ms
-      disk: 4000Ki
-      ram: 3800Ki
+      disk: 1047552M
+      ram: 3891200M
       sku: Standard_M128-32ms
       zones:
       - australiaeast
@@ -6385,8 +6385,8 @@ spec:
     spec:
       cpu: "128"
       description: Standard_M128-64ms
-      disk: 4000Ki
-      ram: 3800Ki
+      disk: 1047552M
+      ram: 3891200M
       sku: Standard_M128-64ms
       zones:
       - australiaeast
@@ -6417,8 +6417,8 @@ spec:
     spec:
       cpu: "128"
       description: Standard_M128m
-      disk: 16000Ki
-      ram: 3800Ki
+      disk: 1047552M
+      ram: 3891200M
       sku: Standard_M128m
       zones:
       - australiaeast
@@ -6449,8 +6449,8 @@ spec:
     spec:
       cpu: "128"
       description: Standard_M128ms
-      disk: 4000Ki
-      ram: 3800Ki
+      disk: 1047552M
+      ram: 3891200M
       sku: Standard_M128ms
       zones:
       - australiaeast
@@ -6481,8 +6481,8 @@ spec:
     spec:
       cpu: "128"
       description: Standard_M128s
-      disk: 4000Ki
-      ram: 2000Ki
+      disk: 1047552M
+      ram: 2048G
       sku: Standard_M128s
       zones:
       - australiaeast
@@ -6513,8 +6513,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_M16-4ms
-      disk: 500Ki
-      ram: "448000"
+      disk: 1047552M
+      ram: 448G
       sku: Standard_M16-4ms
       zones:
       - australiaeast
@@ -6545,8 +6545,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_M16-8ms
-      disk: 500Ki
-      ram: "448000"
+      disk: 1047552M
+      ram: 448G
       sku: Standard_M16-8ms
       zones:
       - australiaeast
@@ -6577,8 +6577,8 @@ spec:
     spec:
       cpu: "16"
       description: Standard_M16ms
-      disk: 500Ki
-      ram: "448000"
+      disk: 1047552M
+      ram: 448G
       sku: Standard_M16ms
       zones:
       - australiaeast
@@ -6609,8 +6609,8 @@ spec:
     spec:
       cpu: "208"
       description: Standard_M208ms_v2
-      disk: 4Mi
-      ram: 5700Ki
+      disk: 1047552M
+      ram: 5836800M
       sku: Standard_M208ms_v2
       zones:
       - eastus
@@ -6623,8 +6623,8 @@ spec:
     spec:
       cpu: "208"
       description: Standard_M208s_v2
-      disk: 4Mi
-      ram: 2850Ki
+      disk: 1047552M
+      ram: 2918400M
       sku: Standard_M208s_v2
       zones:
       - eastus
@@ -6637,8 +6637,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_M32-16ms
-      disk: 1000Ki
-      ram: 875Ki
+      disk: 1047552M
+      ram: 896G
       sku: Standard_M32-16ms
       zones:
       - australiaeast
@@ -6669,8 +6669,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_M32-8ms
-      disk: 1000Ki
-      ram: 875Ki
+      disk: 1047552M
+      ram: 896G
       sku: Standard_M32-8ms
       zones:
       - australiaeast
@@ -6701,8 +6701,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_M32ls
-      disk: 1000Ki
-      ram: 256Ki
+      disk: 1047552M
+      ram: 262144M
       sku: Standard_M32ls
       zones:
       - australiaeast
@@ -6733,8 +6733,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_M32ms
-      disk: 1000Ki
-      ram: 875Ki
+      disk: 1047552M
+      ram: 896G
       sku: Standard_M32ms
       zones:
       - australiaeast
@@ -6765,8 +6765,8 @@ spec:
     spec:
       cpu: "32"
       description: Standard_M32ts
-      disk: 1000Ki
-      ram: 192Ki
+      disk: 1047552M
+      ram: 196608M
       sku: Standard_M32ts
       zones:
       - australiaeast
@@ -6797,8 +6797,8 @@ spec:
     spec:
       cpu: "64"
       description: Standard_M64
-      disk: 8000Ki
-      ram: 1000Ki
+      disk: 1047552M
+      ram: 1024G
       sku: Standard_M64
       zones:
       - australiaeast
@@ -6829,8 +6829,8 @@ spec:
     spec:
       cpu: "64"
       description: Standard_M64-16ms
-      disk: 2000Ki
-      ram: 1750Ki
+      disk: 1047552M
+      ram: 1792G
       sku: Standard_M64-16ms
       zones:
       - australiaeast
@@ -6861,8 +6861,8 @@ spec:
     spec:
       cpu: "64"
       description: Standard_M64-32ms
-      disk: 2000Ki
-      ram: 1750Ki
+      disk: 1047552M
+      ram: 1792G
       sku: Standard_M64-32ms
       zones:
       - australiaeast
@@ -6893,8 +6893,8 @@ spec:
     spec:
       cpu: "64"
       description: Standard_M64ls
-      disk: 2000Ki
-      ram: 512Ki
+      disk: 1047552M
+      ram: 524288M
       sku: Standard_M64ls
       zones:
       - australiaeast
@@ -6925,8 +6925,8 @@ spec:
     spec:
       cpu: "64"
       description: Standard_M64m
-      disk: 8000Ki
-      ram: 1750Ki
+      disk: 1047552M
+      ram: 1792G
       sku: Standard_M64m
       zones:
       - australiaeast
@@ -6957,8 +6957,8 @@ spec:
     spec:
       cpu: "64"
       description: Standard_M64ms
-      disk: 2000Ki
-      ram: 1750Ki
+      disk: 1047552M
+      ram: 1792G
       sku: Standard_M64ms
       zones:
       - australiaeast
@@ -6989,8 +6989,8 @@ spec:
     spec:
       cpu: "64"
       description: Standard_M64s
-      disk: 2000Ki
-      ram: 1000Ki
+      disk: 1047552M
+      ram: 1024G
       sku: Standard_M64s
       zones:
       - australiaeast
@@ -7021,8 +7021,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_M8-2ms
-      disk: 250Ki
-      ram: "224000"
+      disk: 1047552M
+      ram: 224G
       sku: Standard_M8-2ms
       zones:
       - australiaeast
@@ -7053,8 +7053,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_M8-4ms
-      disk: 250Ki
-      ram: "224000"
+      disk: 1047552M
+      ram: 224G
       sku: Standard_M8-4ms
       zones:
       - australiaeast
@@ -7085,8 +7085,8 @@ spec:
     spec:
       cpu: "8"
       description: Standard_M8ms
-      disk: 250Ki
-      ram: "224000"
+      disk: 1047552M
+      ram: 224G
       sku: Standard_M8ms
       zones:
       - australiaeast
@@ -7117,8 +7117,8 @@ spec:
     spec:
       cpu: "12"
       description: Standard_NC12
-      disk: 680Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_NC12
       zones:
       - australiaeast
@@ -7138,8 +7138,8 @@ spec:
     spec:
       cpu: "12"
       description: Standard_NC12_Promo
-      disk: 680Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_NC12_Promo
       zones:
       - australiaeast
@@ -7159,8 +7159,8 @@ spec:
     spec:
       cpu: "12"
       description: Standard_NC12s_v2
-      disk: 672Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_NC12s_v2
       zones:
       - eastus
@@ -7176,8 +7176,8 @@ spec:
     spec:
       cpu: "12"
       description: Standard_NC12s_v3
-      disk: 672Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_NC12s_v3
       zones:
       - australiaeast
@@ -7200,8 +7200,8 @@ spec:
     spec:
       cpu: "24"
       description: Standard_NC24
-      disk: 1440Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_NC24
       zones:
       - australiaeast
@@ -7221,8 +7221,8 @@ spec:
     spec:
       cpu: "24"
       description: Standard_NC24_Promo
-      disk: 1440Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_NC24_Promo
       zones:
       - australiaeast
@@ -7242,8 +7242,8 @@ spec:
     spec:
       cpu: "24"
       description: Standard_NC24r
-      disk: 1440Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_NC24r
       zones:
       - australiaeast
@@ -7263,8 +7263,8 @@ spec:
     spec:
       cpu: "24"
       description: Standard_NC24r_Promo
-      disk: 1440Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_NC24r_Promo
       zones:
       - australiaeast
@@ -7284,8 +7284,8 @@ spec:
     spec:
       cpu: "24"
       description: Standard_NC24rs_v2
-      disk: 1344Ki
-      ram: 448Ki
+      disk: 1047552M
+      ram: 458752M
       sku: Standard_NC24rs_v2
       zones:
       - eastus
@@ -7301,8 +7301,8 @@ spec:
     spec:
       cpu: "24"
       description: Standard_NC24rs_v3
-      disk: 1344Ki
-      ram: 448Ki
+      disk: 1047552M
+      ram: 458752M
       sku: Standard_NC24rs_v3
       zones:
       - australiaeast
@@ -7325,8 +7325,8 @@ spec:
     spec:
       cpu: "24"
       description: Standard_NC24s_v2
-      disk: 1344Ki
-      ram: 448Ki
+      disk: 1047552M
+      ram: 458752M
       sku: Standard_NC24s_v2
       zones:
       - eastus
@@ -7342,8 +7342,8 @@ spec:
     spec:
       cpu: "24"
       description: Standard_NC24s_v3
-      disk: 1344Ki
-      ram: 448Ki
+      disk: 1047552M
+      ram: 458752M
       sku: Standard_NC24s_v3
       zones:
       - australiaeast
@@ -7366,8 +7366,8 @@ spec:
     spec:
       cpu: "6"
       description: Standard_NC6
-      disk: 380Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_NC6
       zones:
       - australiaeast
@@ -7387,8 +7387,8 @@ spec:
     spec:
       cpu: "6"
       description: Standard_NC6_Promo
-      disk: 380Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_NC6_Promo
       zones:
       - australiaeast
@@ -7408,8 +7408,8 @@ spec:
     spec:
       cpu: "6"
       description: Standard_NC6s_v2
-      disk: 336Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_NC6s_v2
       zones:
       - eastus
@@ -7425,8 +7425,8 @@ spec:
     spec:
       cpu: "6"
       description: Standard_NC6s_v3
-      disk: 336Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_NC6s_v3
       zones:
       - australiaeast
@@ -7449,8 +7449,8 @@ spec:
     spec:
       cpu: "12"
       description: Standard_ND12s
-      disk: 672Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_ND12s
       zones:
       - eastus
@@ -7465,8 +7465,8 @@ spec:
     spec:
       cpu: "24"
       description: Standard_ND24rs
-      disk: 1344Ki
-      ram: 448Ki
+      disk: 1047552M
+      ram: 458752M
       sku: Standard_ND24rs
       zones:
       - eastus
@@ -7481,8 +7481,8 @@ spec:
     spec:
       cpu: "24"
       description: Standard_ND24s
-      disk: 1344Ki
-      ram: 448Ki
+      disk: 1047552M
+      ram: 458752M
       sku: Standard_ND24s
       zones:
       - eastus
@@ -7497,8 +7497,8 @@ spec:
     spec:
       cpu: "6"
       description: Standard_ND6s
-      disk: 336Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_ND6s
       zones:
       - eastus
@@ -7513,8 +7513,8 @@ spec:
     spec:
       cpu: "12"
       description: Standard_NV12
-      disk: 680Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_NV12
       zones:
       - australiaeast
@@ -7537,8 +7537,8 @@ spec:
     spec:
       cpu: "12"
       description: Standard_NV12_Promo
-      disk: 680Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_NV12_Promo
       zones:
       - australiaeast
@@ -7561,8 +7561,8 @@ spec:
     spec:
       cpu: "12"
       description: Standard_NV12s_v2
-      disk: 672Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_NV12s_v2
       zones:
       - northeurope
@@ -7576,8 +7576,8 @@ spec:
     spec:
       cpu: "12"
       description: Standard_NV12s_v3
-      disk: 336Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_NV12s_v3
       zones:
       - northeurope
@@ -7589,8 +7589,8 @@ spec:
     spec:
       cpu: "24"
       description: Standard_NV24
-      disk: 1440Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_NV24
       zones:
       - australiaeast
@@ -7613,8 +7613,8 @@ spec:
     spec:
       cpu: "24"
       description: Standard_NV24_Promo
-      disk: 1440Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_NV24_Promo
       zones:
       - australiaeast
@@ -7637,8 +7637,8 @@ spec:
     spec:
       cpu: "24"
       description: Standard_NV24s_v2
-      disk: 1344Ki
-      ram: 448Ki
+      disk: 1047552M
+      ram: 458752M
       sku: Standard_NV24s_v2
       zones:
       - northeurope
@@ -7652,8 +7652,8 @@ spec:
     spec:
       cpu: "24"
       description: Standard_NV24s_v3
-      disk: 672Ki
-      ram: 224Ki
+      disk: 1047552M
+      ram: 229376M
       sku: Standard_NV24s_v3
       zones:
       - northeurope
@@ -7665,8 +7665,8 @@ spec:
     spec:
       cpu: "48"
       description: Standard_NV48s_v3
-      disk: 1344Ki
-      ram: 448Ki
+      disk: 1047552M
+      ram: 458752M
       sku: Standard_NV48s_v3
       zones:
       - northeurope
@@ -7678,8 +7678,8 @@ spec:
     spec:
       cpu: "6"
       description: Standard_NV6
-      disk: 380Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_NV6
       zones:
       - australiaeast
@@ -7702,8 +7702,8 @@ spec:
     spec:
       cpu: "6"
       description: Standard_NV6_Promo
-      disk: 380Ki
-      ram: 56Ki
+      disk: 1047552M
+      ram: 57344M
       sku: Standard_NV6_Promo
       zones:
       - australiaeast
@@ -7726,8 +7726,8 @@ spec:
     spec:
       cpu: "6"
       description: Standard_NV6s_v2
-      disk: 336Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_NV6s_v2
       zones:
       - northeurope
@@ -7741,8 +7741,8 @@ spec:
     spec:
       cpu: "6"
       description: Standard_PB6s
-      disk: 336Ki
-      ram: 112Ki
+      disk: 1047552M
+      ram: 114688M
       sku: Standard_PB6s
       zones:
       - eastus

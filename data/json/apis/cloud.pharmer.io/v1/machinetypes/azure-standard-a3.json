@@ -12,8 +12,8 @@
     "sku": "Standard_A3",
     "description": "Standard_A3",
     "cpu": "4",
-    "ram": "7Ki",
-    "disk": "285Ki",
+    "ram": "7168M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

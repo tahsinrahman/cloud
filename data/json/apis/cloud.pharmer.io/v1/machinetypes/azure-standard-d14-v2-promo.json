@@ -12,8 +12,8 @@
     "sku": "Standard_D14_v2_Promo",
     "description": "Standard_D14_v2_Promo",
     "cpu": "16",
-    "ram": "112Ki",
-    "disk": "800Ki",
+    "ram": "114688M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

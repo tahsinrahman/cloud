@@ -12,8 +12,8 @@
     "sku": "Standard_ND12s",
     "description": "Standard_ND12s",
     "cpu": "12",
-    "ram": "224Ki",
-    "disk": "672Ki",
+    "ram": "229376M",
+    "disk": "1047552M",
     "zones": [
       "eastus",
       "southeastasia",

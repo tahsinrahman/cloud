@@ -12,8 +12,8 @@
     "sku": "Standard_M208ms_v2",
     "description": "Standard_M208ms_v2",
     "cpu": "208",
-    "ram": "5700Ki",
-    "disk": "4Mi",
+    "ram": "5836800M",
+    "disk": "1047552M",
     "zones": [
       "eastus",
       "eastus2"

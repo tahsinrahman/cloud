@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "128"
   description: Standard_M128m
-  disk: 16000Ki
-  ram: 3800Ki
+  disk: 1047552M
+  ram: 3891200M
   sku: Standard_M128m
   zones:
   - australiaeast

@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "12"
   description: Standard_NC12_Promo
-  disk: 680Ki
-  ram: 112Ki
+  disk: 1047552M
+  ram: 114688M
   sku: Standard_NC12_Promo
   zones:
   - australiaeast

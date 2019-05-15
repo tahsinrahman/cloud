@@ -12,8 +12,8 @@
     "sku": "Standard_B8ms",
     "description": "Standard_B8ms",
     "cpu": "8",
-    "ram": "32Ki",
-    "disk": "64Ki",
+    "ram": "32768M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

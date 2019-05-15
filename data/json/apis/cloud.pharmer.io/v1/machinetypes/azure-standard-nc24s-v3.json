@@ -12,8 +12,8 @@
     "sku": "Standard_NC24s_v3",
     "description": "Standard_NC24s_v3",
     "cpu": "24",
-    "ram": "448Ki",
-    "disk": "1344Ki",
+    "ram": "458752M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "canadacentral",

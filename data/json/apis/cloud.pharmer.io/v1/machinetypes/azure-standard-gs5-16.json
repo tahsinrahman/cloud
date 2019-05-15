@@ -12,8 +12,8 @@
     "sku": "Standard_GS5-16",
     "description": "Standard_GS5-16",
     "cpu": "32",
-    "ram": "448Ki",
-    "disk": "896Ki",
+    "ram": "458752M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "canadacentral",

@@ -12,8 +12,8 @@
     "sku": "Standard_F4",
     "description": "Standard_F4",
     "cpu": "4",
-    "ram": "8Ki",
-    "disk": "64Ki",
+    "ram": "8192M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

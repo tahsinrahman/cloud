@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "1"
   description: Basic_A1
-  disk: 40Ki
-  ram: "1792"
+  disk: 1047552M
+  ram: 1792M
   sku: Basic_A1
   zones:
   - australiaeast

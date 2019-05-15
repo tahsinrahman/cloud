@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "1"
   description: Standard_B1ls
-  disk: 1Ki
-  ram: "512"
+  disk: 1047552M
+  ram: 512M
   sku: Standard_B1ls
   zones:
   - australiaeast

@@ -12,8 +12,8 @@
     "sku": "Standard_B2ms",
     "description": "Standard_B2ms",
     "cpu": "2",
-    "ram": "8Ki",
-    "disk": "16Ki",
+    "ram": "8192M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

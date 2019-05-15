@@ -12,8 +12,8 @@
     "sku": "Standard_DC4s",
     "description": "Standard_DC4s",
     "cpu": "4",
-    "ram": "16Ki",
-    "disk": "200Ki",
+    "ram": "16384M",
+    "disk": "1047552M",
     "zones": [
       "eastus",
       "westeurope"

@@ -12,8 +12,8 @@
     "sku": "Standard_F1s",
     "description": "Standard_F1s",
     "cpu": "1",
-    "ram": "2Ki",
-    "disk": "4Ki",
+    "ram": "2048M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

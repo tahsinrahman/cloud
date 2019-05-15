@@ -12,8 +12,8 @@
     "sku": "Standard_D12_v2",
     "description": "Standard_D12_v2",
     "cpu": "4",
-    "ram": "28Ki",
-    "disk": "200Ki",
+    "ram": "28672M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

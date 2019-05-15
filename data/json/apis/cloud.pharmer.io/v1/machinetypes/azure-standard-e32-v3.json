@@ -12,8 +12,8 @@
     "sku": "Standard_E32_v3",
     "description": "Standard_E32_v3",
     "cpu": "32",
-    "ram": "256Ki",
-    "disk": "800Ki",
+    "ram": "262144M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

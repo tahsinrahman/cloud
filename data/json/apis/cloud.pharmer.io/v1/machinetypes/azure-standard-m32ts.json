@@ -12,8 +12,8 @@
     "sku": "Standard_M32ts",
     "description": "Standard_M32ts",
     "cpu": "32",
-    "ram": "192Ki",
-    "disk": "1000Ki",
+    "ram": "196608M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

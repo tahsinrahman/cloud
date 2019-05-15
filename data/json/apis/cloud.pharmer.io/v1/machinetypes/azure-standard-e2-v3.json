@@ -12,8 +12,8 @@
     "sku": "Standard_E2_v3",
     "description": "Standard_E2_v3",
     "cpu": "2",
-    "ram": "16Ki",
-    "disk": "50Ki",
+    "ram": "16384M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

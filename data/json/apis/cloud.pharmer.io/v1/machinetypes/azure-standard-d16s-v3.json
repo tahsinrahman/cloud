@@ -12,8 +12,8 @@
     "sku": "Standard_D16s_v3",
     "description": "Standard_D16s_v3",
     "cpu": "16",
-    "ram": "64Ki",
-    "disk": "128Ki",
+    "ram": "65536M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

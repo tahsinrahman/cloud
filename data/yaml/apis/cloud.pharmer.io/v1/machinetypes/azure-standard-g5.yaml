@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "32"
   description: Standard_G5
-  disk: 6Mi
-  ram: 448Ki
+  disk: 1047552M
+  ram: 458752M
   sku: Standard_G5
   zones:
   - australiaeast

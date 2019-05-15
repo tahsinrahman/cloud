@@ -12,8 +12,8 @@
     "sku": "Standard_DS4_v2_Promo",
     "description": "Standard_DS4_v2_Promo",
     "cpu": "8",
-    "ram": "28Ki",
-    "disk": "56Ki",
+    "ram": "28672M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

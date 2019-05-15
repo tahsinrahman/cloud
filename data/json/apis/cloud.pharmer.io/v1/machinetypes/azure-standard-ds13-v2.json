@@ -12,8 +12,8 @@
     "sku": "Standard_DS13_v2",
     "description": "Standard_DS13_v2",
     "cpu": "8",
-    "ram": "56Ki",
-    "disk": "112Ki",
+    "ram": "57344M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

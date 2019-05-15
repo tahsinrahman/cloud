@@ -12,8 +12,8 @@
     "sku": "Standard_M16ms",
     "description": "Standard_M16ms",
     "cpu": "16",
-    "ram": "448000",
-    "disk": "500Ki",
+    "ram": "448G",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

@@ -12,8 +12,8 @@
     "sku": "Standard_D1_v2",
     "description": "Standard_D1_v2",
     "cpu": "1",
-    "ram": "3584",
-    "disk": "50Ki",
+    "ram": "3584M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

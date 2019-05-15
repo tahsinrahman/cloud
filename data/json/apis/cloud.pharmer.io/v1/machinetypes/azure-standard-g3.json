@@ -12,8 +12,8 @@
     "sku": "Standard_G3",
     "description": "Standard_G3",
     "cpu": "8",
-    "ram": "112Ki",
-    "disk": "1536Ki",
+    "ram": "114688M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "canadacentral",

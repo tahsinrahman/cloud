@@ -12,8 +12,8 @@
     "sku": "Standard_D5_v2",
     "description": "Standard_D5_v2",
     "cpu": "16",
-    "ram": "56Ki",
-    "disk": "800Ki",
+    "ram": "57344M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

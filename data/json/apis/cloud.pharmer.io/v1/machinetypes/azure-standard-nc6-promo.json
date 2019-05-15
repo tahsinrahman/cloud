@@ -12,8 +12,8 @@
     "sku": "Standard_NC6_Promo",
     "description": "Standard_NC6_Promo",
     "cpu": "6",
-    "ram": "56Ki",
-    "disk": "380Ki",
+    "ram": "57344M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "eastus",

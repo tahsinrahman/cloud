@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "44"
   description: Standard_HC44rs
-  disk: 700Ki
-  ram: "335693"
+  disk: 1047552M
+  ram: 335693M
   sku: Standard_HC44rs
   zones:
   - eastus

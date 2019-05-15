@@ -12,8 +12,8 @@
     "sku": "Standard_GS1",
     "description": "Standard_GS1",
     "cpu": "2",
-    "ram": "28Ki",
-    "disk": "56Ki",
+    "ram": "28672M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "canadacentral",

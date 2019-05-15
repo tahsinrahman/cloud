@@ -12,8 +12,8 @@
     "sku": "Basic_A2",
     "description": "Basic_A2",
     "cpu": "2",
-    "ram": "3584",
-    "disk": "60Ki",
+    "ram": "3584M",
+    "disk": "1047552M",
     "zones": [
       "australiaeast",
       "australiasoutheast",

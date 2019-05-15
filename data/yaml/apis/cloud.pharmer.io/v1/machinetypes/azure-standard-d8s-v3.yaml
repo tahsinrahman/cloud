@@ -8,8 +8,8 @@ metadata:
 spec:
   cpu: "8"
   description: Standard_D8s_v3
-  disk: 64Ki
-  ram: 32Ki
+  disk: 1047552M
+  ram: 32768M
   sku: Standard_D8s_v3
   zones:
   - australiaeast
