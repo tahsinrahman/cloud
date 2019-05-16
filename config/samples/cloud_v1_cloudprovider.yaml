@@ -1,9 +1,0 @@
-apiVersion: cloud.pharmer.io/v1
-kind: CloudProvider
-metadata:
-  labels:
-    controller-tools.k8s.io: "1.0"
-  name: cloudprovider-sample
-spec:
-  # Add fields here
-  foo: bar

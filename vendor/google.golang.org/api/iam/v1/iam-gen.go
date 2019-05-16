@@ -1,4 +1,4 @@
-// Copyright 2019 Google Inc. All rights reserved.
+// Copyright 2019 Google LLC.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
@@ -6,13 +6,35 @@
 
 // Package iam provides access to the Identity and Access Management (IAM) API.
 //
-// See https://cloud.google.com/iam/
+// For product documentation, see: https://cloud.google.com/iam/
+//
+// Creating a client
 //
 // Usage example:
 //
 //   import "google.golang.org/api/iam/v1"
 //   ...
-//   iamService, err := iam.New(oauthHttpClient)
+//   ctx := context.Background()
+//   iamService, err := iam.NewService(ctx)
+//
+// In this example, Google Application Default Credentials are used for authentication.
+//
+// For information on how to create and obtain Application Default Credentials, see https://developers.google.com/identity/protocols/application-default-credentials.
+//
+// Other authentication options
+//
+// To use an API key for authentication (note: some APIs do not support API keys), use option.WithAPIKey:
+//
+//   iamService, err := iam.NewService(ctx, option.WithAPIKey("AIza..."))
+//
+// To use an OAuth token (e.g., a user token obtained via a three-legged OAuth flow), use option.WithTokenSource:
+//
+//   config := &oauth2.Config{...}
+//   // ...
+//   token, err := config.Exchange(ctx, ...)
+//   iamService, err := iam.NewService(ctx, option.WithTokenSource(config.TokenSource(ctx, token)))
+//
+// See https://godoc.org/google.golang.org/api/option/ for details on options.
 package iam // import "google.golang.org/api/iam/v1"
 
 import (
@@ -29,6 +51,8 @@ import (
 
 	gensupport "google.golang.org/api/gensupport"
 	googleapi "google.golang.org/api/googleapi"
+	option "google.golang.org/api/option"
+	htransport "google.golang.org/api/transport/http"
 )
 
 // Always reference these packages, just in case the auto-generated code
@@ -56,6 +80,32 @@ const (
 	CloudPlatformScope = "https://www.googleapis.com/auth/cloud-platform"
 )
 
+// NewService creates a new Service.
+func NewService(ctx context.Context, opts ...option.ClientOption) (*Service, error) {
+	scopesOption := option.WithScopes(
+		"https://www.googleapis.com/auth/cloud-platform",
+	)
+	// NOTE: prepend, so we don't override user-specified scopes.
+	opts = append([]option.ClientOption{scopesOption}, opts...)
+	client, endpoint, err := htransport.NewClient(ctx, opts...)
+	if err != nil {
+		return nil, err
+	}
+	s, err := New(client)
+	if err != nil {
+		return nil, err
+	}
+	if endpoint != "" {
+		s.BasePath = endpoint
+	}
+	return s, nil
+}
+
+// New creates a new Service. It uses the provided http.Client for requests.
+//
+// Deprecated: please use NewService instead.
+// To provide a custom HTTP client, use option.WithHTTPClient.
+// If you are using google.golang.org/api/googleapis/transport.APIKey, use option.WithAPIKey with NewService instead.
 func New(client *http.Client) (*Service, error) {
 	if client == nil {
 		return nil, errors.New("client is nil")
@@ -183,6 +233,40 @@ func NewRolesService(s *Service) *RolesService {
 
 type RolesService struct {
 	s *Service
+}
+
+// AdminAuditData: Audit log information specific to Cloud IAM admin
+// APIs. This message is
+// serialized as an `Any` type in the `ServiceData` message of
+// an
+// `AuditLog` message.
+type AdminAuditData struct {
+	// PermissionDelta: The permission_delta when when creating or updating
+	// a Role.
+	PermissionDelta *PermissionDelta `json:"permissionDelta,omitempty"`
+
+	// ForceSendFields is a list of field names (e.g. "PermissionDelta") to
+	// unconditionally include in API requests. By default, fields with
+	// empty values are omitted from API requests. However, any non-pointer,
+	// non-interface field appearing in ForceSendFields will be sent to the
+	// server regardless of whether the field is empty or not. This may be
+	// used to include empty fields in Patch requests.
+	ForceSendFields []string `json:"-"`
+
+	// NullFields is a list of field names (e.g. "PermissionDelta") to
+	// include in API requests with the JSON null value. By default, fields
+	// with empty values are omitted from API requests. However, any field
+	// with an empty value appearing in NullFields will be sent to the
+	// server as null. It is an error if a field in this list has a
+	// non-empty value. This may be used to include null fields in Patch
+	// requests.
+	NullFields []string `json:"-"`
+}
+
+func (s *AdminAuditData) MarshalJSON() ([]byte, error) {
+	type NoMethod AdminAuditData
+	raw := NoMethod(*s)
+	return gensupport.MarshalJSON(raw, s.ForceSendFields, s.NullFields)
 }
 
 // AuditConfig: Specifies the audit configuration for a service.
@@ -402,9 +486,8 @@ func (s *AuditableService) MarshalJSON() ([]byte, error) {
 
 // Binding: Associates `members` with a `role`.
 type Binding struct {
-	// Condition: Unimplemented. The condition that is associated with this
-	// binding.
-	// NOTE: an unsatisfied condition will not allow user access via
+	// Condition: The condition that is associated with this binding.
+	// NOTE: An unsatisfied condition will not allow user access via
 	// current
 	// binding. Different bindings, including their conditions, are
 	// examined
@@ -1086,6 +1169,36 @@ func (s *ListServiceAccountsResponse) MarshalJSON() ([]byte, error) {
 	return gensupport.MarshalJSON(raw, s.ForceSendFields, s.NullFields)
 }
 
+// PatchServiceAccountRequest: The patch service account request.
+type PatchServiceAccountRequest struct {
+	ServiceAccount *ServiceAccount `json:"serviceAccount,omitempty"`
+
+	UpdateMask string `json:"updateMask,omitempty"`
+
+	// ForceSendFields is a list of field names (e.g. "ServiceAccount") to
+	// unconditionally include in API requests. By default, fields with
+	// empty values are omitted from API requests. However, any non-pointer,
+	// non-interface field appearing in ForceSendFields will be sent to the
+	// server regardless of whether the field is empty or not. This may be
+	// used to include empty fields in Patch requests.
+	ForceSendFields []string `json:"-"`
+
+	// NullFields is a list of field names (e.g. "ServiceAccount") to
+	// include in API requests with the JSON null value. By default, fields
+	// with empty values are omitted from API requests. However, any field
+	// with an empty value appearing in NullFields will be sent to the
+	// server as null. It is an error if a field in this list has a
+	// non-empty value. This may be used to include null fields in Patch
+	// requests.
+	NullFields []string `json:"-"`
+}
+
+func (s *PatchServiceAccountRequest) MarshalJSON() ([]byte, error) {
+	type NoMethod PatchServiceAccountRequest
+	raw := NoMethod(*s)
+	return gensupport.MarshalJSON(raw, s.ForceSendFields, s.NullFields)
+}
+
 // Permission: A permission which can be included by a role.
 type Permission struct {
 	// ApiDisabled: The service API associated with the permission is not
@@ -1142,6 +1255,40 @@ type Permission struct {
 
 func (s *Permission) MarshalJSON() ([]byte, error) {
 	type NoMethod Permission
+	raw := NoMethod(*s)
+	return gensupport.MarshalJSON(raw, s.ForceSendFields, s.NullFields)
+}
+
+// PermissionDelta: A PermissionDelta message to record the
+// added_permissions and
+// removed_permissions inside a role.
+type PermissionDelta struct {
+	// AddedPermissions: Added permissions.
+	AddedPermissions []string `json:"addedPermissions,omitempty"`
+
+	// RemovedPermissions: Removed permissions.
+	RemovedPermissions []string `json:"removedPermissions,omitempty"`
+
+	// ForceSendFields is a list of field names (e.g. "AddedPermissions") to
+	// unconditionally include in API requests. By default, fields with
+	// empty values are omitted from API requests. However, any non-pointer,
+	// non-interface field appearing in ForceSendFields will be sent to the
+	// server regardless of whether the field is empty or not. This may be
+	// used to include empty fields in Patch requests.
+	ForceSendFields []string `json:"-"`
+
+	// NullFields is a list of field names (e.g. "AddedPermissions") to
+	// include in API requests with the JSON null value. By default, fields
+	// with empty values are omitted from API requests. However, any field
+	// with an empty value appearing in NullFields will be sent to the
+	// server as null. It is an error if a field in this list has a
+	// non-empty value. This may be used to include null fields in Patch
+	// requests.
+	NullFields []string `json:"-"`
+}
+
+func (s *PermissionDelta) MarshalJSON() ([]byte, error) {
+	type NoMethod PermissionDelta
 	raw := NoMethod(*s)
 	return gensupport.MarshalJSON(raw, s.ForceSendFields, s.NullFields)
 }
@@ -1635,6 +1782,11 @@ func (s *Role) MarshalJSON() ([]byte, error) {
 // the
 // `unique_id` of the service account.
 type ServiceAccount struct {
+	// Description: Optional. A user-specified opaque description of the
+	// service account.
+	// Must be less than or equal to 256 UTF-8 bytes.
+	Description string `json:"description,omitempty"`
+
 	// Disabled: @OutputOnly A bool indicate if the service account is
 	// disabled.
 	// The field is currently in alpha phase.
@@ -1687,7 +1839,7 @@ type ServiceAccount struct {
 	// server.
 	googleapi.ServerResponse `json:"-"`
 
-	// ForceSendFields is a list of field names (e.g. "Disabled") to
+	// ForceSendFields is a list of field names (e.g. "Description") to
 	// unconditionally include in API requests. By default, fields with
 	// empty values are omitted from API requests. However, any non-pointer,
 	// non-interface field appearing in ForceSendFields will be sent to the
@@ -1695,10 +1847,10 @@ type ServiceAccount struct {
 	// used to include empty fields in Patch requests.
 	ForceSendFields []string `json:"-"`
 
-	// NullFields is a list of field names (e.g. "Disabled") to include in
-	// API requests with the JSON null value. By default, fields with empty
-	// values are omitted from API requests. However, any field with an
-	// empty value appearing in NullFields will be sent to the server as
+	// NullFields is a list of field names (e.g. "Description") to include
+	// in API requests with the JSON null value. By default, fields with
+	// empty values are omitted from API requests. However, any field with
+	// an empty value appearing in NullFields will be sent to the server as
 	// null. It is an error if a field in this list has a non-empty value.
 	// This may be used to include null fields in Patch requests.
 	NullFields []string `json:"-"`
@@ -4736,8 +4888,33 @@ type ProjectsServiceAccountsDisableCall struct {
 	header_                      http.Header
 }
 
-// Disable: Disables a ServiceAccount.
-// The API is currently in alpha phase.
+// Disable: DisableServiceAccount is currently in the alpha launch
+// stage.
+//
+// Disables a ServiceAccount,
+// which immediately prevents the service account from authenticating
+// and
+// gaining access to APIs.
+//
+// Disabled service accounts can be safely restored by
+// using
+// EnableServiceAccount at any point. Deleted service accounts cannot
+// be
+// restored using this method.
+//
+// Disabling a service account that is bound to VMs, Apps, Functions,
+// or
+// other jobs will cause those jobs to lose access to resources if they
+// are
+// using the disabled service account.
+//
+// To improve reliability of your services and avoid unexpected outages,
+// it
+// is recommended to first disable a service account rather than delete
+// it.
+// After disabling the service account, wait at least 24 hours to verify
+// there
+// are no unintended consequences, and then delete the service account.
 func (r *ProjectsServiceAccountsService) Disable(name string, disableserviceaccountrequest *DisableServiceAccountRequest) *ProjectsServiceAccountsDisableCall {
 	c := &ProjectsServiceAccountsDisableCall{s: r.s, urlParams_: make(gensupport.URLParams)}
 	c.name = name
@@ -4835,7 +5012,7 @@ func (c *ProjectsServiceAccountsDisableCall) Do(opts ...googleapi.CallOption) (*
 	}
 	return ret, nil
 	// {
-	//   "description": "Disables a ServiceAccount.\nThe API is currently in alpha phase.",
+	//   "description": "DisableServiceAccount is currently in the alpha launch stage.\n\nDisables a ServiceAccount,\nwhich immediately prevents the service account from authenticating and\ngaining access to APIs.\n\nDisabled service accounts can be safely restored by using\nEnableServiceAccount at any point. Deleted service accounts cannot be\nrestored using this method.\n\nDisabling a service account that is bound to VMs, Apps, Functions, or\nother jobs will cause those jobs to lose access to resources if they are\nusing the disabled service account.\n\nTo improve reliability of your services and avoid unexpected outages, it\nis recommended to first disable a service account rather than delete it.\nAfter disabling the service account, wait at least 24 hours to verify there\nare no unintended consequences, and then delete the service account.",
 	//   "flatPath": "v1/projects/{projectsId}/serviceAccounts/{serviceAccountsId}:disable",
 	//   "httpMethod": "POST",
 	//   "id": "iam.projects.serviceAccounts.disable",
@@ -4876,8 +5053,21 @@ type ProjectsServiceAccountsEnableCall struct {
 	header_                     http.Header
 }
 
-// Enable: Enables a ServiceAccount.
-//  The API is currently in alpha phase.
+// Enable: EnableServiceAccount is currently in the alpha launch
+// stage.
+//
+//  Restores a disabled ServiceAccount
+//  that has been manually disabled by using DisableServiceAccount.
+// Service
+//  accounts that have been disabled by other means or for other
+// reasons,
+//  such as abuse, cannot be restored using this method.
+//
+//  EnableServiceAccount will have no effect on a service account that
+// is
+//  not disabled.  Enabling an already enabled service account will have
+// no
+//  effect.
 func (r *ProjectsServiceAccountsService) Enable(name string, enableserviceaccountrequest *EnableServiceAccountRequest) *ProjectsServiceAccountsEnableCall {
 	c := &ProjectsServiceAccountsEnableCall{s: r.s, urlParams_: make(gensupport.URLParams)}
 	c.name = name
@@ -4975,7 +5165,7 @@ func (c *ProjectsServiceAccountsEnableCall) Do(opts ...googleapi.CallOption) (*E
 	}
 	return ret, nil
 	// {
-	//   "description": "Enables a ServiceAccount.\n The API is currently in alpha phase.",
+	//   "description": "EnableServiceAccount is currently in the alpha launch stage.\n\n Restores a disabled ServiceAccount\n that has been manually disabled by using DisableServiceAccount. Service\n accounts that have been disabled by other means or for other reasons,\n such as abuse, cannot be restored using this method.\n\n EnableServiceAccount will have no effect on a service account that is\n not disabled.  Enabling an already enabled service account will have no\n effect.",
 	//   "flatPath": "v1/projects/{projectsId}/serviceAccounts/{serviceAccountsId}:enable",
 	//   "httpMethod": "POST",
 	//   "id": "iam.projects.serviceAccounts.enable",
@@ -5163,12 +5353,13 @@ type ProjectsServiceAccountsGetIamPolicyCall struct {
 // ServiceAccount.
 //
 // Note: Service accounts are both
-// [resources and
-// identities](/iam/docs/service-accounts#service_account_permissions).
-// T
-// his method treats the service account as a resource. It returns the
-// Cloud
-// IAM policy that reflects what members have access to the service
+// [resources
+// and
+// identities](/iam/docs/service-accounts#service_account_permissions
+// ). This
+// method treats the service account as a resource. It returns the Cloud
+// IAM
+// policy that reflects what members have access to the service
 // account.
 //
 // This method does not return what resources the service account has
@@ -5273,7 +5464,7 @@ func (c *ProjectsServiceAccountsGetIamPolicyCall) Do(opts ...googleapi.CallOptio
 	}
 	return ret, nil
 	// {
-	//   "description": "Returns the Cloud IAM access control policy for a\nServiceAccount.\n\nNote: Service accounts are both\n[resources and identities](/iam/docs/service-accounts#service_account_permissions).\nThis method treats the service account as a resource. It returns the Cloud\nIAM policy that reflects what members have access to the service account.\n\nThis method does not return what resources the service account has access\nto. To see if a service account has access to a resource, call the\n`getIamPolicy` method on the target resource. For example, to view grants\nfor a project, call the\n[projects.getIamPolicy](/resource-manager/reference/rest/v1/projects/getIamPolicy)\nmethod.",
+	//   "description": "Returns the Cloud IAM access control policy for a\nServiceAccount.\n\nNote: Service accounts are both\n[resources and\nidentities](/iam/docs/service-accounts#service_account_permissions). This\nmethod treats the service account as a resource. It returns the Cloud IAM\npolicy that reflects what members have access to the service account.\n\nThis method does not return what resources the service account has access\nto. To see if a service account has access to a resource, call the\n`getIamPolicy` method on the target resource. For example, to view grants\nfor a project, call the\n[projects.getIamPolicy](/resource-manager/reference/rest/v1/projects/getIamPolicy)\nmethod.",
 	//   "flatPath": "v1/projects/{projectsId}/serviceAccounts/{serviceAccountsId}:getIamPolicy",
 	//   "httpMethod": "POST",
 	//   "id": "iam.projects.serviceAccounts.getIamPolicy",
@@ -5495,6 +5686,154 @@ func (c *ProjectsServiceAccountsListCall) Pages(ctx context.Context, f func(*Lis
 	}
 }
 
+// method id "iam.projects.serviceAccounts.patch":
+
+type ProjectsServiceAccountsPatchCall struct {
+	s                          *Service
+	name                       string
+	patchserviceaccountrequest *PatchServiceAccountRequest
+	urlParams_                 gensupport.URLParams
+	ctx_                       context.Context
+	header_                    http.Header
+}
+
+// Patch: Patches a ServiceAccount.
+//
+// Currently, only the following fields are updatable:
+// `display_name` and `description`.
+//
+// Only fields specified in the request are guaranteed to be returned
+// in
+// the response. Other fields in the response may be empty.
+//
+// Note: The field mask is required.
+func (r *ProjectsServiceAccountsService) Patch(name string, patchserviceaccountrequest *PatchServiceAccountRequest) *ProjectsServiceAccountsPatchCall {
+	c := &ProjectsServiceAccountsPatchCall{s: r.s, urlParams_: make(gensupport.URLParams)}
+	c.name = name
+	c.patchserviceaccountrequest = patchserviceaccountrequest
+	return c
+}
+
+// Fields allows partial responses to be retrieved. See
+// https://developers.google.com/gdata/docs/2.0/basics#PartialResponse
+// for more information.
+func (c *ProjectsServiceAccountsPatchCall) Fields(s ...googleapi.Field) *ProjectsServiceAccountsPatchCall {
+	c.urlParams_.Set("fields", googleapi.CombineFields(s))
+	return c
+}
+
+// Context sets the context to be used in this call's Do method. Any
+// pending HTTP request will be aborted if the provided context is
+// canceled.
+func (c *ProjectsServiceAccountsPatchCall) Context(ctx context.Context) *ProjectsServiceAccountsPatchCall {
+	c.ctx_ = ctx
+	return c
+}
+
+// Header returns an http.Header that can be modified by the caller to
+// add HTTP headers to the request.
+func (c *ProjectsServiceAccountsPatchCall) Header() http.Header {
+	if c.header_ == nil {
+		c.header_ = make(http.Header)
+	}
+	return c.header_
+}
+
+func (c *ProjectsServiceAccountsPatchCall) doRequest(alt string) (*http.Response, error) {
+	reqHeaders := make(http.Header)
+	for k, v := range c.header_ {
+		reqHeaders[k] = v
+	}
+	reqHeaders.Set("User-Agent", c.s.userAgent())
+	var body io.Reader = nil
+	body, err := googleapi.WithoutDataWrapper.JSONReader(c.patchserviceaccountrequest)
+	if err != nil {
+		return nil, err
+	}
+	reqHeaders.Set("Content-Type", "application/json")
+	c.urlParams_.Set("alt", alt)
+	c.urlParams_.Set("prettyPrint", "false")
+	urls := googleapi.ResolveRelative(c.s.BasePath, "v1/{+name}")
+	urls += "?" + c.urlParams_.Encode()
+	req, err := http.NewRequest("PATCH", urls, body)
+	if err != nil {
+		return nil, err
+	}
+	req.Header = reqHeaders
+	googleapi.Expand(req.URL, map[string]string{
+		"name": c.name,
+	})
+	return gensupport.SendRequest(c.ctx_, c.s.client, req)
+}
+
+// Do executes the "iam.projects.serviceAccounts.patch" call.
+// Exactly one of *ServiceAccount or error will be non-nil. Any non-2xx
+// status code is an error. Response headers are in either
+// *ServiceAccount.ServerResponse.Header or (if a response was returned
+// at all) in error.(*googleapi.Error).Header. Use
+// googleapi.IsNotModified to check whether the returned error was
+// because http.StatusNotModified was returned.
+func (c *ProjectsServiceAccountsPatchCall) Do(opts ...googleapi.CallOption) (*ServiceAccount, error) {
+	gensupport.SetOptions(c.urlParams_, opts...)
+	res, err := c.doRequest("json")
+	if res != nil && res.StatusCode == http.StatusNotModified {
+		if res.Body != nil {
+			res.Body.Close()
+		}
+		return nil, &googleapi.Error{
+			Code:   res.StatusCode,
+			Header: res.Header,
+		}
+	}
+	if err != nil {
+		return nil, err
+	}
+	defer googleapi.CloseBody(res)
+	if err := googleapi.CheckResponse(res); err != nil {
+		return nil, err
+	}
+	ret := &ServiceAccount{
+		ServerResponse: googleapi.ServerResponse{
+			Header:         res.Header,
+			HTTPStatusCode: res.StatusCode,
+		},
+	}
+	target := &ret
+	if err := gensupport.DecodeResponse(target, res); err != nil {
+		return nil, err
+	}
+	return ret, nil
+	// {
+	//   "description": "Patches a ServiceAccount.\n\nCurrently, only the following fields are updatable:\n`display_name` and `description`.\n\nOnly fields specified in the request are guaranteed to be returned in\nthe response. Other fields in the response may be empty.\n\nNote: The field mask is required.",
+	//   "flatPath": "v1/projects/{projectsId}/serviceAccounts/{serviceAccountsId}",
+	//   "httpMethod": "PATCH",
+	//   "id": "iam.projects.serviceAccounts.patch",
+	//   "parameterOrder": [
+	//     "name"
+	//   ],
+	//   "parameters": {
+	//     "name": {
+	//       "description": "The resource name of the service account in the following format:\n`projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.\n\nRequests using `-` as a wildcard for the `PROJECT_ID` will infer the\nproject from the `account` and the `ACCOUNT` value can be the `email`\naddress or the `unique_id` of the service account.\n\nIn responses the resource name will always be in the format\n`projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.",
+	//       "location": "path",
+	//       "pattern": "^projects/[^/]+/serviceAccounts/[^/]+$",
+	//       "required": true,
+	//       "type": "string"
+	//     }
+	//   },
+	//   "path": "v1/{+name}",
+	//   "request": {
+	//     "$ref": "PatchServiceAccountRequest"
+	//   },
+	//   "response": {
+	//     "$ref": "ServiceAccount"
+	//   },
+	//   "scopes": [
+	//     "https://www.googleapis.com/auth/cloud-platform"
+	//   ]
+	// }
+
+}
+
 // method id "iam.projects.serviceAccounts.setIamPolicy":
 
 type ProjectsServiceAccountsSetIamPolicyCall struct {
@@ -5511,14 +5850,14 @@ type ProjectsServiceAccountsSetIamPolicyCall struct {
 // ServiceAccount.
 //
 // Note: Service accounts are both
-// [resources and
-// identities](/iam/docs/service-accounts#service_account_permissions).
-// T
-// his method treats the service account as a resource. Use it to
-// grant
-// members access to the service account, such as when they need
-// to
-// impersonate it.
+// [resources
+// and
+// identities](/iam/docs/service-accounts#service_account_permissions
+// ). This
+// method treats the service account as a resource. Use it to grant
+// members
+// access to the service account, such as when they need to impersonate
+// it.
 //
 // This method does not grant the service account access to other
 // resources,
@@ -5630,7 +5969,7 @@ func (c *ProjectsServiceAccountsSetIamPolicyCall) Do(opts ...googleapi.CallOptio
 	}
 	return ret, nil
 	// {
-	//   "description": "Sets the Cloud IAM access control policy for a\nServiceAccount.\n\nNote: Service accounts are both\n[resources and identities](/iam/docs/service-accounts#service_account_permissions).\nThis method treats the service account as a resource. Use it to grant\nmembers access to the service account, such as when they need to\nimpersonate it.\n\nThis method does not grant the service account access to other resources,\nsuch as projects. To grant a service account access to resources, include\nthe service account in the Cloud IAM policy for the desired resource, then\ncall the appropriate `setIamPolicy` method on the target resource. For\nexample, to grant a service account access to a project, call the\n[projects.setIamPolicy](/resource-manager/reference/rest/v1/projects/setIamPolicy)\nmethod.",
+	//   "description": "Sets the Cloud IAM access control policy for a\nServiceAccount.\n\nNote: Service accounts are both\n[resources and\nidentities](/iam/docs/service-accounts#service_account_permissions). This\nmethod treats the service account as a resource. Use it to grant members\naccess to the service account, such as when they need to impersonate it.\n\nThis method does not grant the service account access to other resources,\nsuch as projects. To grant a service account access to resources, include\nthe service account in the Cloud IAM policy for the desired resource, then\ncall the appropriate `setIamPolicy` method on the target resource. For\nexample, to grant a service account access to a project, call the\n[projects.setIamPolicy](/resource-manager/reference/rest/v1/projects/setIamPolicy)\nmethod.",
 	//   "flatPath": "v1/projects/{projectsId}/serviceAccounts/{serviceAccountsId}:setIamPolicy",
 	//   "httpMethod": "POST",
 	//   "id": "iam.projects.serviceAccounts.setIamPolicy",
@@ -6261,8 +6600,7 @@ type ProjectsServiceAccountsUpdateCall struct {
 // Updates a ServiceAccount.
 //
 // Currently, only the following fields are updatable:
-// `display_name` .
-// The `etag` is mandatory.
+// `display_name` and `description`.
 func (r *ProjectsServiceAccountsService) Update(name string, serviceaccount *ServiceAccount) *ProjectsServiceAccountsUpdateCall {
 	c := &ProjectsServiceAccountsUpdateCall{s: r.s, urlParams_: make(gensupport.URLParams)}
 	c.name = name
@@ -6360,7 +6698,7 @@ func (c *ProjectsServiceAccountsUpdateCall) Do(opts ...googleapi.CallOption) (*S
 	}
 	return ret, nil
 	// {
-	//   "description": "Note: This method is in the process of being deprecated. Use\nPatchServiceAccount instead.\n\nUpdates a ServiceAccount.\n\nCurrently, only the following fields are updatable:\n`display_name` .\nThe `etag` is mandatory.",
+	//   "description": "Note: This method is in the process of being deprecated. Use\nPatchServiceAccount instead.\n\nUpdates a ServiceAccount.\n\nCurrently, only the following fields are updatable:\n`display_name` and `description`.",
 	//   "flatPath": "v1/projects/{projectsId}/serviceAccounts/{serviceAccountsId}",
 	//   "httpMethod": "PUT",
 	//   "id": "iam.projects.serviceAccounts.update",
