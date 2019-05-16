@@ -87,9 +87,8 @@ github.com/davecgh/go-spew/spew
 github.com/dgrijalva/jwt-go
 # github.com/digitalocean/godo v1.10.0
 github.com/digitalocean/godo
-# github.com/docker/docker v1.13.1
+# github.com/docker/docker v0.0.0-20180612054059-a9fbbdc8dd87
 github.com/docker/docker/pkg/namesgenerator
-github.com/docker/docker/pkg/random
 # github.com/dustin/go-humanize v1.0.0
 github.com/dustin/go-humanize
 # github.com/evanphx/json-patch v4.2.0+incompatible
