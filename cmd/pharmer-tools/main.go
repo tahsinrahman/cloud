@@ -5,6 +5,7 @@ import (
 
 	"github.com/pharmer/cloud/pkg/cmds"
 	"kmodules.xyz/client-go/logs"
+	_ "github.com/pharmer/cloud/pkg/credential/cloud"
 )
 
 func main() {
