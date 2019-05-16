@@ -4,8 +4,8 @@ import (
 	"os"
 
 	"github.com/pharmer/cloud/pkg/cmds"
-	"kmodules.xyz/client-go/logs"
 	_ "github.com/pharmer/cloud/pkg/credential/cloud"
+	"kmodules.xyz/client-go/logs"
 )
 
 func main() {

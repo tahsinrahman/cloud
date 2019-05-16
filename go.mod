@@ -29,8 +29,6 @@ require (
 	github.com/packethost/packngo v0.1.1-0.20190507131943-1343be729ca2
 	github.com/pborman/uuid v1.2.0
 	github.com/pkg/errors v0.8.1
-	github.com/prometheus/client_golang v0.9.3-0.20190127221311-3c4408c8b829 // indirect
-	github.com/prometheus/common v0.4.0 // indirect
 	github.com/renstrom/fuzzysearch v1.0.2 // indirect
 	github.com/satori/go.uuid v1.2.0 // indirect
 	github.com/scaleway/scaleway-cli v1.10.2-0.20190329131818-c54911b8b3c5
@@ -38,13 +36,11 @@ require (
 	github.com/smartystreets/assertions v0.0.0-20190401211740-f487f9de1cd3 // indirect
 	github.com/spf13/cobra v0.0.3
 	github.com/spf13/pflag v1.0.3
-	github.com/stretchr/objx v0.2.0 // indirect
 	github.com/the-redback/go-oneliners v0.0.0-20190417084731-74f7694e6dae
 	golang.org/x/crypto v0.0.0-20190513172903-22d7a77e9e5f // indirect
 	golang.org/x/net v0.0.0-20190514140710-3ec191127204
 	golang.org/x/oauth2 v0.0.0-20190402181905-9f3314589c9a
 	golang.org/x/sys v0.0.0-20190516014833-cab07311ab81 // indirect
-	golang.org/x/tools v0.0.0-20190516015132-d1a3278ee749 // indirect
 	google.golang.org/api v0.5.0
 	google.golang.org/appengine v1.6.0 // indirect
 	google.golang.org/genproto v0.0.0-20190515210553-995ef27e003f // indirect
