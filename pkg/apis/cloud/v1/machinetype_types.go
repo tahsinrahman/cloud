@@ -54,7 +54,6 @@ type MachineType struct {
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
-// +genclient:nonNamespaced
 // +kubebuilder:object:root=true
 
 // MachineTypeList contains a list of MachineType
@@ -62,8 +61,4 @@ type MachineTypeList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []MachineType `json:"items"`
-}
-
-func init() {
-	SchemeBuilder.Register(&MachineType{}, &MachineTypeList{})
 }

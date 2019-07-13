@@ -3,7 +3,6 @@ module pharmer.dev/cloud
 go 1.12
 
 require (
-	contrib.go.opencensus.io/exporter/ocagent v0.5.0 // indirect
 	github.com/Azure/azure-sdk-for-go v29.0.0+incompatible
 	github.com/Azure/go-autorest v12.0.0+incompatible
 	github.com/JamesClonk/vultr v2.0.0+incompatible
@@ -16,7 +15,6 @@ require (
 	github.com/dustin/go-humanize v1.0.0 // indirect
 	github.com/go-logr/zapr v0.1.1 // indirect
 	github.com/gopherjs/gopherjs v0.0.0-20190430165422-3e4dfb77656c // indirect
-	github.com/grpc-ecosystem/grpc-gateway v1.9.0 // indirect
 	github.com/hokaccha/go-prettyjson v0.0.0-20180920040306-f579f869bbfe // indirect
 	github.com/imdario/mergo v0.3.7 // indirect
 	github.com/juju/ratelimit v1.0.1 // indirect
@@ -49,7 +47,7 @@ require (
 	k8s.io/client-go v11.0.1-0.20190409021438-1a26190bd76a+incompatible
 	k8s.io/kube-openapi v0.0.0-20190510232812-a01b7d5d6c22 // indirect
 	kmodules.xyz/client-go v0.0.0-20190515205239-a16030cc2e50
-	sigs.k8s.io/controller-runtime v0.2.0-alpha.1
+	sigs.k8s.io/controller-runtime v0.2.0-beta.4
 	sigs.k8s.io/yaml v1.1.0
 )
 

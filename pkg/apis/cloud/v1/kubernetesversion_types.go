@@ -44,7 +44,6 @@ type KubernetesVersion struct {
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
-// +genclient:nonNamespaced
 // +kubebuilder:object:root=true
 
 // KubernetesVersionList contains a list of KubernetesVersion
@@ -52,8 +51,4 @@ type KubernetesVersionList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []KubernetesVersion `json:"items"`
-}
-
-func init() {
-	SchemeBuilder.Register(&KubernetesVersion{}, &KubernetesVersionList{})
 }

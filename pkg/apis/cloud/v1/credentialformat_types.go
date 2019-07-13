@@ -51,7 +51,6 @@ type CredentialFormat struct {
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
-// +genclient:nonNamespaced
 // +kubebuilder:object:root=true
 
 // CredentialFormatList contains a list of CredentialFormat
@@ -59,8 +58,4 @@ type CredentialFormatList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []CredentialFormat `json:"items"`
-}
-
-func init() {
-	SchemeBuilder.Register(&CredentialFormat{}, &CredentialFormatList{})
 }

@@ -16,3 +16,6 @@ limitations under the License.
 
 // Package cloud contains cloud API versions
 package cloud
+
+// GroupName is the group name use in this package
+const GroupName = "cloud.pharmer.io"

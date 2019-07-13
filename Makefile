@@ -11,16 +11,16 @@ BUILD_IMAGE ?= appscode/gengo:release-1.14
 all: pharmer-tools
 
 # Run tests
-test: generate manifests fmt vet
-	go test ./pkg/... ./cmd/... -coverprofile cover.out
+test: manifests fmt vet
+	go test -mod=vendor ./pkg/... ./cmd/... -coverprofile cover.out
 
 # Build pharmer-tools binary
-pharmer-tools: generate fmt vet
-	go build -o bin/pharmer-tools $(GO_PKG)/$(REPO)/cmd/pharmer-tools
+pharmer-tools: fmt vet
+	go build -mod=vendor -o bin/pharmer-tools $(GO_PKG)/$(REPO)/cmd/pharmer-tools
 
 # Run against the configured Kubernetes cluster in ~/.kube/config
-run: generate fmt vet
-	go run ./cmd/pharmer-tools/main.go
+run: fmt vet
+	go run -mod=vendor ./cmd/pharmer-tools/main.go
 
 # Install CRDs into a cluster
 install: manifests
@@ -53,7 +53,7 @@ clientset:
 			"deepcopy,client"                            \
 			$(GO_PKG)/$(REPO)/pkg/client                 \
 			$(GO_PKG)/$(REPO)/pkg/apis                   \
-			"cloud/v1"                                   \
+			"cloud:v1"                                   \
 			--go-header-file "./hack/boilerplate.go.txt"
 
 # Generate CRD manifests

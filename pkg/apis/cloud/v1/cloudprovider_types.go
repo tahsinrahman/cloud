@@ -29,13 +29,13 @@ type CloudProviderSpec struct {
 }
 
 // +genclient
+// +k8s:openapi-gen=true
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 // +genclient:nonNamespaced
 // +genclient:skipVerbs=updateStatus,watch
 // +kubebuilder:object:root=true
 
 // CloudProvider is the Schema for the cloudproviders API
-// +k8s:openapi-gen=true
 type CloudProvider struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
@@ -44,7 +44,6 @@ type CloudProvider struct {
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
-// +genclient:nonNamespaced
 // +kubebuilder:object:root=true
 
 // CloudProviderList contains a list of CloudProvider
@@ -52,10 +51,6 @@ type CloudProviderList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []CloudProvider `json:"items"`
-}
-
-func init() {
-	SchemeBuilder.Register(&CloudProvider{}, &CloudProviderList{})
 }
 
 // Region defines the desired state of Region
