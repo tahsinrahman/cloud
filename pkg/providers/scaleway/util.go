@@ -1,12 +1,12 @@
 package scaleway
 
 import (
-	"github.com/pharmer/cloud/pkg/apis"
-	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
-	"github.com/pharmer/cloud/pkg/util"
 	scaleway "github.com/scaleway/scaleway-cli/pkg/api"
 	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"pharmer.dev/cloud/pkg/apis"
+	v1 "pharmer.dev/cloud/pkg/apis/cloud/v1"
+	"pharmer.dev/cloud/pkg/util"
 )
 
 func ParseInstance(name string, in *scaleway.ProductServer) (*v1.MachineType, error) {

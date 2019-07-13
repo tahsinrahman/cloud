@@ -8,12 +8,12 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/pharmer/cloud/pkg/apis"
+	"pharmer.dev/cloud/pkg/apis"
 
-	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
 	"github.com/pkg/errors"
 	"k8s.io/apimachinery/pkg/api/resource"
 	"k8s.io/apimachinery/pkg/version"
+	v1 "pharmer.dev/cloud/pkg/apis/cloud/v1"
 	"sigs.k8s.io/yaml"
 )
 

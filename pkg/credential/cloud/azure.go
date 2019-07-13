@@ -16,11 +16,11 @@ import (
 	"github.com/appscode/go/term"
 	"github.com/appscode/go/types"
 	"github.com/pborman/uuid"
-	api "github.com/pharmer/cloud/pkg/apis/cloud/v1"
-	"github.com/pharmer/cloud/pkg/credential"
 	"github.com/pkg/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/wait"
+	api "pharmer.dev/cloud/pkg/apis/cloud/v1"
+	"pharmer.dev/cloud/pkg/credential"
 )
 
 const (

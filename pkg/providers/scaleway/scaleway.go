@@ -1,10 +1,10 @@
 package scaleway
 
 import (
-	"github.com/pharmer/cloud/pkg/apis"
-	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
-	"github.com/pharmer/cloud/pkg/credential"
 	scaleway "github.com/scaleway/scaleway-cli/pkg/api"
+	"pharmer.dev/cloud/pkg/apis"
+	v1 "pharmer.dev/cloud/pkg/apis/cloud/v1"
+	"pharmer.dev/cloud/pkg/credential"
 )
 
 type Client struct {

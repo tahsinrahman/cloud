@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/pharmer/cloud/pkg/util"
+	"pharmer.dev/cloud/pkg/util"
 
-	"github.com/pharmer/cloud/pkg/apis"
-	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
 	"github.com/pkg/errors"
 	"google.golang.org/api/compute/v1"
 	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"pharmer.dev/cloud/pkg/apis"
+	v1 "pharmer.dev/cloud/pkg/apis/cloud/v1"
 )
 
 func ParseRegion(region *compute.Region) (*v1.Region, error) {

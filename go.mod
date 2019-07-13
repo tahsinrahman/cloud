@@ -1,14 +1,13 @@
-module github.com/pharmer/cloud
+module pharmer.dev/cloud
 
 go 1.12
 
 require (
-	cloud.google.com/go v0.39.0 // indirect
 	contrib.go.opencensus.io/exporter/ocagent v0.5.0 // indirect
 	github.com/Azure/azure-sdk-for-go v29.0.0+incompatible
 	github.com/Azure/go-autorest v12.0.0+incompatible
 	github.com/JamesClonk/vultr v2.0.0+incompatible
-	github.com/appscode/go v0.0.0-20190424183524-60025f1135c9
+	github.com/appscode/go v0.0.0-20190621064509-6b292c9166e3
 	github.com/aws/aws-sdk-go v1.19.31
 	github.com/creack/goselect v0.0.0-20180501195510-58854f77ee8d // indirect
 	github.com/davecgh/go-spew v1.1.1
@@ -28,8 +27,8 @@ require (
 	github.com/packethost/packngo v0.1.1-0.20190507131943-1343be729ca2
 	github.com/pborman/uuid v1.2.0
 	github.com/pkg/errors v0.8.1
+	github.com/prometheus/client_golang v0.9.3-0.20190127221311-3c4408c8b829 // indirect
 	github.com/renstrom/fuzzysearch v1.0.2 // indirect
-	github.com/satori/go.uuid v1.2.0 // indirect
 	github.com/scaleway/scaleway-cli v1.10.2-0.20190329131818-c54911b8b3c5
 	github.com/skratchdot/open-golang v0.0.0-20190402232053-79abb63cd66e
 	github.com/smartystreets/assertions v0.0.0-20190401211740-f487f9de1cd3 // indirect
@@ -57,7 +56,6 @@ require (
 replace (
 	github.com/graymeta/stow => github.com/appscode/stow v0.0.0-20190506085026-ca5baa008ea3
 	github.com/renstrom/fuzzysearch => github.com/lithammer/fuzzysearch v1.0.2
-	gopkg.in/robfig/cron.v2 => github.com/appscode/cron v0.0.0-20170717094345-ca60c6d796d4
 	k8s.io/api => k8s.io/api v0.0.0-20190313235455-40a48860b5ab
 	k8s.io/apiextensions-apiserver => k8s.io/apiextensions-apiserver v0.0.0-20190315093550-53c4693659ed
 	k8s.io/apimachinery => github.com/kmodules/apimachinery v0.0.0-20190508045248-a52a97a7a2bf

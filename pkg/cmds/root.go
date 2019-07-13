@@ -5,11 +5,11 @@ import (
 
 	"github.com/appscode/go/flags"
 	v "github.com/appscode/go/version"
-	"github.com/pharmer/cloud/pkg/apis"
 	"github.com/spf13/cobra"
 	"k8s.io/client-go/kubernetes/scheme"
 	"kmodules.xyz/client-go/logs"
 	"kmodules.xyz/client-go/tools/cli"
+	"pharmer.dev/cloud/pkg/apis"
 )
 
 func NewRootCmd() *cobra.Command {

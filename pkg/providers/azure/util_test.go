@@ -7,7 +7,7 @@ import (
 
 	"github.com/davecgh/go-spew/spew"
 
-	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
+	v1 "pharmer.dev/cloud/pkg/apis/cloud/v1"
 
 	"github.com/appscode/go/types"
 	"github.com/the-redback/go-oneliners"

@@ -4,9 +4,9 @@ import (
 	"flag"
 
 	"github.com/appscode/go/term"
-	"github.com/pharmer/cloud/pkg/cmds/options"
-	"github.com/pharmer/cloud/pkg/providers"
 	"github.com/spf13/cobra"
+	"pharmer.dev/cloud/pkg/cmds/options"
+	"pharmer.dev/cloud/pkg/providers"
 )
 
 func NewCmdKubeSupport() *cobra.Command {

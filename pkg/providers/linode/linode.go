@@ -5,10 +5,10 @@ import (
 	"net/http"
 
 	"github.com/linode/linodego"
-	"github.com/pharmer/cloud/pkg/apis"
-	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
-	"github.com/pharmer/cloud/pkg/credential"
 	"golang.org/x/oauth2"
+	"pharmer.dev/cloud/pkg/apis"
+	v1 "pharmer.dev/cloud/pkg/apis/cloud/v1"
+	"pharmer.dev/cloud/pkg/credential"
 )
 
 type Client struct {

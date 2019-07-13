@@ -2,8 +2,8 @@ package cmds
 
 import (
 	"github.com/appscode/go/term"
-	"github.com/pharmer/cloud/pkg/providers"
 	"github.com/spf13/cobra"
+	"pharmer.dev/cloud/pkg/providers"
 )
 
 func NewCmdGenData() *cobra.Command {

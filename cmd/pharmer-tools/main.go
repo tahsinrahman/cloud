@@ -3,9 +3,9 @@ package main
 import (
 	"os"
 
-	"github.com/pharmer/cloud/pkg/cmds"
-	_ "github.com/pharmer/cloud/pkg/credential/cloud"
 	"kmodules.xyz/client-go/logs"
+	"pharmer.dev/cloud/pkg/cmds"
+	_ "pharmer.dev/cloud/pkg/credential/cloud"
 )
 
 func main() {

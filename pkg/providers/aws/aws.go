@@ -9,10 +9,10 @@ import (
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ec2"
-	"github.com/pharmer/cloud/pkg/apis"
-	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
-	"github.com/pharmer/cloud/pkg/credential"
 	"github.com/pkg/errors"
+	"pharmer.dev/cloud/pkg/apis"
+	v1 "pharmer.dev/cloud/pkg/apis/cloud/v1"
+	"pharmer.dev/cloud/pkg/credential"
 )
 
 type Client struct {

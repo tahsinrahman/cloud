@@ -29,5 +29,5 @@ var (
 )
 
 func init() {
-	DataDir = filepath.Join(build.Default.GOPATH, "src/github.com/pharmer/cloud/data")
+	DataDir = filepath.Join(build.Default.GOPATH, "src/pharmer.dev/cloud/data")
 }

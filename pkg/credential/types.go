@@ -6,11 +6,11 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/pharmer/cloud/pkg/apis"
-	api "github.com/pharmer/cloud/pkg/apis/cloud/v1"
-	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
 	"github.com/pkg/errors"
 	"k8s.io/apimachinery/pkg/util/sets"
+	"pharmer.dev/cloud/pkg/apis"
+	api "pharmer.dev/cloud/pkg/apis/cloud/v1"
+	v1 "pharmer.dev/cloud/pkg/apis/cloud/v1"
 )
 
 const (

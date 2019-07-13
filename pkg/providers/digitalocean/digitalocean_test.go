@@ -3,7 +3,7 @@ package digitalocean
 import (
 	"testing"
 
-	"github.com/pharmer/cloud/pkg/credential"
+	"pharmer.dev/cloud/pkg/credential"
 )
 
 func TestRegion(t *testing.T) {

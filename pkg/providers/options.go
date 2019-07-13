@@ -5,11 +5,11 @@ import (
 	"os"
 
 	"github.com/appscode/go/flags"
-	"github.com/pharmer/cloud/pkg/apis"
-	v1 "github.com/pharmer/cloud/pkg/apis/cloud/v1"
-	"github.com/pharmer/cloud/pkg/credential"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
+	"pharmer.dev/cloud/pkg/apis"
+	v1 "pharmer.dev/cloud/pkg/apis/cloud/v1"
+	"pharmer.dev/cloud/pkg/credential"
 )
 
 type Options struct {

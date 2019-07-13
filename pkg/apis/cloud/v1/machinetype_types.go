@@ -34,14 +34,15 @@ type MachineTypeSpec struct {
 	Deprecated  bool               `json:"deprecated,omitempty"`
 }
 
+// MachineType is the Schema for the machinetypes API
+
 // +genclient
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 // +genclient:nonNamespaced
 // +genclient:skipVerbs=updateStatus,watch
-// +kubebuilder:object:root=true
-
-// MachineType is the Schema for the machinetypes API
 // +k8s:openapi-gen=true
+
+// +kubebuilder:object:root=true
 // +kubebuilder:printcolumn:name="SKU",type="string",JSONPath=".spec.sku"
 // +kubebuilder:printcolumn:name="CPU",type="string",JSONPath=".spec.cpu"
 // +kubebuilder:printcolumn:name="RAM",type="string",JSONPath=".spec.ram"
