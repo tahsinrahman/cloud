@@ -4,7 +4,7 @@ go 1.12
 
 require (
 	github.com/Azure/azure-sdk-for-go v29.0.0+incompatible
-	github.com/Azure/go-autorest v12.0.0+incompatible
+	github.com/Azure/go-autorest v11.1.2+incompatible
 	github.com/JamesClonk/vultr v2.0.0+incompatible
 	github.com/appscode/go v0.0.0-20190621064509-6b292c9166e3
 	github.com/aws/aws-sdk-go v1.19.31
