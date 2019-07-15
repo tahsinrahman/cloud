@@ -4,9 +4,8 @@ GO_PKG   := pharmer.dev
 REPO     := $(notdir $(shell pwd))
 
 # Produce CRDs that work back to Kubernetes 1.11 (no version conversion)
-CRD_OPTIONS ?= "crd:trivialVersions=true"
-
-BUILD_IMAGE ?= appscode/gengo:release-1.14
+CRD_OPTIONS          ?= "crd:trivialVersions=true"
+CODE_GENERATOR_IMAGE ?= appscode/gengo:release-1.14
 
 all: pharmer-tools
 
@@ -48,7 +47,7 @@ clientset:
 		-w $(DOCKER_REPO_ROOT)                           \
 	    --env HTTP_PROXY=$(HTTP_PROXY)                   \
 	    --env HTTPS_PROXY=$(HTTPS_PROXY)                 \
-		$(BUILD_IMAGE)                                   \
+		$(CODE_GENERATOR_IMAGE)                          \
 		/go/src/k8s.io/code-generator/generate-groups.sh \
 			"deepcopy,client"                            \
 			$(GO_PKG)/$(REPO)/pkg/client                 \
@@ -67,7 +66,7 @@ manifests:
 		-w $(DOCKER_REPO_ROOT)              \
 	    --env HTTP_PROXY=$(HTTP_PROXY)      \
 	    --env HTTPS_PROXY=$(HTTPS_PROXY)    \
-		$(BUILD_IMAGE)                      \
+		$(CODE_GENERATOR_IMAGE)             \
 		controller-gen                      \
 			$(CRD_OPTIONS)                  \
 			paths="./pkg/apis/..."          \
