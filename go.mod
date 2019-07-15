@@ -3,11 +3,14 @@ module pharmer.dev/cloud
 go 1.12
 
 require (
-	github.com/Azure/azure-sdk-for-go v29.0.0+incompatible
-	github.com/Azure/go-autorest v11.1.2+incompatible
+	github.com/Azure/azure-sdk-for-go v31.1.0+incompatible
+	github.com/Azure/go-autorest/autorest v0.5.0
+	github.com/Azure/go-autorest/autorest/adal v0.2.0
+	github.com/Azure/go-autorest/autorest/date v0.1.0
+	github.com/Azure/go-autorest/autorest/mocks v0.2.0 // indirect
 	github.com/JamesClonk/vultr v2.0.0+incompatible
 	github.com/appscode/go v0.0.0-20190621064509-6b292c9166e3
-	github.com/aws/aws-sdk-go v1.19.31
+	github.com/aws/aws-sdk-go v1.20.20
 	github.com/creack/goselect v0.0.0-20180501195510-58854f77ee8d // indirect
 	github.com/davecgh/go-spew v1.1.1
 	github.com/digitalocean/godo v1.10.0
@@ -25,34 +28,28 @@ require (
 	github.com/packethost/packngo v0.1.1-0.20190507131943-1343be729ca2
 	github.com/pborman/uuid v1.2.0
 	github.com/pkg/errors v0.8.1
-	github.com/prometheus/client_golang v0.9.3-0.20190127221311-3c4408c8b829 // indirect
 	github.com/renstrom/fuzzysearch v1.0.2 // indirect
 	github.com/scaleway/scaleway-cli v1.10.2-0.20190329131818-c54911b8b3c5
 	github.com/skratchdot/open-golang v0.0.0-20190402232053-79abb63cd66e
 	github.com/smartystreets/assertions v0.0.0-20190401211740-f487f9de1cd3 // indirect
-	github.com/spf13/cobra v0.0.3
+	github.com/spf13/cobra v0.0.5
 	github.com/spf13/pflag v1.0.3
 	github.com/the-redback/go-oneliners v0.0.0-20190417084731-74f7694e6dae
-	golang.org/x/crypto v0.0.0-20190513172903-22d7a77e9e5f // indirect
-	golang.org/x/net v0.0.0-20190514140710-3ec191127204
-	golang.org/x/oauth2 v0.0.0-20190402181905-9f3314589c9a
-	golang.org/x/sys v0.0.0-20190516014833-cab07311ab81 // indirect
-	google.golang.org/api v0.5.0
-	google.golang.org/appengine v1.6.0 // indirect
-	google.golang.org/genproto v0.0.0-20190515210553-995ef27e003f // indirect
+	golang.org/x/net v0.0.0-20190620200207-3b0461eec859
+	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
+	google.golang.org/api v0.7.0
 	gopkg.in/ini.v1 v1.42.0
 	k8s.io/api v0.0.0-20190515023547-db5a9d1c40eb // indirect
-	k8s.io/apiextensions-apiserver v0.0.0-20190515024537-2fd0e9006049 // indirect
 	k8s.io/apimachinery v0.0.0-20190515023456-b74e4c97951f
 	k8s.io/client-go v11.0.1-0.20190409021438-1a26190bd76a+incompatible
 	k8s.io/kube-openapi v0.0.0-20190510232812-a01b7d5d6c22 // indirect
-	kmodules.xyz/client-go v0.0.0-20190515205239-a16030cc2e50
+	kmodules.xyz/client-go v0.0.0-20190715080709-7162a6c90b04
 	sigs.k8s.io/controller-runtime v0.2.0-beta.4
 	sigs.k8s.io/yaml v1.1.0
 )
 
 replace (
-	github.com/graymeta/stow => github.com/appscode/stow v0.0.0-20190506085026-ca5baa008ea3
+	github.com/Azure/go-autorest => github.com/Azure/go-autorest/autorest v0.5.0
 	github.com/renstrom/fuzzysearch => github.com/lithammer/fuzzysearch v1.0.2
 	k8s.io/api => k8s.io/api v0.0.0-20190313235455-40a48860b5ab
 	k8s.io/apiextensions-apiserver => k8s.io/apiextensions-apiserver v0.0.0-20190315093550-53c4693659ed

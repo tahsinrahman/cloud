@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/Azure/azure-sdk-for-go/profiles/2019-03-01/resources/mgmt/subscriptions"
 	"github.com/Azure/azure-sdk-for-go/services/compute/mgmt/2019-03-01/compute"
+	"github.com/Azure/azure-sdk-for-go/services/resources/mgmt/2018-06-01/subscriptions"
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/adal"
 	"github.com/Azure/go-autorest/autorest/azure"
@@ -40,7 +40,7 @@ func TestRegion(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	groupsClient := subscriptions.NewGroupClient()
+	groupsClient := subscriptions.NewClient()
 	groupsClient.Authorizer = autorest.NewBearerAuthorizer(spt)
 	g := Client{
 		GroupsClient:   groupsClient,
@@ -70,7 +70,7 @@ func TestInstances(t *testing.T) {
 	}
 	vmSzClient := compute.NewVirtualMachineSizesClient(cred.SubscriptionId)
 	vmSzClient.Authorizer = autorest.NewBearerAuthorizer(spt)
-	groupsClient := subscriptions.NewGroupClient()
+	groupsClient := subscriptions.NewClient()
 	groupsClient.Authorizer = autorest.NewBearerAuthorizer(spt)
 	g := Client{
 		VmSizesClient:  vmSzClient,

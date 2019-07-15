@@ -1,27 +1,32 @@
-# cloud.google.com/go v0.39.0
+# cloud.google.com/go v0.41.0
 cloud.google.com/go/compute/metadata
 # contrib.go.opencensus.io/exporter/ocagent v0.4.12
 contrib.go.opencensus.io/exporter/ocagent
-# github.com/Azure/azure-sdk-for-go v29.0.0+incompatible
+# github.com/Azure/azure-sdk-for-go v31.1.0+incompatible
 github.com/Azure/azure-sdk-for-go/profiles/2019-03-01/resources/mgmt/subscriptions
 github.com/Azure/azure-sdk-for-go/profiles/latest/authorization/mgmt/authorization
 github.com/Azure/azure-sdk-for-go/profiles/latest/graphrbac/graphrbac
 github.com/Azure/azure-sdk-for-go/profiles/preview/preview/apimanagement/mgmt/apimanagement
 github.com/Azure/azure-sdk-for-go/services/compute/mgmt/2019-03-01/compute
+github.com/Azure/azure-sdk-for-go/services/resources/mgmt/2018-06-01/subscriptions
 github.com/Azure/azure-sdk-for-go/services/resources/mgmt/2016-06-01/subscriptions
 github.com/Azure/azure-sdk-for-go/services/authorization/mgmt/2015-07-01/authorization
 github.com/Azure/azure-sdk-for-go/services/graphrbac/1.6/graphrbac
 github.com/Azure/azure-sdk-for-go/services/preview/apimanagement/mgmt/2018-06-01-preview/apimanagement
 github.com/Azure/azure-sdk-for-go/version
-# github.com/Azure/go-autorest v11.1.2+incompatible
+# github.com/Azure/go-autorest/autorest v0.5.0
 github.com/Azure/go-autorest/autorest
-github.com/Azure/go-autorest/autorest/adal
 github.com/Azure/go-autorest/autorest/azure
+# github.com/Azure/go-autorest/autorest/adal v0.2.0
+github.com/Azure/go-autorest/autorest/adal
+# github.com/Azure/go-autorest/autorest/date v0.1.0
 github.com/Azure/go-autorest/autorest/date
-github.com/Azure/go-autorest/logger
-github.com/Azure/go-autorest/version
+# github.com/Azure/go-autorest/autorest/to v0.2.0
 github.com/Azure/go-autorest/autorest/to
+# github.com/Azure/go-autorest/autorest/validation v0.1.0
 github.com/Azure/go-autorest/autorest/validation
+# github.com/Azure/go-autorest/logger v0.1.0
+github.com/Azure/go-autorest/logger
 # github.com/Azure/go-autorest/tracing v0.1.0
 github.com/Azure/go-autorest/tracing
 # github.com/JamesClonk/vultr v2.0.0+incompatible
@@ -40,9 +45,7 @@ github.com/appscode/go/encoding/json/types
 github.com/appscode/go/analytics
 github.com/appscode/go/net
 github.com/appscode/go/homedir
-# github.com/appscode/jsonpatch v0.0.0-20190108182946-7c0e3b262f30
-github.com/appscode/jsonpatch
-# github.com/aws/aws-sdk-go v1.19.31
+# github.com/aws/aws-sdk-go v1.20.20
 github.com/aws/aws-sdk-go/aws
 github.com/aws/aws-sdk-go/aws/credentials
 github.com/aws/aws-sdk-go/aws/session
@@ -74,6 +77,7 @@ github.com/aws/aws-sdk-go/private/protocol/query/queryutil
 github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil
 github.com/aws/aws-sdk-go/private/protocol/query
 github.com/aws/aws-sdk-go/internal/sdkuri
+github.com/aws/aws-sdk-go/private/protocol/json/jsonutil
 # github.com/census-instrumentation/opencensus-proto v0.2.0
 github.com/census-instrumentation/opencensus-proto/gen-go/agent/common/v1
 github.com/census-instrumentation/opencensus-proto/gen-go/agent/metrics/v1
@@ -237,7 +241,7 @@ github.com/sergi/go-diff/diffmatchpatch
 github.com/sirupsen/logrus
 # github.com/skratchdot/open-golang v0.0.0-20190402232053-79abb63cd66e
 github.com/skratchdot/open-golang/open
-# github.com/spf13/cobra v0.0.3
+# github.com/spf13/cobra v0.0.5
 github.com/spf13/cobra
 # github.com/spf13/pflag v1.0.3
 github.com/spf13/pflag
@@ -248,26 +252,26 @@ github.com/yudai/gojsondiff
 github.com/yudai/gojsondiff/formatter
 # github.com/yudai/golcs v0.0.0-20170316035057-ecda9a501e82
 github.com/yudai/golcs
-# go.opencensus.io v0.21.0
+# go.opencensus.io v0.22.0
 go.opencensus.io/plugin/ochttp
 go.opencensus.io/plugin/ochttp/propagation/tracecontext
 go.opencensus.io/stats/view
 go.opencensus.io/trace
-go.opencensus.io/plugin/ochttp/propagation/b3
-go.opencensus.io/stats
-go.opencensus.io/tag
-go.opencensus.io/trace/propagation
 go.opencensus.io
 go.opencensus.io/plugin/ocgrpc
 go.opencensus.io/resource
+go.opencensus.io/stats
+go.opencensus.io/tag
 go.opencensus.io/trace/tracestate
+go.opencensus.io/plugin/ochttp/propagation/b3
+go.opencensus.io/trace/propagation
 go.opencensus.io/internal/tagencoding
 go.opencensus.io/metric/metricdata
 go.opencensus.io/metric/metricproducer
 go.opencensus.io/stats/internal
 go.opencensus.io/internal
 go.opencensus.io/trace/internal
-# golang.org/x/crypto v0.0.0-20190513172903-22d7a77e9e5f
+# golang.org/x/crypto v0.0.0-20190605123033-f99c8df09eb5
 golang.org/x/crypto/ssh/terminal
 golang.org/x/crypto/ssh
 golang.org/x/crypto/curve25519
@@ -276,7 +280,7 @@ golang.org/x/crypto/internal/chacha20
 golang.org/x/crypto/poly1305
 golang.org/x/crypto/ed25519/internal/edwards25519
 golang.org/x/crypto/internal/subtle
-# golang.org/x/net v0.0.0-20190514140710-3ec191127204
+# golang.org/x/net v0.0.0-20190620200207-3b0461eec859
 golang.org/x/net/context
 golang.org/x/net/http2
 golang.org/x/net/http/httpguts
@@ -289,7 +293,7 @@ golang.org/x/net/trace
 golang.org/x/net/html
 golang.org/x/net/internal/timeseries
 golang.org/x/net/html/atom
-# golang.org/x/oauth2 v0.0.0-20190402181905-9f3314589c9a
+# golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
 golang.org/x/oauth2
 golang.org/x/oauth2/google
 golang.org/x/oauth2/internal
@@ -298,7 +302,7 @@ golang.org/x/oauth2/jwt
 # golang.org/x/sync v0.0.0-20190423024810-112230192c58
 golang.org/x/sync/errgroup
 golang.org/x/sync/semaphore
-# golang.org/x/sys v0.0.0-20190516014833-cab07311ab81
+# golang.org/x/sys v0.0.0-20190624142023-c5567b49c5d0
 golang.org/x/sys/unix
 golang.org/x/sys/windows
 golang.org/x/sys/cpu
@@ -325,7 +329,9 @@ golang.org/x/text/internal/language/compact
 golang.org/x/text/internal/tag
 # golang.org/x/time v0.0.0-20190308202827-9d24e82272b4
 golang.org/x/time/rate
-# google.golang.org/api v0.5.0
+# gomodules.xyz/jsonpatch/v2 v2.0.0
+gomodules.xyz/jsonpatch/v2
+# google.golang.org/api v0.7.0
 google.golang.org/api/cloudresourcemanager/v1
 google.golang.org/api/iam/v1
 google.golang.org/api/compute/v1
@@ -338,7 +344,7 @@ google.golang.org/api/internal
 google.golang.org/api/googleapi/transport
 google.golang.org/api/transport/http/internal/propagation
 google.golang.org/api/support/bundler
-# google.golang.org/appengine v1.6.0
+# google.golang.org/appengine v1.6.1
 google.golang.org/appengine
 google.golang.org/appengine/urlfetch
 google.golang.org/appengine/internal
@@ -349,18 +355,19 @@ google.golang.org/appengine/internal/base
 google.golang.org/appengine/internal/datastore
 google.golang.org/appengine/internal/log
 google.golang.org/appengine/internal/remote_api
-# google.golang.org/genproto v0.0.0-20190515210553-995ef27e003f
+# google.golang.org/genproto v0.0.0-20190626174449-989357319d63
 google.golang.org/genproto/googleapis/rpc/status
 google.golang.org/genproto/googleapis/api/httpbody
 google.golang.org/genproto/protobuf/field_mask
-# google.golang.org/grpc v1.20.1
+# google.golang.org/grpc v1.21.1
 google.golang.org/grpc
+google.golang.org/grpc/credentials
+google.golang.org/grpc/metadata
 google.golang.org/grpc/naming
 google.golang.org/grpc/balancer
 google.golang.org/grpc/balancer/roundrobin
 google.golang.org/grpc/codes
 google.golang.org/grpc/connectivity
-google.golang.org/grpc/credentials
 google.golang.org/grpc/encoding
 google.golang.org/grpc/encoding/proto
 google.golang.org/grpc/grpclog
@@ -374,7 +381,6 @@ google.golang.org/grpc/internal/grpcrand
 google.golang.org/grpc/internal/grpcsync
 google.golang.org/grpc/internal/transport
 google.golang.org/grpc/keepalive
-google.golang.org/grpc/metadata
 google.golang.org/grpc/peer
 google.golang.org/grpc/resolver
 google.golang.org/grpc/resolver/dns
@@ -382,8 +388,8 @@ google.golang.org/grpc/resolver/passthrough
 google.golang.org/grpc/stats
 google.golang.org/grpc/status
 google.golang.org/grpc/tap
-google.golang.org/grpc/balancer/base
 google.golang.org/grpc/credentials/internal
+google.golang.org/grpc/balancer/base
 google.golang.org/grpc/binarylog/grpc_binarylog_v1
 google.golang.org/grpc/internal/syscall
 # gopkg.in/fsnotify.v1 v1.4.7
@@ -435,7 +441,7 @@ k8s.io/api/settings/v1alpha1
 k8s.io/api/storage/v1
 k8s.io/api/storage/v1alpha1
 k8s.io/api/storage/v1beta1
-# k8s.io/apiextensions-apiserver v0.0.0-20190515024537-2fd0e9006049 => k8s.io/apiextensions-apiserver v0.0.0-20190315093550-53c4693659ed
+# k8s.io/apiextensions-apiserver v0.0.0-20190516231611-bf6753f2aa24 => k8s.io/apiextensions-apiserver v0.0.0-20190315093550-53c4693659ed
 k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1beta1
 k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset
 k8s.io/apiextensions-apiserver/pkg/apis/apiextensions
@@ -551,7 +557,7 @@ k8s.io/klog
 k8s.io/kube-openapi/pkg/util/proto
 # k8s.io/utils v0.0.0-20190506122338-8fab8cb257d5 => k8s.io/utils v0.0.0-20190221042446-c2654d5206da
 k8s.io/utils/integer
-# kmodules.xyz/client-go v0.0.0-20190515205239-a16030cc2e50
+# kmodules.xyz/client-go v0.0.0-20190715080709-7162a6c90b04
 kmodules.xyz/client-go/logs
 kmodules.xyz/client-go/tools/cli
 kmodules.xyz/client-go/meta
