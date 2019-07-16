@@ -4,10 +4,6 @@ go 1.12
 
 require (
 	github.com/Azure/azure-sdk-for-go v31.1.0+incompatible
-	github.com/Azure/go-autorest/autorest v0.5.0
-	github.com/Azure/go-autorest/autorest/adal v0.2.0
-	github.com/Azure/go-autorest/autorest/date v0.1.0
-	github.com/Azure/go-autorest/autorest/mocks v0.2.0 // indirect
 	github.com/JamesClonk/vultr v2.0.0+incompatible
 	github.com/appscode/go v0.0.0-20190621064509-6b292c9166e3
 	github.com/aws/aws-sdk-go v1.20.20
@@ -49,7 +45,6 @@ require (
 )
 
 replace (
-	github.com/Azure/go-autorest => github.com/Azure/go-autorest/autorest v0.5.0
 	github.com/renstrom/fuzzysearch => github.com/lithammer/fuzzysearch v1.0.2
 	k8s.io/api => k8s.io/api v0.0.0-20190313235455-40a48860b5ab
 	k8s.io/apiextensions-apiserver => k8s.io/apiextensions-apiserver v0.0.0-20190315093550-53c4693659ed
